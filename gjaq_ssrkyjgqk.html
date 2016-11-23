@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>税收入库与结构情况</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body{
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        #ssyjg .col-xs-3{
+            padding: 0;
+        }
+        #ssyjg .col-xs-2{
+            padding: 0;
+        }
+       .theme_2 body{
+            color: #5c0000;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body class="theme_2">
+<div id="ssyjg" style="width: 1366px;height: 200px;">
+    <div style="position: absolute;top: 10px;left: 10px;font-size: 1.4rem">税收入库结构（当月）</div>
+    <div class="col-xs-2">
+        <div class="beijing_yuanhuan" style="width: 94px;height: 94px;border-radius: 100px;position: absolute;top: 43px;left: 66px;z-index: 0;"></div>
+        <div id="ssrk1" style="height: 180px;z-index: 100;"></div>
+    </div>
+    <div class="col-xs-2">
+        <div class="beijing_yuanhuan" style="width: 94px;height: 94px;border-radius: 100px;position: absolute;top: 43px;left: 66px;z-index: 0;"></div>
+        <div id="ssrk2" style="height: 180px"></div>
+    </div>
+    <div style="position: absolute;top: 10px;left: 940px;font-size: 1.4rem">税收入库结构变化趋势</div>
+    <div class="col-xs-2">
+        <div class="beijing_yuanhuan" style="width: 94px;height: 94px;border-radius: 100px;position: absolute;top: 43px;left: 66px;z-index: 0;"></div>
+        <div id="ssrk3" style="height: 180px"></div>
+    </div>
+    <div class="col-xs-3">
+        <div id="ssrk4" style="height: 180px"></div>
+    </div>
+    <div class="col-xs-3">
+        <div id="ssrk5" style="height: 180px"></div>
+    </div>
+</div>
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+//更换主题
+	changeBodyColor();
+    function DrawPie1(){
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('ssrk1'));
+
+    option = {
+        //color:['#124B66','#2E7798','#3E8DB4','#4FA3C8','#dddddd'],
+        calculable : false,
+        series : [
+            {
+                name:'税收1',
+                type:'pie',
+                radius : [20, 36],
+
+                // for funnel
+                x: '60%',
+                width: '35%',
+                funnelAlign: 'left',
+                max: 100,
+
+                data:[
+                    {value:25, name:'其他收入',
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    color: 'rgba(255,255,0,1)',
+                                    textStyle : {
+                                        //color : '#8CD6EF',
+                                        align : 'left',
+                                        baseline : 'bottom',
+                                        fontFamily : '微软雅黑',
+                                        fontSize : 12,
+                                        fontWeight : 'bolder'
+                                    },
+                                    formatter :"{b}\n{d}%"
+                                },
+                                labelLine : {
+                                    length : 15,
+                                    lineStyle : {
+                                      //  color : '#8CD6EF',
+                                        width : 2
+                                    }
+                                }
+                            }
+                        }},
+                    {value:19, name:'实际入库关税',
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    color: 'rgba(255,255,0,1)',
+                                    textStyle : {
+                                       // color : '#8CD6EF',
+                                        align : 'center',
+                                        baseline : 'top',
+                                        fontFamily : '微软雅黑',
+                                        fontSize : 12,
+                                        fontWeight : 'bolder'
+                                    },
+                                    formatter :"{b}\n{d}%"
+                                },
+                                labelLine : {
+                                    length : 15,
+                                    lineStyle : {
+                                        //color : '#8CD6EF',
+                                        width : 2
+                                    }
+                                }
+                            }
+                        }},
+                    {value:25, name:'实际入库进口环节税',
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    color: 'rgba(255,255,0,1)',
+                                    textStyle : {
+                                        //color : '#8CD6EF',
+                                        align : 'center',
+                                        baseline : 'top',
+                                        fontFamily : '微软雅黑',
+                                        fontSize : 12,
+                                        fontWeight : 'bolder'
+                                    },
+                                    formatter :"{b}\n{d}%"
+                                },
+                                labelLine : {
+                                    length : 15,
+                                    lineStyle : {
+                                        //color : '#8CD6EF',
+                                        width : 2
+                                    }
+                                }
+                            }
+                        }},
+                    {value:31, name:'罚没收入',
+                        itemStyle : {
+                            normal : {
+                                label : {
+                                    color: 'rgba(255,255,0,1)',
+                                    textStyle : {
+                                       // color : '#8CD6EF',
+                                        align : 'right',
+                                        baseline : 'middle',
+                                        fontFamily : '微软雅黑',
+                                        fontSize : 12,
+                                        fontWeight : 'bolder'
+                                    },
+                                    formatter :"{b}\n{d}%"
+                                },
+                                labelLine : {
+                                    length : 15,
+                                    lineStyle : {
+                                        //color : '#8CD6EF',
+                                        width : 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+    myChart.setTheme(changeEchartsColor());
+    }
+
+
+    function DrawPie2(){
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('ssrk2'));
+
+        option = {
+            //color:['#124B66','#2E7798','#3E8DB4','#4FA3C8','#4FA3C8','#4FA3C8','#4FA3C8'],
+            calculable : false,
+            series : [
+                {
+                    name:'税收2',
+                    type:'pie',
+                    radius : [20, 36],
+
+                    // for funnel
+                    x: '60%',
+                    width: '35%',
+                    funnelAlign: 'left',
+                    max: 100,
+
+                    data:[
+                        {value:21, name:'通关税',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'left',
+                                            baseline : 'bottom',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:21, name:'出口货物',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'center',
+                                            baseline : 'top',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:17, name:'进口货物',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'top',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                           // color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:12, name:'特定区域',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 6,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {value:12, name:'行政及邮递',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 0,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {value:17, name:'其他贸易性',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 10,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+        myChart.setTheme(changeEchartsColor());
+    }
+
+
+    function DrawPie3(){
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('ssrk3'));
+
+        option = {
+           // color:['#124B66','#2E7798','#3E8DB4','#4FA3C8','#4FA3C8','#4FA3C8','#4FA3C8'],
+            series : [
+                {
+                    name:'税收3',
+                    type:'pie',
+                    radius : [20, 36],
+
+                    // for funnel
+                    x: '60%',
+                    width: '35%',
+                    funnelAlign: 'left',
+                    max: 100,
+
+                    data:[
+                        {value:21, name:'制造商',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'left',
+                                            baseline : 'bottom',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:17, name:'进口商',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'center',
+                                            baseline : 'top',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                           // color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:21, name:'货站经营者',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'center',
+                                            baseline : 'top',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }},
+                        {value:17, name:'承运商',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                           // color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {value:12, name:'中间商',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        //color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                           // color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {value:21, name:'制造商',
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        color: 'rgba(255,255,0,1)',
+                                        textStyle : {
+                                            //color : '#8CD6EF',
+                                            align : 'right',
+                                            baseline : 'middle',
+                                            fontFamily : '微软雅黑',
+                                            fontSize : 12,
+                                            fontWeight : 'bolder'
+                                        },
+                                        formatter :"{b}\n{d}%"
+                                    },
+                                    labelLine : {
+                                        show:true,
+                                        length : 15,
+                                        lineStyle : {
+                                            //color : '#8CD6EF',
+                                            width : 2
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+         myChart.setTheme(changeEchartsColor());
+        
+    }
+
+
+
+    function DrawLine1(){
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('ssrk4'));
+
+        option = {
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            //color:['#8CD6EF','#146FE2','#8CD6EF','#0AA523','#8CD6EF','#4FA3C8','#4FA3C8'],
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    axisLabel:{
+                        interval:0,
+                        textStyle:{
+                            color:'#8CD7EE'
+                        }
+                    },
+                    splitLine:{
+                        show:false
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    splitNumber: 5,
+                    type : 'value',
+                    axisLabel:{
+                        textStyle:{
+                            color:'#8CD7EE'
+                        }
+                    },
+                    splitLine:{
+                        show:true,
+                        lineStyle:{
+                            color:'#1A4C67'
+                        }
+                    }
+                }
+            ],
+            grid: {
+                borderWidth: 0,
+                x:40,
+                y:45,
+                x2:30,
+                y2:30
+            },
+            series : [
+                {
+                    name:'百度',
+                    type:'bar',
+                    barWidth : 12,
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'谷歌',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'必应',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'其他',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                }
+            ]
+        };
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+         myChart.setTheme(changeEchartsColor());
+    }
+
+    function DrawLine2(){
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('ssrk5'));
+
+        option = {
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            //color:['#8CD6EF','#146FE2','#8CD6EF','#0AA523','#8CD6EF','#4FA3C8','#4FA3C8'],
+            calculable : true,
+            xAxis : [
+                {
+                    splitLine:{
+                        show:false
+                    },
+                    type : 'category',
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    axisLabel:{
+                        interval:0,
+                        textStyle:{
+                            color:'#8CD7EE'
+                        }
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    splitNumber: 5,
+                    type : 'value',
+                    axisLabel:{
+                        interval:0,
+                        textStyle:{
+                            color:'#8CD7EE'
+                        }
+                    },
+                    splitLine:{
+                        show:true,
+                        lineStyle:{
+                            color:'#1A4C67'
+                        }
+                    }
+                }
+            ],
+            grid: {
+                borderWidth: 0,
+                x:40,
+                y:45,
+                x2:30,
+                y2:30
+            },
+            series : [
+                {
+                    name:'百度',
+                    type:'bar',
+                    barWidth : 12,
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'谷歌',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'必应',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                },
+                {
+                    name:'其他',
+                    type:'bar',
+                    stack: '搜索引擎',
+                    data:[100, 200, 100, 50, 50, 100, 100, 100, 50, 50, 100, 100]
+                }
+            ]
+        };
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+         myChart.setTheme(changeEchartsColor());
+    }
+
+    DrawPie1();
+    DrawPie2();
+    DrawPie3();
+    DrawLine1();
+    DrawLine2();
+</script>
+</body>
+</html>

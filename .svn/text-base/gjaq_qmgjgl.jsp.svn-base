@@ -1,0 +1,187 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String chartID = request.getParameter('chartID');
+	String dataURL = request.getParameter('dataURL');
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>全面关境管理</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div style="width: 793px;height: 429px">
+    <div id="qmgjgl" style="width: 100%;height: 90%;">
+    </div>
+</div>
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+    var qmgjgl = echarts.init(document.getElementById('qmgjgl'));
+
+    var option = {
+        title: {
+            text: '事前                                                  事中                                                  事后',
+            x: 'center',
+            y: 15,
+            textStyle: {
+                color: '#8CD6EE',
+                fontSize: 14,
+                fontWeight:'bold'
+            }
+        },
+        //color:['#2B9DC2','#2B9DC2','#2B9DC2','#2B9DC2','#2B9DC2','#2B9DC2','#2B9DC2'],
+        grid: {
+            borderWidth: 0,
+            x:40,
+            y:45,
+            x2:30,
+            y2:30
+        },
+        xAxis: [{
+            type: 'category',
+            // data: ["", "", "", "",{
+                // value: "风险布控率",
+                // textStyle: {
+                    // color: '#8CD6EE',
+                    // fontSize: 12
+                // }
+            // }, "", "", "", "","",
+                // "", "", "", "",{
+                // value: "报关单查验率",
+                // textStyle: {
+                    // color: '#8CD6EE',
+                    // fontSize: 12
+                // }
+            // }, "", "", "", "","",
+                // "","", "", "",{
+                // value: "稽查有效率",
+                // textStyle: {
+                    // color: '#8CD6EE',
+                    // fontSize: 12
+                // }
+            // }, "", "", "", "", "" ],
+            splitLine:{
+                show:false
+            },
+            axisTick: 0,
+            axisLabel:{
+                interval:0,
+                textStyle:{
+                    color:'#8CD7EE'
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color:'#8CD6EF',
+                    width:1
+                }
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLabel:{
+                interval:0,
+                textStyle:{
+                    color:'#8CD7EE'
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color:'#8CD6EF',
+                    width:1
+                }
+            },
+            splitLine:{
+                show:true,
+                lineStyle:{
+                    color:'#1A4C67'
+                }
+            }
+        }],
+        series: [{
+            type: 'line',
+            symbol: 'none',
+           // data: [6, 11, 23, 13, 12, 13, 10, 12, 12]
+        }, {
+            type: 'line',
+            symbol: 'none',
+           // data: [12, 13, 12, 15, 23, 12, 5, 12, 12]
+        }, {
+            type: 'line',
+            symbol: 'none',
+            //data: [22, 3, 12, 7, 13, 15, 2, 2,24]
+        }, {
+            type: 'line',
+            symbol: 'none',
+            //data: ['-','-','-','-','-','-','-','-','-','-',12, 13, 12, 15, 23, 12, 5, 12, 12]
+        }, {
+            type: 'line',
+            symbol: 'none',
+           // data: ['-','-','-','-','-','-','-','-','-','-',6, 11, 23, 13, 12, 13, 10, 12, 12]
+        }, {
+            type: 'line',
+            symbol: 'none',
+            //data: ['-','-','-','-','-','-','-','-','-','-',22, 3, 12, 7, 13, 15, 2, 2,24]
+        }, {
+            type: 'line',
+            symbol: 'none',
+          //  data: ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',22, 3, 12, 7, 13, 15, 2, 2,24]
+        }, {
+            type: 'line',
+            symbol: 'none',
+           // data: ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',6, 11, 23, 13, 12, 13, 10, 12, 12]
+        }, {
+            type: 'line',
+            symbol: 'none',
+           // data: ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',12, 13, 12, 15, 23, 12, 5, 12, 12]
+        }]
+    };
+
+    var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	qmgjgl.setOption(option_data);
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+    qmgjgl.setTheme(changeEchartsColor());
+</script>
+</body>
+</html>

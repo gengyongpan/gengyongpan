@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>测试border</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body{
+            background: black url(images/background.jpg) no-repeat;
+            margin: 0px 0px;
+            padding: 0px 0px;
+        }
+        .title{
+            width: 100%;
+            height: 25px;
+            font-family: "Microsoft Yahei";
+            z-index: 99999;
+            display: -webkit-box;
+        }
+        .titleLeft{
+            background: url("images/border/title_left.png") no-repeat;
+            width: 19px;
+            height: 69px;
+        }
+        .titleRight{
+            background: url("images/border/title_right.png") no-repeat;
+            width: 18px;
+            height: 30px;
+        }
+        .titleContent{
+            background: url("images/border/title_center.png") repeat-x;
+            /*min-width: 20%;*/
+            height: 30px;
+            font-size: 18px;
+            font-weight: normal;
+            color: #fff;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #6AC7E8;
+        }
+        .parallelogram{
+            background: url("images/border/parallelogram.png")  center 12px no-repeat;
+            width: 40px;
+            height: 25px;
+            float: left;
+        }
+        .titleLine{
+            background: url("images/border/title_line.png") center 14px repeat-x;
+            height: 25px;
+            -webkit-box-flex: 1;
+        }
+        .fourDot{
+            background: url("images/border/four_dot.png") 6px 13px no-repeat;
+            width: 116px;
+            height: 25px;
+        }
+        .right_bottom{
+            position: absolute;
+            width: 57px;
+            height: 57px;
+            right: 0;
+            bottom: 0;
+            background: url("images/border/right_bottom.png") no-repeat;
+        }
+        .left_bottom{
+            position: absolute;
+            width: 57px;
+            height: 57px;
+            left: 0;
+            bottom: 0;
+            background: url("images/border/left_bottom.png") no-repeat;
+        }
+        .right_top{
+            position: absolute;
+            width: 59px;
+            height: 57px;
+            right: 0;
+            top: 19px;
+            background: url("images/border/right_top.png") no-repeat;
+        }
+        .top_center{
+            height: 6px;
+            margin-left: 19px;
+            margin-right: 20px;
+            background: url("images/border/top_center.png");
+            background-size: 100% 100%;
+        }
+        .metaPage{
+            margin-top: -1px;
+            margin-left: 7px;
+            margin-right: 7px;
+            position: relative;
+            -webkit-box-flex: 1;
+            border-radius: 15px;
+            background-color: rgba(0, 104, 167, 0.3);
+        }
+        .metaPage iframe{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+        .blueBorder{
+            width: 958px;
+            height:280px;
+            position: relative;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+
+</head>
+<body>
+<div class="blueBorder">
+    <div class="title">
+        <div class="titleLeft"></div>
+        <div class="titleContent">案件价值阿斯达</div>
+        <div class="titleRight"></div>
+        <div class="parallelogram"></div>
+        <div class="titleLine"></div>
+        <div class="fourDot"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="right_bottom"></div>
+    <div class="left_bottom"></div>
+    <div class="right_top"></div>
+    <!--<div class="left_top"></div>-->
+    <div class="top_center"></div>
+    <div class="metaPage">
+        <iframe src="index_it.html" style="background-color:transparent;" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+    </div>
+</div>
+<br>
+<div id="ssrkbl" style="width:100%;height:280px;position:relative;">
+    <div class="title3">
+        <div class="title3Ball"></div>
+        <div class="title3Left">税收入库比例</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3"></div>
+</div>
+
+<br>
+
+<div style="width: 740px;  height: 200px; position: relative;">
+    <div class="title3">
+        <div class="title3Ball"></div>
+        <div class="title3Left">贸易国税收结构</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder2">
+        <div class="text_title">重点关注贸易合作国<span>10个</span>，与马拉西亚贸易变化升高<span>10%</span>,符合一带一路战略的主要发展方向</div>
+        <div id="test_maoyi" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div style="width: 740px;  height: 200px; position: relative;">
+    <div class="title2">
+        <div class="title2Left">贸易国税收结构</div>
+        <div class="title2Slash"></div>
+        <div class="title2Center"></div>
+        <div class="title2Right"></div>
+        <div class="title2Ball"></div>
+    </div>
+    <div class="chartBorder2 chartBorder2_flip">
+        <div class="text_title">重点关注贸易合作国<span>10个</span>，与马拉西亚贸易变化升高<span>10%</span>,符合一带一路战略的主要发展方向</div>
+        <div id="test_maoyi" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+/*    $(function(){
+        var divW = $('.blueBorder').width();
+        var divH = $('.blueBorder').height();
+        console.log(divW);
+        console.log(divH);
+        $('.top_center').css('width',divW-39+'px');
+        $('.metaPage').css('height',divH-36+'px');
+        $('.metaPage').css('width',divW-14+'px');
+        var titleW = $('.titleContent').html().length*18;
+        var titleLineW =divW-(19+titleW+18+40+116)+'px';  //titleLine的宽度等于总宽度减去title里其他元素的宽度
+        //alert(titleLineW);
+        $('.titleLine').css('width',titleLineW);
+
+    })*/
+
+</script>
+</body>
+</html>

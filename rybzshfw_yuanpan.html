@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>职工总数量</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body{
+            background: url(images/background.jpg) no-repeat;
+        }
+        #yuanpan{
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .col-xs-12{
+            width: 100%;
+            padding: 0;
+        }
+        #num{
+            position: absolute;
+            left: 301px;
+            top: 317px;
+        }
+        #text{
+            position: absolute;
+            left: 294px;
+            top: 570px;
+            color: rgb(49, 171, 211);
+        }
+    </style>
+</head>
+<body style="marginwidth="0"; marginheight="0">
+
+    <div id="yuanpan" style="width: 670px; height: 685px;">
+        <div class="col-xs-12" style="width: 668px; height:681px; background: url(images/yuanpan.png) no-repeat;"></div>
+        <div class="light" id="num">
+            <span style="font-size: 3rem">100</span>万
+        </div>
+        <div id="text">职工总数量</div>
+    </div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

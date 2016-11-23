@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>税收情况概览</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            background: transparent;
+            color: #31abd3;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .light {
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 0 0 10px #6AC7E8,
+            0 0 20px #6AC7E8;
+        }
+
+        #ss_num {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+       .ss_wenzi{
+       		color:#8CD6EE;
+       }
+       .ss_shuzi{
+       		color:#FF0000;
+       }
+       .theme_2 .ss_wenzi{
+       		color:#5c0000;
+       }
+       .theme_2 .ss_shuzi{
+       		color:#00ff00;
+       }
+    </style>
+</head>
+<body>
+
+<div style="width: 460px;height: 300px;">
+    <div class="col-xs-9" style="padding: 0">
+        <div id="ss_chart" style="height: 280px;"></div>
+
+        <div id="ss_num"><span class="ss_wenzi" style="font-size: 1.6rem">累计税收入库</span> <span class="light" style="font-size:2.4rem">321.692</span>
+        	<span class="light">亿元</span></div>
+        <div style="position: absolute;top: 10px;left: 250px;">
+            <div class="ss_wenzi" style="font-size: 1rem">去年同比</div>
+            <div style="color: #00FF00;font-size: 1rem">+4.33%</div>
+        </div>
+    </div>
+    <div class="col-xs-3" style="padding: 0">
+        <ul style="font-size: 1.4rem;text-align: center;padding: 20px 0 5px 0;line-height: 30px;">
+            <li class="ss_wenzi">税收入库完成率</li>
+            <li class="ss_shuzi">70%</li>
+            <li>&nbsp;</li>
+            <li class="ss_wenzi">计划完成率</li>
+            <li class="ss_shuzi">45%</li>
+            <li>&nbsp;</li>
+            <li class="ss_wenzi">税收开单</li>
+            <li class="ss_shuzi">税额</li>
+        </ul>
+    </div>
+</div>
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+//主题更换
+	changeBodyColor();
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('ss_chart'));
+
+    option = {
+        title: {
+            text: '累计税收入库计划完成情况',
+            y: 50,
+            x: 10,
+            textStyle: {
+                color: changeEchartsColor().color[6],//'#8CD6EE',
+                fontSize: 14
+            }
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        calculable: true,
+        grid: {
+            borderWidth: 0,
+            x: 0,
+            y: 120,
+            x2: 0,
+            y2: 10
+        },
+        xAxis: [
+            {
+                type: 'category',
+                show: true,
+                data: ['总署', '京津冀', '长江经济带', '丝绸之路', '“泛珠”区域', '东北地区'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#8CD6EF',
+                        width: 2,
+                        type: 'solid'
+                    }
+                },
+                axisLabel: false
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        series: [
+            {
+                name: '税收情况',
+                type: 'bar',
+                barCategoryGap: '60%',
+                itemStyle: {
+                    normal: {
+                         color: function (params) {
+                            // // build a color map as your need.
+                            // var colorList = [
+                                // '#8CD6EF', '#8CD6EF', '#8CD6EF', '#8CD6EF', '#8CD6EF',
+                                // '#8CD6EF'
+                            // ];
+                             return changeEchartsColor().color[params.dataIndex]
+                         },
+                        label: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{b}\n{c}',
+                            textStyle:{
+                            	color:'#8CD6EF'
+                            }
+                        }
+                    }
+                },
+                data: [70, 100, 70, 90, 40, 70]
+            }
+        ]
+    };
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+    myChart.setTheme(changeEchartsColor());
+</script>
+</body>
+</html>

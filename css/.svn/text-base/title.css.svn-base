@@ -1,0 +1,47 @@
+.title{
+    width: 100%;
+    height: 25px;
+    font-family: "Microsoft Yahei";
+    z-index: 99999;
+    margin-bottom: -5px;
+    display: -webkit-box;
+}
+.titleLeft{
+    background: url("../images/title_left.png") no-repeat;
+    width: 13px;
+    height: 25px;
+    margin-left: -1px;
+}
+.titleRight{
+    background: url("../images/title_right.png") no-repeat;
+    width: 22px;
+    height: 25px;
+}
+.titleContent{
+    background: url("../images/title_center.png") repeat-x;
+    /*min-width: 20%;*/
+    height: 25px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 0 0 10px #fff,
+    0 0 20px  #fff,
+    0 0 30px  #6AC7E8;
+}
+.parallelogram{
+    background: url("../images/parallelogram.png")  center 12px no-repeat;
+    width: 40px;
+    height: 25px;
+}
+.titleLine{
+    background: url("../images/title_line.png") center 14px repeat-x;
+    width: 30%;
+    height: 25px;
+    -webkit-box-flex: 1;
+}
+.fourDot{
+    background: url("../images/four_dot.png") center 13px no-repeat;
+    width: 40px;
+    height: 25px;
+    margin-right: 15%;
+}

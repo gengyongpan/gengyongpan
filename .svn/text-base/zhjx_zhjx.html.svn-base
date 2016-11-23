@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>综合绩效</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        html, body {
+        	width:100%;
+        	height:100%;
+        	color:#6AC7E8;
+            /*background: url(images/background.jpg) no-repeat;*/
+           
+        }
+        span{
+        	display: inline-block;
+        }
+		#zhjx{
+			background: url(images/zhjx_zhjx.png) no-repeat;
+		}
+		.tupian_green{
+			width:20px;
+			height:20px;
+			background: url(images/zhjx_green.png) no-repeat;
+			padding-left:25px;
+		}
+		.tupian_yellow{
+			width:20px;
+			height:20px;
+			background: url(images/zhjx_yellow.png) no-repeat;
+			padding-left:25px;
+		}
+		.tupian_red{
+			width:20px;
+			height:30px;
+			background: url(images/zhjx_red.png) no-repeat 100% 100%;
+			padding-left:20px;
+		}
+		.zhjx_div div{
+			height:20px;
+			width:160px;
+			margin-left:100px;
+			text-align: center;
+			line-height: 30px;
+			/*position:absolute;*/
+		}
+		.green_1{
+			left:110px;
+			top:50px;
+			text-align: 40px;
+		}
+		/*
+		 if(x<0&&y>0){
+		 	left = (x-80)*5.5px;
+		 	top = (y-100)*1.3px;
+		 }else if(x>0&&y>0){
+		 	left = 555+x*5.5 px;
+		 	top = (y-100)*1.3px;
+		 }else if(x<0&&y<0){
+		 	left = (x-80)*5.5px;
+		 	top = 215+y*1.3 px
+		 }else {
+		 	left = 555+x*5.5 px;
+		 	top = 215+y*1.3 px
+		 }
+		 * */
+    </style>
+</head>
+<body>
+<div id="zhjx" style="width: 1200px; height: 419px;">
+   <div class="zhjx_div" style="width: 100%;height:100%">
+   		<!-- 绿色方块 -->
+   		<div class="green_1"><span class="tupian_green"></span><span>进口报关单数</span></div>
+   		<div class="green_2"><span class="tupian_green"></span><span>进口报关单平均通关时间</span></div>
+   		<div class="green_3"><span class="tupian_green"></span><span>出口报关单数</span></div>
+   		<div class="green_4"><span class="tupian_green"></span><span>出口报关单平均通关时间</span></div>
+   		<div class="green_5"><span class="tupian_green"></span><span>出口报关单金额</span></div>
+   		<div class="green_6"><span class="tupian_green"></span><span>进口报关单金额</span></div>
+   		<div class="green_7"><span class="tupian_green"></span><span>贸易便利化</span></div>
+   		<!-- 黄色三角 -->
+   		<div class="yellow_1"><span class="tupian_yellow"></span><span>案件结案率</span></div>
+   		<div class="yellow_2"><span class="tupian_yellow"></span><span>缉私情报数量</span></div>
+   		<div class="yellow_3"><span class="tupian_yellow"></span><span>查获案件数</span></div>
+   		<div class="yellow_4"><span class="tupian_yellow"></span><span>风险信息数量</span></div>
+   		<div class="yellow_5"><span class="tupian_yellow"></span><span>关境安全</span></div>
+   		<!-- 红色圆圈 -->
+   		<div class="red_1"><span class="tupian_red"></span><span>税收入库金额</span></div>
+   		<div class="red_2"><span class="tupian_red"></span><span>开单税额</span></div>
+   		<div class="red_3"><span class="tupian_red"></span><span>税收入库比例</span></div>
+   		<div class="red_4"><span class="tupian_red"></span><span>欠税金额</span></div>
+   		<div class="red_5"><span class="tupian_red"></span><span>人均税收入库</span></div>
+   		<div class="red_6"><span class="tupian_red"></span><span>税收优化</span></div>
+   </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+
+<script>
+	//主题更换
+	changeBodyColor();
+
+	adjustWidgetScale();
+ 
+	var contextPath = "<%=contextPath%>";
+
+	function queryData(year) {
+		!year && ( year = (new Date()).getFullYear());
+		var sqlParams = {
+			"STAT_CYCLE" : year
+		};
+		var strSqlParams = JSON.stringify(sqlParams);
+		var datas = {
+			key_code : "sy_dbpj",
+			sql_params : strSqlParams
+		};
+		//var msg = {"flag":"1","data":[{"NAME":"进口报关单数","X":"-55","Y":"-80"},{"NAME":"进口报关单平均通关时间","X":"-78","Y":"-70"}]}
+		$.ajax({
+			type : "POST",
+			url : contextPath + '/' + generateSQLDataURL,
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg.flag == '1') {
+					for (var i = 0;i < $("tbody tr").length; i++) {
+						$("tbody .zbpj_tr01 td")[1].html(name[0].data_value[i+1]);
+						$("tbody .zbpj_tr02 td")[i+1].html(name[1].data_value[i+1]);
+						$("tbody .zbpj_tr03 td")[1].html(name[2]);
+						$("tbody .zbpj_tr04 td")[i+1].html(name[3].data_value[i+1]);
+					}
+				} else {
+					console.log('请求数据为空或请求失败！');
+				}
+			},
+			 error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	         }
+		});
+	}
+	queryData();
+</script>
+
+</body>
+</html>

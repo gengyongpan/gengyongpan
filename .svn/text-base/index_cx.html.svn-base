@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<style>
+
+    body {
+        font-family: '微软雅黑', sans-serif;
+    }
+
+    .widget_chartset {
+        position: relative;
+    }
+
+    .widget_chartset_chart {
+        float: right
+    }
+
+    .widget_chartset_piebg {
+        background: url(images/pie_bg.png) no-repeat;
+        background-size: 100%;
+    }
+
+    .widget_chartset_piebg_1  {
+        position: absolute;
+        left: 150px;
+        top: 7px;
+    }
+
+    .widget_chartset_piebg_2  {
+        position: absolute;
+        left: 335px;
+        top: 0;
+    }
+
+    .widget_chartset_piebg_3  {
+        position: absolute;
+        top: 86px;
+        left: 296px;
+    }
+
+    .widget_chartset_text {
+        font-size: 16px;
+        color: #84D3ED;
+        position: absolute;
+        left: 20px;
+        bottom: 0;
+    }
+
+    .widget_chartset_text span {
+        padding-left: 2em;
+        font-size: 1.2em
+    }
+</style>
+
+<div style="width: 480px;height: 200px;">
+    <div class="title">
+        <div class="titleLeft"></div>
+        <div class="titleContent">诚信</div>
+        <div class="titleRight"></div>
+        <div class="parallelogram"></div>
+        <div class="titleLine"></div>
+        <div class="fourDot"></div>
+    </div>
+<div id="metapage_03" class="metapage chartBorder" style="height: 179px;margin-top: -5px;">
+    <div id="widget_0301" class="widget" style="width: 100%; height: 100%">
+        <div class="widget_chartset" style="width: 100%; height: 100%;">
+            <div class="widget_chartset_chart" style="width: 100%; height: 100%;">
+            </div>
+            <div class="widget_chartset_piebg widget_chartset_piebg_1" style="width: 160px; height:160px;"></div>
+            <div class="widget_chartset_piebg widget_chartset_piebg_2" style="width: 120px; height:120px;"></div>
+            <div class="widget_chartset_piebg widget_chartset_piebg_3" style="width: 80px; height:80px;"></div>
+            <div class="widget_chartset_text">
+                已注册企业数量：<br>
+                <span class="num light">342,234</span>
+                个
+            </div>
+        </div>
+    </div>
+    <!--清除浮动效果-->
+    <div class="clear"></div>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script>    //metapage_03
+$(function () {
+
+    var echart_0301 = echarts.init(document.getElementById("widget_0301").querySelector(".widget_chartset_chart"));
+    var labelTop = {
+        normal: {
+            label: {
+                show: true,
+                position: 'center',
+                formatter: '{b}',
+                textStyle: {
+                    baseline: 'bottom',
+                    color: '#84D3ED'
+                }
+            },
+            labelLine: {
+                show: false
+            }
+        }
+    };
+/*    var labelTop_1 = $.extend(true, {}, labelTop);
+    labelTop_1.normal.label.position = 'outer';
+    labelTop_1.normal.labelLine.show = true;*/
+    var labelFromatter = {
+        normal: {
+            label: {
+                formatter: function (params) {
+                    return 100 - params.value + '%'
+                },
+                textStyle: {
+                    baseline: 'top',
+                    fontSize: 18,
+                    fontWeight: 'bolder',
+                    color: '#FFFFFF'
+                }
+            }
+        }
+    };
+    var labelFromatter_2 = $.extend(true, {}, labelFromatter);
+    var labelFromatter_3 = $.extend(true, {}, labelFromatter);
+    labelFromatter_2.normal.label.textStyle.fontSize -= 3;
+    labelFromatter_3.normal.label.textStyle.fontSize -= 6;
+    var labelBottom = {
+        normal: {
+            color: 'rgba(0,0,0,0)',
+            label: {
+                show: true,
+                position: 'center'
+            },
+            labelLine: {
+                show: false
+            }
+        },
+        emphasis: {
+            color: 'rgba(0,0,0,0)'
+        }
+    };
+    var radius_1 = [35, 60], radius_3 = [20, 30];
+    var center_1 = ['50%', '55%'], center_3 = ['73%', '79%'];
+    var option = {
+        title: {
+            text: '企业诚信覆盖比例：',
+            subtext: '',
+            x: 10,
+            y: 10,
+            textStyle: {
+                fontSize: 18,
+                fontWeight: 'bolder',
+                fontFamily: '微软雅黑, sans-serif',
+                color: '#84D3ED'
+            }
+        },
+        series: [
+            {
+                type: 'pie',
+                center: center_1,
+                radius: radius_1,
+                x: '0%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 11, itemStyle: labelBottom},
+                    {name: '2015', value: 89, itemStyle: labelTop}
+                ]
+            },
+            // {
+                // type: 'pie',
+                // center: center_2,
+                // radius: radius_2,
+                // x: '33%', // for funnel
+                // itemStyle: labelFromatter_2,
+                // data: [
+                    // {name: 'other', value: 28, itemStyle: labelBottom},
+                    // {name: '2014', value: 72, itemStyle: labelTop}
+                // ]
+            // },
+            {
+                type: 'pie',
+                center: center_3,
+                radius: radius_3,
+                x: '66%', // for funnel
+                itemStyle: labelFromatter_3,
+                data: [
+                    {name: 'other', value: 5, itemStyle: labelBottom},
+                    {name: '2013', value: 95, itemStyle: labelTop}
+                ]
+            }
+        ]
+    };
+    echart_0301.setOption(option);
+});
+</script>
+</body>

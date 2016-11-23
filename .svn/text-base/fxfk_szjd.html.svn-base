@@ -1,0 +1,145 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>事中监督</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <style>
+        body {
+            background: url(images/background.jpg) no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="ywljzypp" class="col-md-12 row">
+    <div id="chart3" style="width: 400px; height: 180px; margin-top: 5px;"></div>
+</div>
+<script src="js/echarts-all.js"></script>
+<script type="text/javascript">
+    (function () {
+        var myChart = echarts.init(document.getElementById('chart3'));
+        var xAxisData = ['2011', '2012', '2013', '2014', '2015'];
+
+        function randomDataArray(sIndex) {
+            var d = [];
+            var len = xAxisData.length;
+            var random = function () {
+                var r = Math.round(Math.random() * 80);
+                return r;
+            };
+
+            while (len) {
+                d.push([
+                    xAxisData[len - 1],
+                    (sIndex ? 20 : 30),
+                    Math.abs(random()),
+                ]);
+                len--;
+            }
+            return d;
+        };
+
+        var option = {
+            legend: {
+                x: 'right',
+                data: ['监管查获报关单数', '监查查获报关单价格'],
+                borderColor: '#55b1e2',
+                borderWidth: 1,
+                textStyle: {
+                    color: '#8CD6EE',
+                    fontSize: '7.76px'
+                }
+            },
+            grid: {
+                x: 5,
+                x2: 5,
+                y: 30,
+                y2: 30,
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine: false,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#8dd5ed',
+                            fontSize: 10,
+                            fontFamily: '微软雅黑'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            width: 1,
+                            color: '#8dd6ee'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    data: xAxisData
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    splitLine: false,
+                    scale: true,
+                    min: 0,
+                    max: 50,
+                    axisLabel: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            width: 0,
+                            color: '#8dd6ee'
+                        }
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '监管查获报关单数',
+                    type: 'scatter',
+                    symbol: 'images/large_dot_1.png',
+                    symbolSize: function (value) {
+                        return Math.round(value[2] / 2);
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(43,153,191,.8)',
+                            borderWidth: 1,
+                            borderColor: '#55b1e2'
+                        }
+                    },
+                    data: randomDataArray(0)
+                },
+                {
+                    name: '监查查获报关单价格',
+                    type: 'scatter',
+                    symbol: 'images/large_dot_2.png',
+                    symbolSize: function (value) {
+                        return Math.round(value[2] / 2);
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(113,202,229,.8)',
+                            borderWidth: 1,
+                            borderColor: '#55b1e2'
+                        }
+                    },
+                    data: randomDataArray(1)
+                }
+            ]
+        };
+        myChart.setOption(option);
+    })();
+</script>
+</body>
+</html>

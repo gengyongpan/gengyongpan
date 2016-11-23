@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开单税额与入库比例趋势</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div style="width: 740px; height: 165px;">
+    <div id="kdseyrkblqs" style="width: 100%; height: 100%;">
+    </div>
+</div>
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts图表
+    var kdseyrkblqs =  echarts.init(document.getElementById('kdseyrkblqs'));
+
+    var option = {
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : true,
+                splitLine:{
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                        color:changeEchartsColor().color[0],
+                    }
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:'#8CD6EF'
+                    }
+                },
+                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+            }
+        ],
+        yAxis : [
+            {
+                splitLine:{
+                    show:true,
+                    lineStyle:{
+                        color:'#1A4C67'
+                    }
+                },
+                type : 'value',
+                scale: 'false',
+                axisLine:{    // 轴线
+                    show: false
+                },
+                splitNumber: '7',
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[0],
+                    }
+                }
+
+            },
+            {
+                splitLine:{
+                    show:true,
+                    lineStyle:{
+                        color:'#1A4C67'
+                    }
+                },
+                type : 'value',
+                scale: 'true',
+                splitNumber: '7',
+                axisLine:{    // 轴线
+                    show: false
+                },
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                      color: changeEchartsColor().color[0],
+                    }
+                }
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x:60,
+            y:15,
+            x2:50,
+            y2:30
+        },
+        series : [
+            {
+                name:'案件价值',
+                type:'bar',
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                barCategoryGap: '50%',  //类目间柱形距离，默认为类目间距的20%，可设固定值
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        // borderRadius: 5,
+                        color: changeEchartsColor().color[0],
+                        borderColor: '#59B2DE'
+                    }
+                },
+                data:[200, 210, 210, 200, 300, 260, 255, 180, 120, 300, 120, 130,0,350]
+            },
+            {
+                name:'结案率',
+                type:'line',
+                symbol:'none',
+                xAxisIndex: 0,
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        // borderRadius: 5,
+                        color: changeEchartsColor().color[0],
+                        lineSize : '15px'
+                    }
+                },
+                data:[5, 30, 15, 23,15, 31, 20, 15, 34, 35, 12, 25]
+            }
+        ]
+    };
+
+
+    // 为echarts对象加载数据
+    kdseyrkblqs.setOption(option);
+    kdseyrkblqs.setTheme(changeEchartsColor());
+</script>
+</body>
+</html>

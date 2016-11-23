@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>指标评价</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        html, body {
+        	width:100%;
+        	height:100%;
+            /*background: url(images/background.jpg) no-repeat;*/
+           color: #8CD6EE;
+           list-style: none;
+        }
+        tr th,tbody tr td:first-child{
+       	text-align: center;
+       	background: rgba(0,50,90,0.8);
+       	/*border-radius:5px;*/
+       }
+       .no_border-top{
+       		border-top:none;
+       }
+       .no_border-left{
+       		border-left:none;
+       }
+		.no_border-bottom{
+			border-bottom: none;
+		}
+		.no_border-right{
+			border-right:none;
+		}
+		
+		th,td{
+			border: 1px solid rgba(0,50,90,0.9);
+			border-left:none;
+		}
+		tbody tr td:first-child{
+			width:200px;
+		}
+		td{
+			width:130px;
+		}
+		li{
+			width:113px;
+			height:60px;
+			float:left;
+			margin-left: 15px;
+			text-align: center;
+			line-height:60px;
+			background: url(images/tglc_tglcjk.png) no-repeat;
+			font-size:18px;
+		}
+    </style>
+</head>
+<body>
+<div id="zbpj" style="width: 944px; height: 399px;">
+	<div style="font-size: 16px;float: left;margin: 10px 0 0 10px" >通关查验率</div>
+	<ul style="width: 770px;height: 60px;float: right">
+		<li>申报</li>
+		<li>审单</li>
+		<li>接单计税</li>
+		<li>查验</li>
+		<li>单证</li>
+		<li>旅行</li>
+	</ul>
+    <table class="table table-hover" style="width: 100%;height: 100%">
+	    <tbody>
+	    	 <tr><th>延迟办理等待时间(小时)</th><th>2</th><th>2</th><th>4</th><th>12</th><th>8</th><th>2</th></tr>
+	        <tr><td>京津冀</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	        <tr><td>长江经济带</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	        <tr><td>"泛珠"区域</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	        <tr><td>东北地区</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	        <tr><td>丝绸之路经济带</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	    </tbody>
+	</table>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+
+<script>
+	//主题更换
+	changeBodyColor();
+
+	adjustWidgetScale();
+
+	var contextPath = "<%=contextPath%>";
+
+	function queryData(year) {
+		!year && ( year = (new Date()).getFullYear());
+		var sqlParams = {
+			"STAT_CYCLE" : year
+		};
+		var strSqlParams = JSON.stringify(sqlParams);
+		var datas = {
+			key_code : "sy_dbpj",
+			sql_params : strSqlParams
+		};
+		$.ajax({
+			type : "POST",
+			url : contextPath + '/' + generateSQLDataURL,
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg.flag == '1') {
+					for (var i = 0;i < $("tbody tr").length; i++) {
+						$("tbody .zbpj_tr01 td")[1].html(name[0].data_value[i+1]);
+						$("tbody .zbpj_tr02 td")[i+1].html(name[1].data_value[i+1]);
+						$("tbody .zbpj_tr03 td")[1].html(name[2]);
+						$("tbody .zbpj_tr04 td")[i+1].html(name[3].data_value[i+1]);
+					}
+				} else {
+					console.log('请求数据为空或请求失败！');
+				}
+			},
+			 error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	         }
+		});
+	}
+ 
+	queryData();
+	
+	
+	
+	
+	var option = {
+    
+    "toolbox": {
+        
+        "feature": {
+            
+            "mark": {
+                
+                "show": true,
+                
+                "title": {
+                    
+                    "mark": "辅助线开关",
+                    
+                    "markClear": "清空辅助线",
+                    
+                    "markUndo": "删除辅助线"
+                
+                },
+                
+                "lineStyle": {
+                    
+                    "color": "#1e90ff",
+                    
+                    "type": "dashed",
+                    
+                    "width": 2
+                
+                }
+            
+            },
+            
+            "dataView": {
+                
+                "show": true,
+                
+                "title": "数据视图",
+                
+                "readOnly": false,
+                
+                "lang": [
+                    
+                    "数据视图",
+                    
+                    "关闭",
+                    
+                    "刷新"
+                
+                ]
+            
+            },
+            
+            "magicType": {
+                
+                "show": true,
+                
+                "title": {
+                    
+                    "line": "折线图切换",
+                    
+                    "stack": "堆积",
+                    
+                    "bar": "柱形图切换",
+                    
+                    "tiled": "平铺"
+                
+                },
+                
+                "type": [
+                    
+                    "pie",
+                    
+                    "funnel"
+                
+                ]
+            
+            },
+            
+            "restore": {
+                
+                "show": true,
+                
+                "title": "还原"
+            
+            },
+            
+            "saveAsImage": {
+                
+                "show": true,
+                
+                "title": "保存为图片",
+                
+                "type": "png",
+                
+                "lang": [
+                    
+                    "点击保存"
+                
+                ]
+            
+            }
+        
+        }
+    
+    },
+    
+    "tooltip": {
+        
+        "formatter": "{a}
+	{b} : {c} ({d}%)"
+    
+    },
+    
+    "legend": {
+        
+        "data": [
+            
+            "系列1",
+            
+            "系列2",
+            
+            "系列3"
+        
+        ]
+    
+    },
+    
+    "series": [
+        
+        {
+            
+            "center": [
+                
+                "50%",
+                
+                "50%"
+            
+            ],
+            
+            "radius": [
+                
+                0,
+                
+                90
+            
+            ],
+            
+            "startAngle": 90,
+            
+            "minAngle": 0,
+            
+            "name": "系列1",
+            
+            "type": "pie",
+            
+            "itemStyle": {
+                
+                "normal": {
+                    
+                    "label": {
+                        
+                        "position": "inner"
+                    
+                    },
+                    
+                    "labelLine": {
+                        
+                        "show": false
+                    
+                    }
+                
+                }
+            
+            },
+            
+            "data": [
+                
+                {
+                    
+                    "value": 44,
+                    
+                    "name": "总署"
+                
+                }
+            
+            ]
+        
+        },
+        
+        {
+            
+            "center": [
+                
+                "50%",
+                
+                "50%"
+            
+            ],
+            
+            "radius": [
+                
+                110,
+                
+                130
+            
+            ],
+            
+            "startAngle": 90,
+            
+            "minAngle": 0,
+            
+            "name": "系列2",
+            
+            "type": "pie",
+            
+            "itemStyle": {
+                
+                "normal": {
+                    
+                    "label": {
+                        
+                        "position": "inner"
+                    
+                    },
+                    
+                    "labelLine": {
+                        
+                        "show": false
+                    
+                    }
+                
+                }
+            
+            },
+            
+            "data": [
+                
+                {
+                    
+                    "value": 300,
+                    
+                    "name": "总署"
+                
+                }
+            
+            ]
+        
+        },
+        
+        {
+            
+            "center": [
+                
+                "50%",
+                
+                "50%"
+            
+            ],
+            
+            "radius": [
+                
+                150,
+                
+                170
+            
+            ],
+            
+            "startAngle": 90,
+            
+            "minAngle": 0,
+            
+            "name": "系列3",
+            
+            "type": "pie",
+            
+            "itemStyle": {
+                
+                "normal": {
+                    
+                    "label": {
+                        
+                        "position": "inner"
+                    
+                    },
+                    
+                    "labelLine": {
+                        
+                        "show": false
+                    
+                    }
+                
+                }
+            
+            },
+            
+            "data": [
+                
+                {
+                    
+                    "value": 922,
+                    
+                    "name": "总署"
+                
+                }
+            
+            ]
+        
+        }
+    
+    ]
+
+};
+	
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>指标评价</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        html, body {
+        	width:100%;
+        	height:100%;
+            /*background: url(images/background.jpg) no-repeat;*/
+           color: #8CD6EE;
+           list-style: none;
+        }
+		li{
+			text-align: center;
+			line-height:60px;
+			font-size:18px;
+		}
+    </style>
+</head>
+<body>
+<div id="zbpj" style="width: 380px;">
+	<ul>
+		<li>XX关，XX环节报关单积压XX单</li>
+		<li>XX关，XX环节人力资源较少</li>
+		<li>XX关，XX环节报关单积压XX单</li>
+		<li>XX关，XX环节报关单积压XX单</li>
+		<li>XX关，XX环节报关单积压XX单</li>
+		<li>XX关，XX环节报关单积压XX单</li>
+		<li>... ...</li>
+		<li>事后稽查</li>
+		<li>正常运行</li>
+	</ul>
+	<div style="float: right;font-size: 32px;bottom: bottom">正常运行分数<div style="font-size: 55px;color:yellow;float: right">90%</div></div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+
+<script>
+	//主题更换
+	changeBodyColor();
+
+	//adjustWidgetScale();
+
+	var contextPath = "<%=contextPath%>";
+
+	function queryData(year) {
+		!year && ( year = (new Date()).getFullYear());
+		var sqlParams = {
+			"STAT_CYCLE" : year
+		};
+		var strSqlParams = JSON.stringify(sqlParams);
+		var datas = {
+			key_code : "sy_dbpj",
+			sql_params : strSqlParams
+		};
+		$.ajax({
+			type : "POST",
+			url : contextPath + '/' + generateSQLDataURL,
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg.flag == '1') {
+					for (var i = 0;i < $("tbody tr").length; i++) {
+						$("tbody .zbpj_tr01 td")[1].html(name[0].data_value[i+1]);
+						$("tbody .zbpj_tr02 td")[i+1].html(name[1].data_value[i+1]);
+						$("tbody .zbpj_tr03 td")[1].html(name[2]);
+						$("tbody .zbpj_tr04 td")[i+1].html(name[3].data_value[i+1]);
+					}
+				} else {
+					console.log('请求数据为空或请求失败！');
+				}
+			},
+			 error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	         }
+		});
+	}
+ 
+	queryData();
+</script>
+
+</body>
+</html>

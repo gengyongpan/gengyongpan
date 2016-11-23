@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<style>
+<<<<<<< .mine
+	#metapage_01{
+		width:1000px;
+		height:200px;
+		background:rgb(2,31,49);
+	}
+	#widget_0101,#widget_0102,#widget_0103{
+		float:left;
+		width:33%;
+		height: 100%;
+	}
+	.dwfw_title{
+            position: absolute;
+            z-index: 0;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            font-size: 1.4rem;
+            width: 180px;
+            height: 180px;
+            top: 62px;
+            left:414px;
+            background: url('images/pie_bg.png') no-repeat center top;
+            background-size:110px 110px;
+            padding: 115px 0 0 0;text-align: center;
+}
+=======
+    #metapage_01 {
+        width: 1000px;
+        height: 200px;
+    }
+
+    #widget_0101, #widget_0102, #widget_0103 {
+        float: left;
+        width: 33%;
+        height: 100%;
+    }
+
+    .dwfw_title {
+        position: absolute;
+        z-index: 0;
+        color: #8CD6EE;
+        font-family: "Microsoft Yahei";
+        font-weight: bold;
+        font-size: 1.4rem;
+        width: 180px;
+        height: 180px;
+        top: 6px;
+        left: 364px;
+        background: url('images/pie_bg.png') no-repeat center top;
+        background-size: 142px 142px;
+        padding: 115px 0 0 0;
+        text-align: center;
+    }
+>>>>>>> .r79
+</style>
+<div style="width: 958px;height: 200px;margin: 0 0 0 30px">
+    <div class="title">
+        <div class="titleLeft"></div>
+        <div class="titleContent">对外服务</div>
+        <div class="titleRight"></div>
+        <div class="parallelogram"></div>
+        <div class="titleLine"></div>
+        <div class="fourDot"></div>
+    </div>
+
+    <div id="metapage_01" class="metapage chartBorder" style="margin-top: -5px;width: 938px;height: 175px">
+        <div id="widget_0101" class="widget">
+        </div>
+        <div id="widget_0102" class="widget">
+        </div>
+        <div id="widget_0103" class="widget">
+        </div>
+        <div class="dwfw_title"></div>
+        <!--清除浮动效果-->
+        <div class="clear"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script>    //metapage_01
+<<<<<<< .mine
+    $(function () {
+        var echart_0101 = echarts.init(document.getElementById("widget_0101"));
+        option = {
+			    title : {
+			        text: '电话访问量',
+			        x:30,
+			        y:5,
+			        textStyle:{
+                            fontFamily: '微软雅黑',
+                            color: '#8FD6EE',
+                            fontSize:14
+=======
+$(function () {
+    var echart_0101 = echarts.init(document.getElementById("widget_0101"));
+    option = {
+        title: {
+            text: '电话访问量',
+            x: 50,
+            y: 15,
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: '#8FD6EE',
+                fontSize: 16
+            }
+        },
+        grid: {
+            x: 20,
+            y: 50,
+            x2: 30,
+            y2: 50,
+            borderWidth: 0
+
+        },
+        calculable: true,
+        boundaryGap: true,
+        xAxis: [
+            {
+                type: 'category',
+                splitLine: {
+                    lineStyle: {
+                        color: ['#1A4C67']
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: '#8FD6EE',
+                        fontSize: 10
+                    }
+                },
+                data: ['累计电话问答量', '', '信息咨询问答量', '', '投诉建议量', '']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitLine: {
+                    lineStyle: {
+                        color: ['#1A4C67']
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: 'rgba(0,0,0,0)'
+
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '访问量',
+                type: 'bar',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 3,
+                        color: '#8FD6EE',
+                        borderColor: '#59B2DE'
+                    }
+                },
+                data: [883, 0, 436, 0, 675],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            borderRadius: 5,
+                            color: 'rgba(0,0,0,0)',
+                            borderColor: ''
+>>>>>>> .r79
+                        }
+<<<<<<< .mine
+			    },
+			     grid:{
+				    	x:20,
+				    	y:50,
+				    	x2:30,
+				    	y2:50,
+				    	borderWidth:0
+				    	
+				    },
+			    calculable : true,
+			    boundaryGap:true,
+			    xAxis : [
+			        {
+			            type : 'category',
+			            splitLine:{
+				            	lineStyle:{
+				            		color:['#1A4C67']
+				            	}
+				            },
+			           	axisLabel : {
+	                        formatter: function (value){return value.substring(0,4)+'\n'+value.substring(5,8);},
+	                        textStyle:{
+	                            fontFamily: '微软雅黑',
+	                            color: '#8FD6EE',
+	                            fontSize:6,
+	                           align:''
+	                        }
+=======
+>>>>>>> .r79
+                    },
+<<<<<<< .mine
+			            data : ['累计电话问答量','','投诉建议量','','信息咨询问答量','','其他访问量',]
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value',
+			            splitLine:{
+				            	lineStyle:{
+				            		color:['#1A4C67']
+				            	}
+				            },
+			             axisLabel : {
+		                        formatter: '{value}',
+		                        textStyle:{
+		                            fontFamily: '微软雅黑',
+		                            color: 'rgba(0,0,0,0)',
+		                            
+		                        }
+                    },
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'访问量',
+			            type:'bar',
+			           	itemStyle: {
+			                        normal: {                   // 系列级个性化，横向渐变填充
+			                            borderRadius: 3,
+			                            color : '#8FD6EE',
+			                            borderColor: '#59B2DE'
+			                        }
+			                    },
+			            data:[883,0,436,0,675,0,725],
+			            markPoint : {
+			              	 itemStyle: {
+			                         normal: {
+			                             borderRadius: 5,
+			                             color : 'rgba(0,0,0,0)',
+			                             borderColor: ''
+			                            }
+			                        },
+			                data : [
+			                    {name : '访问量', value :883, xAxis: 0, yAxis: 883, symbolSize:10},
+			                    {name : '访问量', value :436, xAxis: 2, yAxis: 436,symbolSize:10},
+			                    {name : '访问量', value :675, xAxis: 4, yAxis: 675,symbolSize:10},
+			                    {name : '访问量', value :725, xAxis: 6, yAxis: 725,symbolSize:10}
+			                ]
+			            }
+			        }
+			    ]
+			};	
+        echart_0101.setOption(option);
+    });
+=======
+                    data: [
+                        {name: '访问量', value: 883, xAxis: 0, yAxis: 883, symbolSize: 10},
+                        {name: '访问量', value: 436, xAxis: 2, yAxis: 436, symbolSize: 10},
+                        {name: '访问量', value: 675, xAxis: 4, yAxis: 675, symbolSize: 10}
+                    ]
+                }
+            }
+        ]
+    };
+    echart_0101.setOption(option);
+});
+>>>>>>> .r79
+/////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< .mine
+     $(function() {
+        var echart_0102 = echarts.init(document.getElementById("widget_0102"));
+       option = {
+	      title : {
+			        text: '累计电话问答内容结构',
+			        x:10,
+			        y:5,
+			        textStyle:{
+                            fontFamily: '微软雅黑',
+                            color: '#8FD6EE',
+                            fontSize:14
+                        }
+			    },
+		    series : [
+		        {
+		            name:'数据分析',
+		            type:'pie',
+		            radius : [30, 40],
+		            data:[
+		                {value:250, name:'行业业务 12%',itemStyle:{normal:{color:'rgb(20,98,138)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'公考咨询  2%',itemStyle:{normal:{color:'rgb(44,125,170)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:250, name:'企业管理  13%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:250, name:'税政管理  25%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:25, name:'审单业务  3%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:335, name:'加工贸易  33%',itemStyle:{normal:{color:'rgb(76,166,216)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'电子口岸 6%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'监管通关 16%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'加工贸易 33%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,lineStyle:{color:'#A8E3F5'}}}}}
+		            ]
+		        }
+		    ]
+		};
+        echart_0102.setOption(option);
+    });
+/////////////////////////////////////////////////////////////////////////////
+    $(function() {
+        var echart_0103 = echarts.init(document.getElementById("widget_0103"));
+        var option = {
+        	title : {
+			        text: '当年累计投诉次数',
+			        x:40,
+			        y:10,
+			        textStyle:{
+                            fontFamily: '微软雅黑',
+                            color: '#8FD6EE',
+                            fontSize:14
+=======
+$(function () {
+    var echart_0102 = echarts.init(document.getElementById("widget_0102"));
+    option = {
+
+        series: [
+            {
+                name: '数据分析',
+                type: 'pie',
+                radius: [30, 50],
+                data: [
+                    {
+                        value: 250,
+                        name: '一带一路 25%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(20,98,138)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+>>>>>>> .r79
+                        }
+                    },
+                    {
+                        value: 330,
+                        name: '珠三角  33%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(44,125,170)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+                        }
+                    },
+                    {
+                        value: 250,
+                        name: '长三角  25%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(63,150,190)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+                        }
+                    },
+                    {
+                        value: 335,
+                        name: '加工贸易  33%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(76,166,216)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+                        }
+                    },
+                    {
+                        value: 330,
+                        name: '通关一体化 33%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(93,180,231)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+<<<<<<< .mine
+                        },
+          
+                        data: [
+                            {type: 'max', name: '最大值',symbolSize:5},
+                        ]
+=======
+                        }
+                    },
+                    {
+                        value: 330,
+                        name: '通关一体化 33%',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(93,180,231)',
+                                label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                labelLine: {show: true, lineStyle: {color: '#A8E3F5'}}
+                            }
+                        }
+>>>>>>> .r79
+                    }
+                ]
+            }
+        ]
+    };
+    echart_0102.setOption(option);
+});
+/////////////////////////////////////////////////////////////////////////////
+$(function () {
+    var echart_0103 = echarts.init(document.getElementById("widget_0103"));
+    var option = {
+        title: {
+            text: '当年累计投诉次数',
+            x: 40,
+            y: 15,
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: '#8FD6EE',
+                fontSize: 16
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            x: 40,
+            y: 50,
+            x2: 10,
+            y2: 50,
+            borderColor: 'rgba(0,0,0,0)'
+        },
+        xAxis: [
+            {
+                show: true,
+                type: 'category',
+                boundaryGap: true,
+                splitLine: 'true',
+                axisLabel: {
+                    formatter: '{value}',
+                    interval: 0,
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: '#8FD6EE',
+                        fontSize: 10
+                    }
+                },
+                data: ['5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false,
+                axisLabel: {
+                    interval: 0,
+                    textStyle: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(0,0,0,0)']
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        color: '#8FD6EE',
+                        borderColor: '#59B2DE'
+                    }
+                },
+
+                data: [20, 49, 70, 22, 26, 76.7, 35.6, 62.2, 32.6, 20.0, 36.4, 36.3, 40],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            borderRadius: 5,
+                            color: 'rgba(0,0,0,0)',
+                            borderColor: ''
+                        }
+                    },
+
+                    data: [
+                        {type: 'max', name: '最大值', symbolSize: 10},
+                    ]
+                }
+            }
+        ]
+    };
+    echart_0103.setOption(option);
+});
+</script>
+</body>

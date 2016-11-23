@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pieChart</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+/*        body{
+            background: url(images/background.jpg) no-repeat;
+        }*/
+        #pieChart{
+            /*background: rgba(0, 104, 167, 0.3);*/
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        #pieChart_title1{
+            top:20px;
+            left: 115px;
+            position: absolute;
+        }
+        #pieChart_title2{
+            top:65px;
+            left: 400px;
+            position: absolute;
+        }
+        #line{
+            top:65px;
+            left: 185px;
+            position: absolute;
+        }
+        #name{
+            top:40px;
+            left: 215px;
+            position: absolute;
+            line-height: 33px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        #circle_flg{
+            top:175px;
+            left: 370px;
+            position: absolute;
+        }
+        #pieChart2{
+            top:175px;
+            left: 360px;
+            position: absolute;
+            width: 260px;
+            height: 123px;
+        }
+        #flag{
+            top:100px;
+            left: 406px;
+            position: absolute;
+        }
+        #name1{
+            top:105px;
+            left: 425px;
+            position: absolute;
+            font-size: 1.4rem;
+            color: rgb(232, 249, 255);
+        }
+        #name2{
+            top:105px;
+            left: 575px;
+            position: absolute;
+            font-size: 1.4rem;
+            color: rgb(232, 249, 255);
+        }
+	.theme_2 #pieChart{
+            /*background: rgba(0, 104, 167, 0.3);*/
+            color: #5c0000;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        #cxtx_qytg01{
+        	margin-top:-15px;
+        }
+    </style>
+</head>
+<body class="theme_2">
+    <div id="pieChart" style="width:630px; height:400px">
+        <div id="pieChart_title1">占比最高诚信等级及其占比</div>
+        <div id="pieChart_title2">各级企业查验率、查获率</div>
+        <div id="pieChart1" style="width:300px; height:325px"></div>
+        <div id="line">
+            <img >
+        </div>
+        <div id="name">
+            <div class="name_text">50% of something goes here</div>
+            <div class="name_text">50% of something goes here</div>
+            <div class="name_text">50% of something goes here</div>
+            <div class="name_text">50% of something goes here</div>
+        </div>
+        <div id="circle_flg">
+            <img >
+        </div>
+        <div id="pieChart2"></div>
+        <div id="flag">
+            <img>
+        </div>
+        <div id="name1">查验率</div>
+        <div id="name2">查获率</div>
+        <div id="cxtx_qytg01" style="width: 100%;height:100px"></div>
+    </div>
+    <script src="js/echarts-all.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/theme_custom.js"></script>
+    <script type="text/javascript">
+   function hehe(){
+	 var cxtx_qytg =  echarts.init(document.getElementById('cxtx_qytg01'));
+
+    var option = {
+    	title:{
+    		name:"heehehe"
+    	},
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : true,
+                splitLine:{
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                },
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                         color: changeEchartsColor().color[0],//'#8CD6EF'
+                    }
+                },
+                axisLine:{
+                    lineStyle:{
+                        //color:'#8CD6EF'
+                    }
+                },
+                data : ['2010','2011','2012','2013','2014','2015','2016']
+            }
+        ],
+        yAxis : [
+            {
+                splitLine:{
+                    show:true,
+                    lineStyle:{
+                       // color:'#1A4C67'
+                    }
+                },
+                type : 'value',
+                scale: 'false',
+                axisLine:{    // 轴线
+                    show: false
+                },
+                splitNumber: '7',
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[0],
+                    }
+                }
+
+            },
+            {
+                splitLine:{
+                    show:true,
+                    lineStyle:{
+                        color:changeEchartsColor().color[0]
+                    }
+                },
+                type : 'value',
+                scale: 'true',
+                splitNumber: '7',
+                axisLine:{    // 轴线
+                    show: false
+                },
+                axisLabel : {
+                    formatter: '{value}',
+                    textStyle:{
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[0]//'#8CD6EF'
+                    }
+                }
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x:60,
+            y:15,
+            x2:50,
+            y2:30
+        },
+        series : [
+            {
+                name:'案件价值',
+                type:'bar',
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                barCategoryGap: '50%',  //类目间柱形距离，默认为类目间距的20%，可设固定值
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        // borderRadius: 5,
+                       // color : '#8CD6EF',
+                        //borderColor: '#59B2DE'
+                    }
+                },
+                data:[200, 210 ,240,210, 200, 300,300]
+            },
+            {
+                name:'结案率',
+                type:'line',
+                symbol:'none',
+                xAxisIndex: 0,
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        // borderRadius: 5,
+                        //color : '#8CD6EF',
+                        lineSize : '15px'
+                    }
+                },
+               data:[5, 30, 15, 23,15, 31,31]
+            }
+        ]
+    };
+        // 为echarts对象加载数据
+    cxtx_qytg.setOption(option);
+    cxtx_qytg.setTheme(changeEchartsColor());
+};
+hehe();
+
+     // 更换主题
+   changeEchartsColor();
+	function changeEchartsColorZhuti(){
+		if(theme_opt == 'red'){
+			$('body').addClass('theme_2');
+			$('#flag img').attr("src","images/flag_red.png");
+			$('#line img').attr("src","images/pie_arrow_red.png");
+			$('#circle_flg img').attr("src","images/circle_bg_red.png");
+			}else{
+			$('body').removeClass('theme_2');
+			$('#circle_flg img').attr("src","images/circle_bg.png");
+			$('#line img').attr("src","images/pie_arrow.png");
+			$('#flag img').attr("src","images/flag.png");
+		}
+	}
+	changeEchartsColorZhuti();
+	
+        function DrawPie1(){
+            var myChart = echarts.init(document.getElementById('pieChart1'));
+            var placeHolderStyle = {
+                normal : {
+                    color: 'rgba(0,0,0,0)',
+                    label: {show:false},
+                    labelLine: {show:false}
+                },
+                emphasis : {
+                    color: 'rgba(0,0,0,0)'
+                }
+            };
+            var option = {
+                // legend: {
+                //     orient : 'vertical',
+                //     x : document.getElementById('pieChart1').offsetWidth / 2 + 10,
+                //     y : 65,
+                //     itemGap:12,
+                //     data:['指标1','指标2','指标3','指标4']
+                // },
+                series : [
+                    {
+                        name:'1',
+                        type:'pie',
+                        clockWise:false,
+                        radius : [80, 100],
+                        itemStyle : {
+                            normal: {
+                                label: {show:false},
+                                labelLine: {show:false},
+                                color: changeEchartsColor().color[0]
+                            }
+                        },
+                        data:[
+                            {
+                                value:60,
+                                name:'指标1'
+                            },
+                            {
+                                value:40,
+                                name:'invisible',
+                                itemStyle : placeHolderStyle
+                            }
+                        ]
+                    },
+                    {
+                        name:'2',
+                        type:'pie',
+                        clockWise:false,
+                        radius : [54, 74],
+                        itemStyle : {
+                            normal: {
+                                label: {show:false},
+                                labelLine: {show:false},
+                                color: changeEchartsColor().color[1]
+                            }
+                        },
+                        data:[
+                            {
+                                value:65, 
+                                name:'指标2'
+                            },
+                            {
+                                value:35,
+                                name:'invisible',
+                                itemStyle : placeHolderStyle
+                            }
+                        ]
+                    },
+                    {
+                        name:'3',
+                        type:'pie',
+                        clockWise:false,
+                        radius : [28, 48],
+                        itemStyle : {
+                            normal: {
+                                label: {show:false},
+                                labelLine: {show:false},
+                                color: changeEchartsColor().color[2]
+                            }
+                        },
+                        data:[
+                            {
+                                value:70, 
+                                name:'指标3'
+                            },
+                            {
+                                value:30,
+                                name:'invisible',
+                                itemStyle : placeHolderStyle
+                            }
+                        ]
+                    },
+                     {
+                        name:'4',
+                        type:'pie',
+                        clockWise:false,
+                        radius : [8, 22],
+                        itemStyle : {
+                            normal: {
+                                label: {show:false},
+                                labelLine: {show:false},
+                                color: changeEchartsColor().color[3]
+                            }
+                        },
+                        data:[
+                            {
+                                value:75, 
+                                name:'指标4”'
+                            },
+                            {
+                                value:25,
+                                name:'invisible',
+                                itemStyle : placeHolderStyle
+                            }
+                        ]
+                    }
+                ]
+            };
+            function DrawPie2(){
+                var myChart = echarts.init(document.getElementById('pieChart2'));
+            }    
+            myChart.setOption(option);
+             myChart.setTheme(changeEchartsColor());
+        } 
+        function DrawPie2(){
+            var myChart = echarts.init(document.getElementById('pieChart2'));
+            var radius_1 = [0, 40], radius_2 = [0, 55];
+            var center_1 = ['56.5', '44.5%'], center_2 = ['199', '50%'];
+            var color1 = {
+                normal: {
+                    color : changeEchartsColor().color[2]
+                }
+            };
+            var color2 = {
+                normal: {
+                    color : changeEchartsColor().color[3]
+                }
+            };
+            var color3 = {
+                normal: {
+                    color : 'rgba(255,255,255,0)'
+                }
+            };
+            var option = {
+            series: [
+                {
+                    type: 'pie',
+                    center: center_1,
+                    radius: radius_1,
+                    clockWise:false,
+                    itemStyle : {
+                        normal: {
+                            label: {show:false},
+                            labelLine: {show:false}
+                            // color: ['#79dcf2','#000000']
+                        }
+                    },
+                    data: [
+                        {name: '查验率', value: 90, itemStyle: color1},
+                        {name: '', value: 10, itemStyle: color3}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: center_2,
+                    radius: radius_2,
+                    clockWise:false,
+                    itemStyle : {
+                        normal: {
+                            label: {show:false},
+                            labelLine: {show:false}
+                            // color: [[0,'#83d4f3'],[1,'#ffffff']]
+                        }
+                    },
+                    data: [
+                        {name: '查获率', value: 78, itemStyle: color2},
+                        {name: '', value: 22, itemStyle: color3}
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+        myChart.setTheme(changeEchartsColor());
+        }
+        DrawPie1();       
+        DrawPie2();                
+    </script>
+</body>
+</html>

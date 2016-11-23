@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>关境安全</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+/*        body {
+            background: url(images/background.jpg);
+        }*/
+
+        .chart_title {
+            z-index: 0;
+            position: absolute;
+            top: 9px;
+            margin-left: 33px;
+        }
+
+        .chart_title_text {
+            float: left;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            font-size: 1.4rem;
+            width: 113px;
+            height: 140px;
+            /*background: url('images/pie_bg.png') no-repeat center top;*/
+            margin-left: 64px;
+            padding: 115px 0 0 0;
+            text-align: center;
+        }
+
+        .chart_title_text_first {
+            margin-left: 0px;
+        }
+    .theme_2 .chart_title_text{
+    	color:#5c0000;
+    }
+    </style>
+</head>
+<body>
+
+<div style="width: 740px; height: 165px;">
+    <div id="gjaq" style="width: 708px; height: 100%;">
+    </div>
+        <div class="chart_title">
+            <div class="chart_title_text chart_title_text_first">报关单查获率</div>
+            <div class="chart_title_text">风险布控率</div>
+            <div class="chart_title_text">稽查有效率</div>
+            <div class="chart_title_text">稽查企业覆盖率</div>
+        </div>
+</div>
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+
+// 主题更换--框
+changeBodyColor();
+
+    var safe_echart = echarts.init(document.getElementById('gjaq'));
+
+    var labelTop = {
+        normal: {
+            label: {
+                show: false,
+                position: 'inner',
+                formatter: '{b}',
+                textStyle: {
+                    align: 'center',
+                    baseline: 'bottom'
+                }
+            },
+            labelLine: {
+                show: false
+            }
+        }
+    };
+    var labelFromatter = {
+        normal: {
+           // color: '#A8E3F5',
+            label: {
+                formatter: function (params) {
+                    return 1000 - params.value
+                },
+                textStyle: {
+                    baseline: 'middle',
+                    //color: '#9DE7FF',
+                    fontSize: '18'
+                }
+            }
+        }
+    }
+    var labelBottom = {
+        normal: {
+            color: 'rgba(245, 247, 250, 0)',
+            label: {
+                show: true,
+                position: 'center'
+            },
+            labelLine: {
+                show: false
+            }
+        }
+        // emphasis: {
+        //     color: 'rgba(0,0,0,0)'
+        // }
+    };
+    var radius = [32, 45];
+    option = {
+        series: [
+            {
+                type: 'pie',
+                center: ['12.5%', '45%'],
+                radius: radius,
+                x: '0%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 466, itemStyle: labelBottom},
+                    {name: '报关单查获率', value: 1534, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['37.5%', '45%'],
+                radius: radius,
+                x: '25%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 513, itemStyle: labelBottom},
+                    {name: '风险布控率', value: 487, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['62.5%', '45%'],
+                radius: radius,
+                x: '50%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 281, itemStyle: labelBottom},
+                    {name: '稽查有效率', value: 719, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['87.5%', '45%'],
+                radius: radius,
+                x: '75%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 466, itemStyle: labelBottom},
+                    {name: '稽查企业覆盖率', value: 534, itemStyle: labelTop}
+                ]
+            }
+        ]
+    };
+    // 为echarts对象加载数据
+    safe_echart.setOption(option);
+    safe_echart.setTheme(changeEchartsColor());
+    //为饼图添加背景
+    appendPieBg(safe_echart);
+    ////
+    //console.log(option.series[0].data[1].name)
+    //console.log(option.series.length)
+</script>
+</body>
+</html>

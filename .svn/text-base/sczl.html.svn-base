@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>丝绸之路</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet">
+    <link href="css/global_2.css" rel="stylesheet">
+    <link href="css/title_main.css" rel="stylesheet">
+    <link href="css/title_main_1.css" rel="stylesheet">
+    <link href="css/title_main_2.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+  <style>
+  	/*body{
+  		background:#000000;
+  	}*/
+  	
+	 body{
+            background: black url(images/background.jpg) no-repeat;
+            margin: 0px 0px;
+            padding: 0px 0px;
+        }
+
+  </style>
+    
+</head>
+<body class="theme_1">
+<div style="width: 3000px;height: 1000px;" class="row">
+	<div style="width: 830px;height: 930px;margin-left: 35px;margin-top: 45px;float: left;position:relative">
+        <div class="blueBorder">		
+	    <div class="title">
+	        <div class="titleLeft"></div>
+	        <div class="titleContent" style="width: 25%">业务量及资源匹配</div>
+	        <div class="titleRight"></div>
+	        <div class="parallelogram"></div>
+	        <div class="titleLine"></div>
+	        <div class="fourDot"></div>
+	    </div>
+		<div class="right_bottom"></div>
+        <div class="left_bottom"></div>
+        <div class="right_top"></div>
+        <div class="top_center"></div>
+	    <div class="metaPage">
+            <iframe src="sczl_ywljzypp.html" style="background-color:transparent;" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width="120%" height="100%"></iframe>
+	    </div>
+	</div>
+	</div>
+	<div style="width: 1280px;height: 900px;float:left;margin-top:75px; margin-left: 10px; margin-right: 10px; position:relative">
+        <div class="blueBorder">		
+	    <div class="title">
+	        <div class="titleLeft"></div>
+	        <div class="titleContent" style="width: 31%">一带一路宏观政策下海关业务成果及资源效能情况</div>
+	        <div class="titleRight"></div>
+	        <div class="parallelogram"></div>
+	        <div class="titleLine"></div>
+	        <div class="fourDot"></div>
+	    </div>
+	   	<div class="right_bottom"></div>
+        <div class="left_bottom"></div>
+        <div class="right_top"></div>
+        <div class="top_center"></div>
+	    <div class="metaPage">
+            <iframe src="sczl_ydyl.html" style="background-color:transparent;" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width="120%" height="100%"></iframe>
+	    </div>
+	</div>
+	</div>
+	<div style="width: 838px;height: 930px;margin-left: -5px;margin-top: 45px;float: right; position:relative">
+		<div class="blueBorder">
+	    <div class="title">
+	        <div class="titleLeft"></div>
+	        <div class="titleContent" style="width: 25%">税收成果及税收结构</div>
+	        <div class="titleRight"></div>
+	        <div class="parallelogram"></div>
+	        <div class="titleLine"></div>
+	        <div class="fourDot"></div>
+	    </div>
+	    <div class="right_bottom"></div>
+        <div class="left_bottom"></div>
+        <div class="right_top"></div>
+        <div class="top_center"></div>
+	    <div class="metaPage">
+            <iframe src="sczl_sscg.html" style="background-color:transparent;" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+	    </div>
+	</div>
+	</div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script>
+    adjustBodySize();
+    //更换主题
+	changeBodyColor();
+</script>
+</body>
+</html>

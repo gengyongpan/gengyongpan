@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>实际入库关税</title>
+<link href="css/global.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .widget_listset {
+        background: url(images/list_bg.png) no-repeat;
+        /*background-size:  contain;*/
+    }
+
+    .widget_list {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 105px;
+        font-size: 14px;
+        font-weight: bolder;
+        float:left;
+    }
+    .widget_list_left {
+        margin-left: 12px;
+        margin-right: 7px;
+    }
+
+    .widget_list_right {
+        margin-left: 7px;
+        margin-right: 12px
+    }
+
+    .widget_list li {
+        height: 90px;
+    }
+
+    .widget_list_title{
+        width: 105px;
+        height: 40px;
+        display: table-cell;
+        vertical-align: bottom;
+    }
+
+    .widget_list_right .widget_list_title {
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    .widget_list_left .widget_list_title {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .widget_list_line_0 {
+        height: 5px;
+        background: url(images/line1_0.png) no-repeat left;
+        background-size: 90% 1px;
+    }
+    .widget_list_left .widget_list_line_0{
+        background-position:  right;
+    }
+
+    .widget_list_line_1 {
+        height: 20px;
+        background: url(images/line1_1.png) no-repeat left;
+        background-size: 90% 80%;
+        margin-bottom: -15px;
+    }
+
+    .widget_list_line_1_l1 {
+        background-position: right;
+        transform: scaleX(-1);
+    }
+
+    .widget_list_line_1_r1 {
+        background-position: right;
+    }
+
+    .widget_list_line_1_l2 {
+        background-position: left;
+        transform: scaleX(-1);
+    }
+
+    .widget_list_line_1_r3 {
+        transform: scaleX(-1);
+    }
+
+    .widget_list_data {
+        text-align: right;
+        color: #EBE221;
+        padding-right: 10%;
+    }
+
+    .widget_list_data_num {
+        font-size: 1.5em;
+    }
+    .theme_2 .widget_listset {
+        background: url(images/list_bg_red.png) no-repeat;
+        /*background-size:  contain;*/
+    }
+	.theme_2 .light {
+    color: #5c0000;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+	
+</style>
+</head>
+<body>
+<div class="widget_listset">
+    <div class="widget_list widget_list_left">
+        <ul>
+            <li>
+                <div class="widget_list_title light">查获案件价值 </div>
+                <div class="widget_list_line_0"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">查获案件数</div>
+                <div class="widget_list_line_1 widget_list_line_1_l1"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">风险布控<br>报关单量</div>
+                <div class="widget_list_line_1 widget_list_line_1_l2"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">稽察企业数</div>
+                <div class="widget_list_line_1 widget_list_line_1_l3"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="widget_list widget_list_right">
+        <ul>
+            <li>
+                <div class="widget_list_title light">实际入库关税</div>
+                <div class="widget_list_line_0"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">实际入库关税</div>
+                <div class="widget_list_line_1 widget_list_line_1_r1"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">滞纳税及<br>欠税总额</div>
+                <div class="widget_list_line_1 widget_list_line_1_r2"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+            <li>
+                <div class="widget_list_title light">税收计划<br>调整次数</div>
+                <div class="widget_list_line_1 widget_list_line_1_r3"></div>
+                <div class="widget_list_data">
+                    <span class="widget_list_data_num"></span>
+                    亿元
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--清除浮动效果-->
+    <div class="clear"></div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script>
+		//console.log($(".widget_listset li .widget_list_data_num").length)
+		// 主题更换--框
+	changeBodyColor();
+	 function queryData(year) {
+        !year && ( year = (new Date()).getFullYear());
+        var sqlParams = {
+            "STAT_CYCLE" : year
+        };
+        var strSqlParams = JSON.stringify(sqlParams);
+        var datas = {
+            key_code : "sy_dbpj",
+            sql_params : strSqlParams
+        };
+        $.ajax({
+            type : "POST",
+            url : contextPath + '/' + generateSQLDataURL,
+            dataType : "json",
+            data : datas,
+            success : function(msg) {
+                if (msg.flag == '1') {
+                          //console.log(msg);
+                          $("tbody .zbpj_tr010").html(msg.data[0].GCR);
+                          $("tbody .zbpj_tr011").html(msg.data[0].ETI);
+                          $("tbody .zbpj_tr012").html(msg.data[0].LPI);
+                          $("tbody .zbpj_tr013").html(msg.data[0].DBR);
+                          //
+                          $("tbody .zbpj_tr020").html(msg.data[1].GCR);
+                          $("tbody .zbpj_tr021").html(msg.data[1].ETI);
+                          $("tbody .zbpj_tr022").html(msg.data[1].LPI);
+                          $("tbody .zbpj_tr023").html(msg.data[1].DBR);
+                          //
+                          $("tbody .zbpj_tr030").html(msg.data[2].NAME);
+                          //
+                          $("tbody .zbpj_tr040").html(msg.data[3].GCR);
+                          $("tbody .zbpj_tr041").html(msg.data[3].ETI);
+                          $("tbody .zbpj_tr042").html(msg.data[3].LPI);
+                          $("tbody .zbpj_tr043").html(msg.data[3].DBR);
+                    
+                } else {
+                    console.log('请求数据为空或请求失败！');
+                }
+            },
+            error: function (xhr, txt, err) {
+                    console.log(xhr.status + ":" + txt + ", " + err.message);
+             }
+    
+        });
+    }
+  console.log($("tbody .zbpj_tr01 td").length);
+    
+queryData();
+</script>
+</body>

@@ -1,0 +1,143 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>商品税收结构</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <style>
+    	body{
+            background: url(images/background.jpg) no-repeat;
+        }
+        #spsrjg{
+            background: rgba(0, 104, 167, 0.3);
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .col-xs-12{
+            width: 100%;
+            padding: 0;
+        }
+        .item{
+        	position:absolute; 
+			bottom:0;
+        }
+        .text1{
+        	width: 68px;
+        	text-align: center;
+			font-size: 0.96rem;
+            -webkit-transform: scale(0.80);
+            -o-transform:scale(1);
+			line-height: 1.5;
+			position:relative; 
+        }
+        .text2{
+			font-size: 1.8rem;
+        }
+        #triangle1 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 30px solid rgba(56,188,244,.588);
+		}
+		#triangle2 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 40px solid rgba(56,188,244,.588);
+		}
+		#triangle3 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 77px solid rgba(56,188,244,.588);
+		}
+		#triangle4 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 54px solid rgba(56,188,244,.588);
+		}
+		#triangle5 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 120px solid rgba(232,227,46,.588);
+		}
+		#triangle6 { 
+			width: 0; 
+			height: 0; 
+			border-left: 34px solid transparent; 
+			border-right: 34px solid transparent; 
+			border-bottom: 44px solid rgba(56,188,244,.588);
+		}
+    </style>
+</head>
+<body>
+	<div id="spsrjg" style="width: 781px; height: 230px;">
+		<div class="col-xs-12" style="top: 15px; left: 50px; font-size: 1.4rem;">主要商品<span style="font-size: 1.8rem; color: rgb(232,227,46);">12类</span>，其中工业制成品贸易变化率升高<span style="font-size: 1.8rem; color: rgb(232,227,46);">26%</span>，符合一带一路战略的主要发展方向。</div>
+		<div class="col-xs-12" style="top: 60px; left: 25px; width: 750px; height: 128px; position:relative; bottom:0;">
+			<div class="item">
+				<div class="text1">工业制成品<br/><span class="text2">578</span></div>
+				<div id="triangle1"></div>
+			</div>
+			<div class="item" style="left:60px">
+				<div class="text1">机械及运输设备<br/><span class="text2">578</span></div>
+				<div id="triangle2"></div>
+			</div>
+			<div class="item" style="left:120px">
+				<div class="text1">杂项制品<br/><span class="text2">578</span></div>
+				<div id="triangle3"></div>
+			</div>
+			<div class="item" style="left:180px">
+				<div class="text1">轻纺产品<br/>橡胶制品<br/>矿冶产品<br/>及其制品<br/><span class="text2">578</span></div>
+				<div id="triangle4"></div>
+			</div>
+			<div class="item" style="left:240px">
+				<div class="text1">化学品及有关产品<br/><span class="text2">578</span></div>
+				<div id="triangle3"></div>
+			</div>
+			<div class="item" style="left:300px">
+				<div class="text1">初级产品<br/><span class="text2" style＝"color: rgb(232,227,46)">578</span></div>
+				<div id="triangle5"></div>
+			</div>
+			<div class="item" style="left:360px">
+				<div class="text1">食品及主要供食用的活动物<br/><span class="text2">578</span></div>
+				<div id="triangle6"></div>
+			</div>
+			<div class="item" style="left:420px">
+				<div class="text1">矿物燃料润滑油及有关原料<br/><span class="text2">578</span></div>
+				<div id="triangle6"></div>
+			</div>
+			<div class="item" style="left:480px">
+				<div class="text1">非食用原料<br/><span class="text2">578</span></div>
+				<div id="triangle4"></div>
+			</div>
+			<div class="item" style="left:540px">
+				<div class="text1">饮料及烟类<br/><span class="text2">578</span></div>
+				<div id="triangle1"></div>
+			</div>
+			<div class="item" style="left:600px">
+				<div class="text1">动、植物油脂及蜡<br/><span class="text2">578</span></div>
+				<div id="triangle3"></div>
+			</div>
+			<div class="item" style="left:660px">
+				<div class="text1">其他<br/><span class="text2">578</span></div>
+				<div id="triangle4"></div>
+			</div>
+		</div>
+	</div>	
+	<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+</body>
+</html>

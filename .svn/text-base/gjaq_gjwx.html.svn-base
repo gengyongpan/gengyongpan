@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<style>
+    /*body {
+        background: url(images/background.jpg);
+    }*/
+    .widget_group_01, .widget_group_02 {
+        float: left;
+    }
+
+    .widget_title {
+        margin-left: 10%;
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bolder;
+        color: #8FD6EE;
+    }
+    .theme_2 .widget_title {
+        margin-left: 10%;
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bolder;
+        color: #5c0000;
+    }
+
+</style>
+<div id="metapage_01" style="width: 563px; height: 430px;">
+    <div class="widget_group_01" style="width: 50%; height: 100%">
+        <div class="widget_title" style="height: 13%;">结案案件数和价值</div>
+        <div id="widget_0101" class="widget" style="width: 100%; height: 43.5%">
+        </div>
+        <div id="widget_0102" class="widget" style="width: 100%; height: 43.5%">
+        </div>
+    </div>
+    <div class="widget_group_02" style="width: 50%; height: 100%">
+        <div id="widget_0103" class="widget" style="width: 100%; height: 33.3%">
+        </div>
+        <div id="widget_0104" class="widget" style="width: 100%; height: 33.3%">
+        </div>
+        <div id="widget_0105" class="widget" style="width: 100%; height: 33.3%">
+        </div>
+    </div>
+    <!--清除浮动效果-->
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script>    //metapage_01
+// 主题更换--框
+changeBodyColor();
+
+///
+$(function () {
+    var echart_0101 = echarts.init(document.getElementById("widget_0101"), theme_custom);
+    var option = {
+        tooltip: {
+            trigger: 'item'
+        },
+        calculable: true,
+        grid: {
+            borderWidth: 0,
+            x: '5%',
+            x2: '5%',
+            y: '10%',
+            y2: '10%'
+        },
+        xAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        yAxis: [
+            {
+                type: 'category',
+                show: false,
+                data: ['安全', '经济', '环境', '其它']
+            }
+        ],
+        series: [
+            {
+                name: '结案案件数和价值',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                         color: function(params) {
+                            // build a color map as your need.
+                             // var colorList = [
+                                 // '#5AADCB','#147095','#6493A3','#4E8395','#0A4156'
+                             // ];
+                             return changeEchartsColor().color[params.dataIndex]
+                         },
+                        label: {
+                            show: true,
+                            position: 'right',
+                            formatter: '{b}',
+                            textStyle: {
+                                color:  '#F5DB26'
+                            }
+                        }
+                    }
+                },
+                data: [12,21,10,4]
+            }
+        ]
+    };
+    echart_0101.setOption(option);
+    echart_0101.setTheme(changeEchartsColor());
+});
+
+$(function () {
+    var echart_0102 = echarts.init(document.getElementById("widget_0102"), theme_custom);
+    var option = {
+        tooltip: {
+            trigger: 'item'
+        },
+        calculable: true,
+        grid: {
+            borderWidth: 0,
+            x: '5%',
+            x2: '5%',
+            y: '10%',
+            y2: '10%'
+        },
+        xAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        yAxis: [
+            {
+                type: 'category',
+                show: false,
+                data: ['普通', '违禁', '侵权', '非走私']
+            }
+        ],
+        series: [
+            {
+                name: '结案案件数和价值',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            // build a color map as your need.
+                            // var colorList = [
+                                // '#5AADCB','#147095','#6493A3','#4E8395','#0A4156'
+                            // ];
+                            return changeEchartsColor().color[params.dataIndex]
+                        },
+                        /*color: (function () {
+                            var zrColor = zrender.tool.color;
+                            debugger;
+                            return zrColor.getLinearGradient(
+                                    0, 200, 0, 400,
+                                    [[0, 'rgba(255,0,0,0.8)'],[0.8, 'rgba(255,255,255,0.1)']]
+                            )
+                        })(),
+                        /*function(params) {
+                            // build a color map as your need.
+                            var colorList = [
+                                '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B'
+                            ];
+                            return colorList[params.dataIndex]
+                        },*/
+                        label: {
+                            show: true,
+                            position: 'right',
+                            formatter: '{b}',
+                            textStyle: {
+                              //  color:  '#F5DB26'
+                            }
+                        }
+                    }
+                },
+                data: [12,21,10,4]
+            }
+        ]
+    };
+    echart_0102.setOption(option);
+    echart_0102.setTheme(changeEchartsColor());
+});
+
+$(function () {
+    var echart_0103 = echarts.init(document.getElementById("widget_0103"), theme_custom);
+    var option = {
+        title: {
+            show: true,
+            text: '寄件数(件)',
+            x: 'center',
+            y: 'top',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: changeEchartsColor().color[6],
+                fontSize: 14,
+                fontWeight: 'bolder'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                splitLine: 'false',
+                axisLine: {
+                  show: false
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[6]
+                    }
+                },
+                data: ['2015','2014','2013','2012','2011']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '30%',
+            x2: '10%',
+            y2: '20%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                barWidth: 2,
+                barCategoryGap: '5%',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        //color: '#3B657B',   //'#8FD6EE',
+                       // borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{c}' + '\n',
+                                textStyle: {
+                                    color: changeEchartsColor().color[6],
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: changeEchartsSymbol(),
+                    symbolSize:20,
+                    data: [
+                        /*{type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}*/
+                        {name: '2015', value: 2.0, xAxis: 0, yAxis: 2.0},
+                        {name: '2014', value: 4.9, xAxis: 1, yAxis: 4.9},
+                        {name: '2013', value: 7.0, xAxis: 2, yAxis: 7.9},
+                        {name: '2012', value: 23.2, xAxis: 3, yAxis: 23.2},
+                        {name: '2011', value: 25.6, xAxis: 4, yAxis: 25.6}
+                    ]
+                     //[2.0, 4.9, 7.0, 23.2, 25.6]
+                }
+            }
+        ]
+        
+    };
+    echart_0103.setOption(option);
+    echart_0103.setTheme(changeEchartsColor());
+});
+$(function () {
+    var echart_0104 = echarts.init(document.getElementById("widget_0104"), theme_custom);
+    var option = {
+        title: {
+            show: true,
+            text: '案件价值(万元)',
+            x: 'center',
+            y: 'top',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                //color: '#8FD6EE',
+                fontSize: 14,
+                fontWeight: 'bolder'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                splitLine: 'false',
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: '#8FD6EE'
+                    }
+                },
+                data: ['2015','2014','2013','2012','2011']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '30%',
+            x2: '10%',
+            y2: '20%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                barWidth: 2,
+                barCategoryGap: '5%',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                       // color: '#3B657B',   //'#8FD6EE',
+                        borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{c}' + '\n',
+                                textStyle: {
+                                    color: changeEchartsColor().color[6],
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: changeEchartsSymbol(),
+                    symbolSize: 20,
+                    data: [
+                        {name: '2015', value: 2.0, xAxis: 0, yAxis: 2.0},
+                        {name: '2014', value: 4.9, xAxis: 1, yAxis: 4.9},
+                        {name: '2013', value: 7.0, xAxis: 2, yAxis: 7.9},
+                        {name: '2012', value: 23.2, xAxis: 3, yAxis: 23.2},
+                        {name: '2011', value: 25.6, xAxis: 4, yAxis: 25.6}
+                    ]
+                    //[2.0, 4.9, 7.0, 23.2, 25.6]
+                }
+            }
+        ]
+    };
+    echart_0104.setOption(option);
+    echart_0104.setTheme(changeEchartsColor());
+});
+$(function () {
+    var echart_0105 = echarts.init(document.getElementById("widget_0105"), theme_custom);
+    var option = {
+        title: {
+            show: true,
+            text: '结案率(%)',
+            x: 'center',
+            y: 'top',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: '#8FD6EE',
+                fontSize: 14,
+                fontWeight: 'bolder'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                splitLine: 'false',
+                axisLine: {
+                    show: false
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[6]
+                    }
+                },
+                data: ['2015','2014','2013','2012','2011']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '30%',
+            x2: '10%',
+            y2: '20%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                barWidth: 2,
+                barCategoryGap: '5%',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        //color: '#3B657B',   //'#8FD6EE',
+                        //borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{c}' + '\n',
+                                textStyle: {
+                                    color:  changeEchartsColor().color[6],
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    
+                    symbol: changeEchartsSymbol(),
+                    symbolSize: 20,
+                    data: [
+                        {name: '2015', value: 2.0, xAxis: 0, yAxis: 2.0},
+                        {name: '2014', value: 4.9, xAxis: 1, yAxis: 4.9},
+                        {name: '2013', value: 7.0, xAxis: 2, yAxis: 7.9},
+                        {name: '2012', value: 23.2, xAxis: 3, yAxis: 23.2},
+                        {name: '2011', value: 25.6, xAxis: 4, yAxis: 25.6}
+                    ]
+                }
+            }
+        ]
+    };
+    echart_0105.setOption(option);
+    echart_0105.setTheme(changeEchartsColor());
+});
+
+</script>
+</body>

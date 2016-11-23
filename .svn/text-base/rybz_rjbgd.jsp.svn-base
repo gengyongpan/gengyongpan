@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>人员保障</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet" />
+    <link href="css/global_2.css" rel="stylesheet" />
+    <link href="css/global.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /*body {
+            background: url(images/background.jpg) no-repeat;
+        }*/
+
+        #rybz_rjbgd {
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+        }
+		.chartBorder3 div{
+			float:left;
+			margin-left:50px;
+			line-height: 50px;
+		}
+		.chartBorder2 div{
+			float:left;
+			margin-left:50px;
+			margin-top:-30px;
+		}
+		.rybz_zi{
+			font-size:2.0rem;
+			color:yellow;
+			font-weight:bold;
+		}
+		.rybz_wen{
+			color:yellow;
+		}
+    </style>
+</head>
+<body>
+<div id="rybz_rjbgd" style="width:100%;height:80px;position:relative;">
+    <div class="title3">
+        <div class="title3Ball"></div>
+        <div class="title3Left">结案达成率</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3" style="width: 100%; height: 100%;">
+        <div><span>总署人员数量:</span><span class="rybz_zi">100</span><span class="rybz_wen">万人</span></div>
+		<div><span>直属人员数量:</span><span class="rybz_zi">100</span><span class="rybz_wen">万人</span></div>
+		<div><span>隶属人员数量:</span><span class="rybz_zi">100</span><span class="rybz_wen">万人</span></div>
+    </div>
+
+<div style="width: 100%;height: 70px;">
+				<div>
+					 <div class="title2">
+				        <div class="title2Left"></div>
+				        <div class="title2Slash"></div>
+				        <div class="title2Center"></div>
+				        <div class="title2Ball"></div>
+				    </div>
+				    <div class="chartBorder2" style="width: 100%; height: 100px;">
+						<div><span>总署人员数量:</span><span class="rybz_zi"></span><span class="rybz_wen">万人</span></div>
+						<div><span>直属人员数量:</span><span class="rybz_zi"></span><span class="rybz_wen">万人</span></div>
+						<div><span>隶属人员数量:</span><span class="rybz_zi"></span><span class="rybz_wen">万人</span></div>
+					 </div>
+				</div>
+</div>
+</div>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+	// 主题更换--框
+	changeBodyColor();
+	
+</script>
+</body>
+</html>

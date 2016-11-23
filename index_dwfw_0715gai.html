@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<style>
+
+    html, body {
+        height: 100%
+    }
+
+</style>
+
+<div style="height: 100%;">
+
+    <div id="widget_0102" style="height: 100%;">
+    </div>
+    <!--清除浮动效果-->
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script type="text/javascript" src="js/theme_custom.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script>
+    /////////////////////////////////////////////////////////////////////////////////////
+    $(function () {
+        var echart_0102 = echarts.init(document.getElementById("widget_0102"));
+        
+        option = {
+            title: {
+                //text: '进出口总值贸易类型结构',
+                x: 'center',
+                y: 'top',
+                textStyle: {
+                    fontFamily: '微软雅黑',
+                    //color: '#8FD6EE',
+                    fontSize: 18,
+                    fontWeight: 'bold'
+                }
+            },
+
+            series: [
+                {
+                    name: '二级贸易方式',
+                    type: 'pie',
+                    radius: [90, 110],
+                    center: ['50%', '50%'],
+                    data: [
+                        {
+                            value: 60,
+                            name: '一般贸易',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(49,171,212,.5)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 40,
+                            name: '料件',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(49,171,212,0.65)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 40,
+                            name: '成品',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(49,171,212,0.85)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 40,
+                            name: '边角料',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(49,171,212,1)',                                    
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 30,
+                            name: '海关监管区域物流货物',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(140,214,238,0.5)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 30,
+                            name: '保税监管场所进出境货物',
+                            itemStyle: {
+                                normal: {
+                                
+                                    // color: 'rgba(140,214,238,0.65)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 30,
+                            name: '边境小额贸易',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(64,206,252,.8)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        {
+                            value: 30,
+                            name: '其他',
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgba(140,214,238,1)',
+                                    label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                                    labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                                }
+                            }
+                        },
+                        // {
+                        //     value: 330,
+                        //     name: '监管通关 16%',
+                        //     itemStyle: {
+                        //         normal: {
+                        //             color: 'rgb(93,180,231)',
+                        //             label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                        //             labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                        //         }
+                        //     }
+                        // },
+                        // {
+                        //     value: 630,
+                        //     name: '加工贸易 33%',
+                        //     itemStyle: {
+                        //         normal: {
+                        //             color: 'rgb(93,180,231)',
+                        //             label: {textStyle: {baseline: 'middle', color: '#A8E3F5'}},
+                        //             labelLine: {show: true, length: 30, lineStyle: {color: '#A8E3F5'}}
+                        //         }
+                        //     }
+                        // }
+                    ]
+                },
+                {
+                    name: '一级贸易方式',
+                    type: 'pie',
+                    radius: [0, 70],
+                    center: ['50%', '50%'],
+                    selectedOffset: 3,
+                    data: [
+                        {
+                            value: 60,
+                            name: '一般',
+                            selected:true,
+
+                            itemStyle: {
+                                normal: {
+                                
+                                    // color: 'rgba(49,171,212,.5)',
+                                    label: {
+                                        textStyle: {baseline: 'middle', color: '#ffffff'},
+                                        position: 'inner'
+                                    },
+                                    labelLine: {show: false}
+                                }
+                            }
+                        },
+                        {
+                            value: 120,
+                            name: '加工',
+                            selected:true,
+                            
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgb(49,171,212)',
+                                    label: {
+                                        textStyle: {baseline: 'middle', color: '#ffffff'},
+                                        position: 'inner'
+                                    },
+                                    labelLine: {show: false}
+                                }
+                            }
+                        },
+                        {
+                            value: 120,
+                            name: '其它',
+                            selected:true,
+                            
+                            itemStyle: {
+                                normal: {
+                                	
+                                    // color: 'rgb(140,214,238)',
+                                    label: {
+                                        textStyle: {baseline: 'middle', color: '#ffffff'},
+                                        position: 'inner'
+                                    },
+                                    labelLine: {show: false}
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+        /*option.series.forEach(function(d, i){
+            d.data.forEach(function (dd, j) {
+                delete dd.itemStyle.normal.color;
+            });
+        });*/
+        echart_0102.setOption(option);
+        echart_0102.setTheme(changeEchartsColor());
+        // appendPieBg(echart_0102);6585
+    });
+    /////////////////////////////////////////////////////////////////////////////
+
+</script>
+</body>

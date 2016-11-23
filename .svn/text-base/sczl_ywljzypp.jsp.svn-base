@@ -1,0 +1,1016 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String chartID = request.getParameter('chartID');
+	String dataURL = request.getParameter('dataURL');
+%>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>业务量及资源匹配</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet" />
+    <link href="css/global_2.css" rel="stylesheet" />
+
+    <style>
+   	/*body{
+            background: url(images/background.jpg) no-repeat;
+        }*/
+        #ywljzypp{
+        	width: 822px; 
+        	height: 930px;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .col-sm-12{
+            width: 100%;
+            padding: 0;
+        }
+        .col-sm-6{
+            width: 50%;
+            padding: 0;
+        }
+        .col-sm-5{
+            width: 41%;
+            padding: 0;
+        }
+        .col-sm-3{
+            width: 27%;
+            padding: 0;
+        }
+        .col-sm-4{
+            width: 30%;
+            padding: 0;
+        }
+        #map{
+			width: 390px; 
+			height: 270px;
+/*        	top: 25px;
+        	left: 25px;
+        	position: absolute;*/
+        }
+        #chart1{
+        	margin-top: 5px;
+        	width:220px; 
+        	height:180px;
+        }
+        #chart2{
+        	margin-top: 5px;
+        	width:220px; 
+        	height:180px;
+        }
+        #chart3{
+        	margin-top: 5px;
+        	width:240px; 
+        	height:190px;
+        }
+        #chart4{
+        	margin-top: 5px;
+        	width:240px; 
+        	height:180px;
+        }
+        #chart5{
+        	margin:20px 10px 0 10px;
+        	width:810px; 
+        	height:200px;
+        }
+        #left{
+        	margin-left: 5px;
+        }	
+        #num{
+            position: absolute;
+            left: 135px;
+            top: 165px;
+            font-size: 3rem;
+        }
+        #text{
+            position: absolute;
+            left: 118px;
+            top: 291px;
+            color: rgb(141, 214, 238);
+        }
+        #chart4_text1{
+        	position: absolute;
+            left: 30px;
+            top: 35px;
+            font-size: 1.2rem;
+        }
+        #chart4_text2{
+        	position: absolute;
+            left: 160px;
+            top: 110px;
+            font-size: 1.2rem;
+        }
+        #leg{
+        	position: absolute;
+            left: 20px;
+            top: 170px;
+        }
+        .legend{
+        	/*display:inline;*/
+			font-size: 1.2rem;
+			float: left;
+			margin: 0 2px 0 2px;
+        }
+        #arrow_top{
+        	top: 27px;
+        	left:114px;
+        	position: absolute;
+        }
+        #arrow_right{
+        	top: 94px;
+        	left:235px;
+        	position: absolute;
+        }
+         .ydyl_kuang{
+        	box-shadow: 0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px #6AC7E8;
+            width:73%;
+            height:30px;
+            border:1px solid #fff;
+            margin-left:10px;
+            margin-top:5px;
+        }
+        .yuanpan{
+        	background: url(images/sczl_yuanpan.png) no-repeat;
+        }
+        .theme_2 #ywljzypp{
+        	/*background:rgba(193,51,54,0.4);*/
+        	color:#5c0000;
+        }
+        .theme_2 .yuanpan{
+        	background: url(images/sczl_yuanpan_red.png) no-repeat;
+        }
+    </style>
+</head>
+<body class="">
+	<div id="ywljzypp" class="col-sm-12 row">
+		<div class="col-sm-12" style="margin-top: 20px">
+			<div class="col-sm-6">
+				<div id="map"></div>
+			</div>
+			<div class="col-sm-6" style="width: 380px;">
+				<div>
+					 <div class="title2">
+				        <div class="title2Left"></div>
+				        <div class="title2Slash"></div>
+				        <div class="title2Center"></div>
+				        <div class="title2Ball"></div>
+				    </div>
+				    <div class="chartBorder2" style="width: 380px; height: 220px;">
+				       <div class="ydyl_kuang">
+				       	<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">非一带一路占比 </span>
+				       		<div style="width: 70%;height:28px;background:rgba(49,164,194,0.7);"></div>
+				       		<span style="position: absolute;top:34px;left: 285px;font-size: 20px;color:yellow">70%</span>
+				       </div>
+				       <div class="ydyl_kuang">
+				       		<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">2015一带一路占比 </span>
+				       		<div style="width: 30%;height:28px;background:rgba(49,164,194,0.7);"></div>
+				       		<span style="position: absolute;top:65px;left: 285px;font-size: 20px;color:yellow">30%</span>
+				       </div>
+				       <div class="ydyl_kuang">
+				     	  	<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">2014一带一路占比 </span>
+				       		<div style="width: 25%;height:28px;"></div>
+				       		<span style="position: absolute;top:100px;left: 285px;font-size: 20px;color:yellow">25%</span>
+				       </div>
+				       <div style="color:rgb(141,214,238);font-size: 14px;margin:10px 0 0 15px;">
+					       	<span>进出口总额：</span>
+					       	<span style="color: yellow;font-size: 20px;">26</span>
+					       	<span style="color:yellow">万亿元</span>
+				       </div>
+				       	<div style="color:rgb(141,214,238);font-size: 14px;margin:5px 0 0 15px;">
+					       	<span>一带一路进出口总额：</span>
+					       	<span style="color: yellow;font-size: 20px;">20</span>
+					       	<span style="color:yellow">万亿元</span>
+				       </div>
+				    </div>
+				</div>
+		</div>
+		<div class="col-sm-12">
+			<div id="left" class="col-sm-3">
+				<div id="chart1"></div>
+				<div id="chart2"></div>
+			</div>
+			<div id="center" class="col-sm-5">
+				<div class="yuanpan" style="width: 345px; height:359px;"></div>
+		        <div class="light" id="num">0.89</div>
+		        <div id="text">海关基尼系数</div>
+			</div>
+			<div id="right" class="col-sm-4">
+				<div id="chart3"></div>
+				<div id="chart4"></div>
+				<div id="chart4_text1">贸易量增长速度</div>
+				<div id="chart4_text2">平均通关效率</div>
+				<div id="arrow_top">
+					<img src="images/arrow_top.png">
+				</div>
+				<div id="arrow_right">
+					<img src="images/arrow_right.png">
+				</div>
+				<!-- <div id="leg">
+					<div class='legend'><img src="images/bubble_bg.png" style="margin: -6px 3px 0 10px"></div>
+					<div class='legend'>贸易量大</div>
+					<div class='legend'><img src="images/bubble_sm.png"></div>
+					<div class='legend'>贸易量小</div>
+				</div> -->
+			</div>
+		</div>
+		<div class="col-sm-12" id='chart5'></div>
+	</div>
+    </div>
+	<script src="js/echarts-all.js"></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/theme_custom.js"></script>
+	<script type="text/javascript">
+	// 主题更换--框
+	changeEchartsColor();
+		function changeBodyColor(){
+			if(theme_opt == 'red'){
+				$("body").addClass("theme_2").removeClass("theme_1");
+				$(".ydyl_kuang").css("background","#d37c7c");
+				$(".ydyl_kuang div").css("background","#e6acaa")
+			}else if(theme_opt == 'blue'){
+				$("body").addClass("theme_1").removeClass("theme_2");
+				$(".ydyl_kuang").css("background","rgba(236,213,16,0.7)");
+				$(".ydyl_kuang div").css("background","rgba(183,164,19,0.7)")
+			}else{
+				$("body").removeClass("theme_2").removeClass("theme_1");
+				$(".ydyl_kuang").css("background","rgba(27,114,146,0.7)");
+				$(".ydyl_kuang div").css("background","rgba(49,164,194,0.7)")
+			}	
+		};
+		changeBodyColor();
+	    function DrawMap(){
+	        var option = {
+	        	title : {
+			        text: '贸易集中度',
+			        x:'20',
+			        textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+					    //color: '#8CD6EE',
+            			fontFamily: "Microsoft Yahei"
+					}  
+			    },
+	            dataRange: {
+	                show: false,
+	                x: 'left',
+	                y: 'bottom',
+	                splitList: [
+	                    {start: 60},
+	                    {start: 30, end: 60},
+	                    {start: 0, end: 30}
+	                ],
+	                color: [changeEchartsColor().color[0],changeEchartsColor().color[1],changeEchartsColor().color[2]]
+	            },
+	            series : [
+	                {
+	                    name: '订单量',
+	                    type: 'map',
+	                    mapType: 'china',
+	                    roam: false,
+	                    itemStyle: {
+	                        normal: {
+	                            borderWidth: 1,            // 标注边线线宽，单位px，默认为1
+	                            borderColor: changeEchartsColor().color[4],//'rgba(59,196,241,1)',
+	                            areaStyle: {
+	                                color: 'rgba(255,255,255,0)'
+	                            },
+	                            label: {
+	                                show: false,
+	                                formatter: ' {b}'
+	                            }
+	                        },
+	                        emphasis:{
+	                            areaStyle: {
+	                                color: 'rgba(255,255,255,0)'
+	                            },
+	                            label: {
+	                                show: true,
+	                                textStyle: {
+	                                    color: '#e5e128'
+	                                }
+	                            }
+	                        }
+	                    },
+	                    /*data:[
+	                        {name: '北京',value: 50},
+	                        {name: '天津',value: 100},
+	                        {name: '上海',value: 100},
+	                        {name: '重庆',value: 50},
+	                        {name: '河北',value: 0},
+	                        {name: '河南',value: 10},
+	                        {name: '云南',value: 5},
+	                        {name: '辽宁',value: 100},
+	                        {name: '黑龙江',value: 50},
+	                        {name: '湖南',value: 10},
+	                        {name: '安徽',value: 50},
+	                        {name: '山东',value: 100},
+	                        {name: '新疆',value: 50},
+	                        {name: '江苏',value: 100},
+	                        {name: '浙江',value: 100},
+	                        {name: '江西',value: 50},
+	                        {name: '湖北',value: 10},
+	                        {name: '广西',value: 10},
+	                        {name: '甘肃',value: 10},
+	                        {name: '山西',value: 10},
+	                        {name: '内蒙古',value: 50},
+	                        {name: '陕西',value: 10},
+	                        {name: '吉林',value: 50},
+	                        {name: '福建',value: 100},
+	                        {name: '贵州',value: 10},
+	                        {name: '广东',value: 100},
+	                        {name: '青海',value: 10},
+	                        {name: '西藏',value: 10},
+	                        {name: '四川',value: 10},
+	                        {name: '宁夏',value: 10},
+	                        {name: '海南',value: 100},
+	                        {name: '台湾',value: 100},
+	                        {name: '香港',value: 100},
+	                        {name: '澳门',value: 100}
+	                    ]*/
+	                }
+	            ]
+	        };
+	    var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("map"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();
+	    }
+	    function DrawChart1(){
+	        option = {
+	        	title : {
+			        text: '丝绸之路经济带资源投入（万元）',
+			        textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+					   // color: '#8CD6EE',
+            			fontFamily: "Microsoft Yahei"
+					}  
+			    },
+			    legend: {
+			        //data:['2014年','2015年'],
+			        x: '72px',
+			        y: '35px',
+			        textStyle: {
+					    fontSize: '7.76px',
+					    color: changeEchartsColor().color[1]//'#8CD6EE'
+					}
+			    },
+			    grid: {
+	                borderColor: 'rgba(255,255,255,1)',
+	                x: 30,
+	                x2: 25,
+	                y: 55,
+	                y2: 30,
+	                borderWidth: 0
+            	},
+			   
+			    xAxis : [
+			        {
+			            type : 'category',
+			            boundaryGap : false,
+			            splitLine:{
+	                        show:false
+                    	},
+			            axisLabel: {
+	                        formatter: '{value}',
+	                        textStyle:{
+	                            fontSize: '7.76px',
+							    fontWeight: 'bolder',
+							    color: changeEchartsColor().color[0]//'#8CD6EE'
+	                        }
+                  		},
+			           // data : ['人力资源','设备资源','技术资源','其他资源']
+			        }
+			    ],
+			    yAxis : [
+			        {
+			        	splitLine:{
+	                        lineStyle:{
+	                            color:['#1A4C67']
+	                        }
+	                    },
+			        	axisLabel: {
+	                        formatter: '{value}',
+	                        textStyle:{
+	                            fontSize: '7.76px',
+							    fontWeight: 'bolder',
+							    color: changeEchartsColor().color[0]//'#8CD6EE'
+	                        }
+                  		},
+			            type : 'value'
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'2014年',
+			            type:'line',
+			          	smooth: false,
+			          	symbol:'emptyCircle',
+
+			            itemStyle: {
+			            	normal: {			            		
+			            		//color: 'rgba(141, 214, 238, 1)',
+			            		areaStyle: {
+			            			//color: 'rgba(141, 214, 238, 0.43)'
+			            		}
+			            	}
+			            },
+			           // data:[150, 150, 230, 100]
+			        },
+			        {
+			            name:'2015年',
+			            type:'line',
+			            symbol:'emptyCircle',
+			            smooth: false,
+			            itemStyle: {
+			            	normal: {.
+			            		//color: 'rgba(5,253,5,1)',
+			            		areaStyle: {
+			            			//color: 'rgba(5,253,5,0.43)'
+			            		}
+			            	}
+			            },
+			           // data:[65, 50, 55, 70]
+			        }
+			    ]
+			};
+		var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("chart1"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();                 
+		}    
+		function DrawChart2(){
+	        option = {
+	        	title : {
+			        text: '海上丝绸之路资源投入（万元）',
+			        textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+					    //color: '#8CD6EE',
+            			fontFamily: "Microsoft Yahei"
+					}  
+			    },
+			    legend: {
+			        data:['2014年','2015年'],
+			        x: '72px',
+			        y: '35px',
+			        textStyle: {
+					    fontSize: '7.76px',
+					    color: changeEchartsColor().color[1]//'#8CD6EE'
+					}
+			    },
+			    grid: {
+	                borderColor: 'rgba(255,255,255,1)',
+	                x: 30,
+	                x2: 25,
+	                y: 55,
+	                y2: 30,
+	                borderWidth: 0
+            	},
+			   
+			    xAxis : [
+			        {
+			            type : 'category',
+			            boundaryGap : false,
+			            splitLine:{
+	                        show:false
+                    	},
+			            axisLabel: {
+	                        formatter: '{value}',
+	                        textStyle:{
+	                            fontSize: '7.76px',
+							    fontWeight: 'bolder',
+							    color: changeEchartsColor().color[0]//'#8CD6EE'
+	                        }
+                  		},
+//			            data : ['人力资源','设备资源','技术资源','其他资源']
+			        }
+			    ],
+			    yAxis : [
+			        {
+			        	splitLine:{
+	                        lineStyle:{
+	                            color:['#1A4C67']
+	                        }
+	                    },
+			        	axisLabel: {
+	                        formatter: '{value}',
+	                        textStyle:{
+	                            fontSize: '7.76px',
+							    fontWeight: 'bolder',
+							    color: changeEchartsColor().color[0]//'#8CD6EE'
+	                        }
+                  		},
+			            type : 'value'
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'2014年',
+			            type:'line',
+			          	smooth: false,
+			          	symbol:'emptyCircle',
+
+			            itemStyle: {
+			            	normal: {			            		
+			            		//color: 'rgba(141, 214, 238, 1)',
+			            		areaStyle: {
+			            			//color: 'rgba(141, 214, 238, 0.43)'
+			            		}
+			            	}
+			            },
+//			            data:[150, 150, 230, 100]
+			        },
+			        {
+			            name:'2015年',
+			            type:'line',
+			            symbol:'emptyCircle',
+			            smooth: false,
+			            itemStyle: {
+			            	normal: {
+			            		//color: 'rgba(5,253,5,1)',
+			            		areaStyle: {
+			            			//color: 'rgba(5,253,5,0.43)'
+			            		}
+			            	}
+			            },
+//			            data:[65, 50, 55, 70]
+			        }
+			    ]
+			};
+		var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("chart2"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();                                   
+		}    
+		function DrawChart3(){
+	        function random(){
+	            var r = Math.round(Math.random() * 50);
+	            return (r * (r % 2 == 0 ? 1 : -1));
+	        }
+	        function randomDataArray() {
+	            var d = [];
+	            var len = 10;
+	            while (len--) {
+	                d.push([
+	                    random(),
+	                    random(),
+	                    Math.abs(random()),
+	                ]);
+	            }
+	            return d;
+	        }
+	        var option = {
+	        	title : {
+			        text: '一带一路贸易情况',
+			        x: '10',
+			        y: '0',
+			        textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+					    //color: '#8CD6EE',
+            			fontFamily: "Microsoft Yahei"
+					}  
+			    },
+			    legend:{
+
+			    	y: '170px',
+
+			    	data:['贸易量大小'],
+			    	borderColor: changeEchartsColor().color[0],//'#55b1e2',
+			    	borderWidth: 1,
+			    	textStyle: {
+					    color: changeEchartsColor().color[1],//'#8CD6EE',
+					    fontSize: '7.76px'
+					}
+			    },
+	            grid: {
+	                x: 5,
+	                x2: 5,
+	                y: 30,
+	                y2: 30,
+	                borderWidth: 0
+	            },
+	            xAxis : [
+	                {
+	                    type : 'value',
+	                    splitLine: false,
+	                    scale: true,
+	                    min: -70,
+	                    max: 70,
+	                    axisLabel:{
+	                    	show: false
+	                    },
+	                    axisLine:{
+	                    	lineStyle:{
+	                    		color: changeEchartsColor().color[0]//'#8dd6ee'
+	                    	}
+	                    }
+	                }
+	            ],
+	            yAxis : [
+	                {
+	                	// name:'贸易量增长速度',
+	                    type : 'value',
+	                    splitLine: false,
+	                    scale: false,
+	                    min: -70,
+	                    max: 70,
+	                    axisLabel:{
+	                    	show: false
+	                    },
+	                    axisLine:{
+	                    	lineStyle:{
+	                    		color: changeEchartsColor().color[0]//'#8dd6ee'
+	                    	}
+	                    }
+	                }
+	            ],
+	            series : [
+	                {
+	                    name:'贸易量大小',
+	                    type:'scatter',
+	                    symbolSize: function (value){
+			                return Math.round(value[2] / 2);
+			            },
+	                    itemStyle: {
+	                        normal: {
+	                            //color: 'rgba(43,153,191,.58)',
+	                            borderWidth: 1,
+	                            //borderColor: '#55b1e2'
+	                        }
+	                    },
+//	                    data: randomDataArray()
+	                }
+	            ]
+	        };
+	    var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("chart3"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();                 
+	    }
+	    function DrawChart4(){
+		    var option = {
+		        color: ['#C0DDDD'],
+		        title: {
+		            text: '一带一路贸易总体趋势',
+		            x: '15',
+		            y:'0',
+		            textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+					    //color: '#8CD6EE',
+	        			fontFamily: "Microsoft Yahei"
+					} 
+		        },
+		        grid: {
+		            x: 40,
+		            x2: 10,
+		            y: 45,
+		            y2: 50,
+		            borderWidth: 0
+		        },
+		        xAxis: [{
+		            type: 'category',
+		            axisTick: 0,
+		            splitLine: {
+		                show: false
+		            },
+		            axisLabel: {
+		                formatter: '{value}',
+		                textStyle: {
+		                    fontFamily: '微软雅黑',
+		                    color: changeEchartsColor().color[0],//'#8FD6EE',
+		                    fontSize: '7.76px'
+		                },
+		                rotate: -90
+		            },
+		            axisLine: {
+		                lineStyle: {
+		                    color: changeEchartsColor().color[0],//'#55b1e2',
+		                    width: 1
+		                }
+		            },
+//		            data: ["2011", "2012", "2013", "2014", "2015预测"]
+		        }],
+		        yAxis: [{
+		        	name:'亿',
+		            type: 'value',
+		            axisLabel: {
+		                formatter: '{value}',
+		                textStyle: {
+		                    fontFamily: '微软雅黑',
+		                    color: changeEchartsColor().color[0],//'#8FD6EE',
+		                    fontSize: '7.76px'
+		                }
+		            },
+		            axisLine: {
+		                lineStyle: {
+		                    color: changeEchartsColor().color[0],//'#55b1e2',
+		                    width: 1
+		                }
+		            },
+		            splitLine: {
+		                lineStyle: {
+		                    color: '#1A4862'    //'rgba(26, 72, 98, 0.8)'
+		                }
+		            }
+		        }],
+		        series: [
+		            {
+		                name: '',
+		                type: 'bar',
+		                barWidth: 25,
+		                itemStyle: {
+		                    normal: {
+		                        color: changeEchartsColor().color[0],
+		                        label : {
+			                        show: true, 
+			                        position: 'top'
+			                    }
+		                    }
+		                },
+//		                data: [300, 500, 700, 850, 650]
+		            }
+		        ]
+		    };
+		var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("chart4"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();                 
+		}
+		function DrawChart5(){
+		    var option = {
+		        color: ['#C0DDDD'],
+		        title: {
+		            text: '一带一路主要贸易合作国贸易变化情况',
+		            x: '20',
+		            textStyle: {
+					    fontSize: 14,
+					    fontWeight: 'bolder',
+	        			fontFamily: "Microsoft Yahei"
+					} 
+		        },
+		        legend: {
+		        	x: '630',
+			        data:['2014年','2015年'],
+			        textStyle: {
+					    fontSize: '7.76px',
+					    color: changeEchartsColor().color[0]//'#8CD6EE'
+					}
+			    },
+		        grid: {
+		        	borderColor: 'rgba(255,255,255,1)',
+		            x: 35,
+		            x2: 35,
+		            y: 60,
+		            y2: 30,
+		            borderWidth: 0
+		        },
+		        xAxis: [{
+		            type: 'category',
+		            axisTick: {
+		            	show: true,
+		            	inside: true,
+		            	lineStyle:{
+		            		color: changeEchartsColor().color[0]//'#55b1e2'
+		            	}
+		            },
+		            splitLine: {
+		                show: false
+		            },
+		            axisLabel: {
+		                formatter: '{value}',
+		                textStyle: {
+		                    fontFamily: '微软雅黑',
+		                    color: changeEchartsColor().color[0],//'#8FD6EE',
+		                    fontSize: '7.76px'
+		                }
+		            },
+		            axisLine: {
+		                lineStyle: {
+		                    color: changeEchartsColor().color[0],//'#55b1e2',
+		                    width: 1
+		                }
+		            },
+//		            data: ["马来西亚", "越南", "哈萨克斯坦", "伊朗", "印度", "俄罗斯", "土耳其", "波兰", "德国", "肯尼亚"]
+		        }],
+		        yAxis: [{
+		        	name:'亿',
+		            type: 'value',
+		            axisLabel: {
+		                formatter: '{value}',
+		                textStyle: {
+		                    fontFamily: '微软雅黑',
+		                    color: changeEchartsColor().color[0],//'#8FD6EE',
+		                    fontSize: '7.76px'
+		                }
+		            },
+		            axisLine: {
+		                lineStyle: {
+		                    color: changeEchartsColor().color[0],//'#55b1e2',
+		                    width: 1
+		                }
+		            },
+		            splitLine: {
+		                lineStyle: {
+		                    color: '#1A4862'    //'rgba(26, 72, 98, 0.8)'
+		                }
+		            }
+		        }],
+		        series: [
+		            {
+		                name: '2014年',
+		                type: 'bar',
+		                barWidth: 30,
+		                barGap: '2%',
+						barCategoryGap: '16%',
+		                itemStyle: {
+		                    normal: {
+		                        color: changeEchartsColor().color[1],//'#31abd4',
+		                        label : {
+			                        show: true, 
+			                        position: 'top'
+			                    }
+		                    }
+		                },
+//		                data: [300, 500, 700, 350, 650, 470, 250, 389, 700, 630]
+		            },
+		            {
+		                name: '2015年',
+		                type: 'bar',
+		                barWidth: 30,
+		                barGap: '2%',
+						barCategoryGap: '16%',
+		                itemStyle: {
+		                    normal: {
+		                        color: changeEchartsColor().color[0],//'#8FD6EE',
+		                        label : {
+			                        show: true, 
+			                        position: 'top'
+			                    }
+		                    }
+		                },
+//		                data: [470, 250, 389, 680, 520, 300, 500, 700, 450, 350]
+		            }
+		        ]
+
+		    };
+		var contextPath = "<%=contextPath%>";
+		var dataURL = "<%=dataURL%>":
+		var echarts_<%=chartID%> = echarts.init(document.getElementById("chart5"));
+		(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(option, option_data);
+	            	echarts_<%=chartID%>.setOption(option_data);
+	            	echarts_<%=chartID%>.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();                 
+		}
+		DrawMap();    
+		DrawChart1();      
+		DrawChart2();    
+		DrawChart3();  
+		DrawChart4();        
+		DrawChart5();            
+		</script>
+</body>
+</html>

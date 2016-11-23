@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>heheda</title>
+<script src="js/jquery-1.9.1.min.js"></script>
+<style>
+	body{
+		padding:0;
+		margin:0;
+		list-style: none;
+	}
+	li{
+		list-style: none;
+		margin-top:5px;
+	}
+	
+	.jindutiao_1{
+		height:50px;
+		width: 270px;
+		margin-top: 5px;
+	}
+	.jindutiao{
+		height:100%;
+		position:relative;
+		text-align:center;
+		background:rgb(6,80,117);
+		border-radius: 5px;
+	}
+	.jindutiao_zi{
+		padding-left:50px;	
+		color:#fff;
+		text-shadow: 0 0 10px #6AC7E8,0 0 20px  #6AC7E8;
+		font-weight: bold;
+	}
+	.jindutiao_kuang{
+		height:50px;
+		width:15px;
+		float:right;
+	}
+	.jindutiao_wen{
+		color:#fff;
+		line-height: 50px; 
+		text-shadow: 0 0 10px #6AC7E8,0 0 20px  #6AC7E8;
+		font-weight: bold;
+	}
+	ul{
+		margin-top:2px;
+	}
+</style>
+</head>
+
+<body>
+<div id="jindutiao">
+	<div class="jindutiao_1">
+		<div class="jindutiao" style="left:40px;margin-bottom:;">
+			<span class="jindutiao_zi">105%</span>
+			<span class="jindutiao_wen">电子申报</span>
+			<div class="jindutiao_kuang"></div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function(){
+		
+		  function CreateProgress_Ul(rowCount)
+			  {
+			  	var D = $("<div></div>");
+			  	var S = $("<span></span>");
+			     var ul=$("<ul></ul>");
+			     ul.appendTo($("#jindutiao"));
+			     for(var i=0;i<rowCount;i++)
+			     {
+			     	////////////////////////////////////////////
+			         var li=$("<li></li>");
+			         li.appendTo(ul).attr('id','li_'+i);
+			       	 $('<div class="jindutiao_1"><div class="jindutiao"><span class="jindutiao_zi">15%</span>&nbsp;<span class="jindutiao_wen">电子申报</span><div class="jindutiao_kuang"></div></div></div>')
+			     	.appendTo(li)
+			       	 //D.appendTo(D).addClass("jindutiao");
+			     }
+			      $('.jindutiao').width(parseInt($('.jindutiao_zi').html())+170+'px');
+			      $('li .jindutiao').width(parseInt($('li .jindutiao_zi').html())+170+'px');
+			
+					if(parseInt($('.jindutiao_zi').html())>=80){
+					 		$('.jindutiao_kuang').css('background-color','green')
+							}else if(parseInt($('.jindutiao_zi').html())>=60){
+								$('.jindutiao_kuang').css('background-color','yellow')
+							}else{
+								$('.jindutiao_kuang').css('background-color','red')
+						}
+						
+						if(parseInt($('li .jindutiao_zi').html())>=80){
+					 		$('li .jindutiao_kuang').css('background-color','green')
+							}else if(parseInt($('li .jindutiao_zi').html())>=60){
+								$('li .jindutiao_kuang').css('background-color','yellow')
+							}else{
+								$('li .jindutiao_kuang').css('background-color','red')
+						}
+			     // D.appendTo(li).addClass("jindutiao_1");
+			     // $("<span class='jindutiao_zi'>85%   电子申报</span>").appendTo(D);
+			     // $('<div class="jindutiao_kuang"></div>').appendTo(D);
+			     //tr.appendTo(table);
+			     //$('body').appendTo("");
+			  };
+			  CreateProgress_Ul(3);
+		
+		});
+</script>
+</body>
+</html>

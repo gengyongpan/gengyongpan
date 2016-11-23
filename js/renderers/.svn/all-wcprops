@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers
+END
+CSS2DRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/CSS2DRenderer.js
+END
+CSS3DRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/CSS3DRenderer.js
+END
+SVGRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/SVGRenderer.js
+END
+Projector.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/Projector.js
+END
+CSS3DStereoRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/CSS3DStereoRenderer.js
+END
+WebGLDeferredRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/WebGLDeferredRenderer.js
+END
+RaytracingRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/RaytracingRenderer.js
+END
+Box3.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/Box3.js
+END
+SoftwareRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/SoftwareRenderer.js
+END
+CanvasRenderer.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/ydsvn/!svn/ver/290/code/BI/js/renderers/CanvasRenderer.js
+END

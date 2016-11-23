@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/ydsvn/!svn/ver/322/code/BI/data
+END
+country_lat_lon.json
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/ydsvn/!svn/ver/317/code/BI/data/country_lat_lon.json
+END
+country_iso3166.json
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/ydsvn/!svn/ver/317/code/BI/data/country_iso3166.json
+END
+flights.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/ydsvn/!svn/ver/322/code/BI/data/flights.json
+END

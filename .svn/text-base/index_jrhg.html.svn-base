@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>heheda</title>
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/theme_custom.js"></script>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background-image:url(images/bg_haiguan.png);
+            background-size: 100% 120%;
+            background-repeat:no-repeat;
+        }
+       .default #haiguan{
+
+            margin-left:0;
+            margin-top:0;
+            width:100%;
+            height:100%;
+            /*background-image:url(images/bg_haiguan.png);*/
+            background-size: 100% 120%;
+            background-repeat:no-repeat;
+        }
+        .qiu{
+            position:absolute;
+            width: 16px;
+            height:16px;
+            border-radius: 8px;
+            border: 1px solid blue;
+            background-color:#fff;
+        }
+        .qiu_1{
+            top:3px;
+            left:3px;
+            position:absolute;
+            width: 8px;
+            height:8px;
+            border-radius:4px;
+            border:1px solid blue;
+            background-color:rgba(145,216,239,1);
+        }
+        .qiu_weizhi_1{
+            top:80px;
+            left:740px;
+        }
+        .qiu_weizhi_2{
+            top:80px;
+            left: 240px;
+        }
+        .qiu_weizhi_3{
+            top:60px;
+            left: 500px;
+        }
+        .color_1{
+
+            color: #fff;
+            box-shadow: 0 0 10px #6AC7E8,
+            0 0 20px  #6AC7E8;
+
+        }
+        .default .color_2{
+            background-image:url(images/haiguan_01.png);
+            width: 228px;
+            height:96px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .default .color_3{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01.png);
+            position: absolute;
+            top: 80px;
+            left: 400px;
+        }
+        .default .color_4{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01.png);
+            position: absolute;
+            top: 100px;
+            left: 685px;
+        }
+        .right_img{
+            width: 228px;
+            height:96px;
+            position: absolute;
+            top: 100px;
+            left: 685px;
+        }
+        .left_img{
+            width: 228px;
+            height:96px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .center_img{
+            width: 228px;
+            height:96px; 
+            position: absolute;
+            top: 80px;
+            left: 400px;
+        }
+        #guanghuan{
+            width:100px;
+            height:100px;
+            border:1px solid red;
+            border-radius: 50px;
+        }
+        .donghua{
+
+            width: 162px;
+            height: 85px;
+            border-radius: 50px;
+            top:-20px;
+            left:0px;
+            position: absolute;
+            /*background-image:url(image/haiguan_quan_00.png);*/
+        }
+/* 更换主题  BuLE */
+	.theme_1 .color_2{
+            background-image:url(images/haiguan_01_lan.png);
+            width: 228px;
+            height:96px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+.theme_1 .color_3{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01_lan.png);
+            position: absolute;
+            top: 80px;
+            left: 400px;
+        }
+.theme_1 .color_4{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01_lan.png);
+            position: absolute;
+            top: 100px;
+            left: 685px;
+       }
+ /*红色主题*/
+	.theme_2 .color_2{
+            background-image:url(images/haiguan_01_lan.png);
+            width: 228px;
+            height:96px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+.theme_2 #haiguan{
+
+            margin-left:0;
+            margin-top:0;
+            width:100%;
+            height:100%;
+            background-image:url(images/bg_haiguan_red.png);
+            background-size: 100% 120%;
+            background-repeat:no-repeat;
+        }
+.theme_2 .color_3{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01_lan.png);
+            position: absolute;
+            top: 80px;
+            left: 400px;
+        }
+.theme_2 .color_4{
+            width: 228px;
+            height:96px;
+            background-image:url(images/haiguan_01_lan.png);
+            position: absolute;
+            top: 100px;
+            left: 685px;
+        }
+    </style>
+</head>
+
+<body class="theme_2">
+<div style="width: 980px;height: 275px;margin: 4px 0 0 3px;border-radius: 5px;">
+    <div  style="height:275px;width: 100%;">
+        <!-- 光环 -->
+        <div id="haiguan" style="height: 400px;margin-top: 20px">
+            <div id="donghua" class="donghua">
+                <img id="donghua_img" src="images/22.png" />
+            </div>
+            <!-- 地球上点 -->
+            <div class="qiu qiu_weizhi_1 ">
+                <div class="qiu_1"></div>
+            </div>
+            <div class="qiu qiu_weizhi_2 ">
+                <div class="qiu_1"></div>
+            </div>
+            <div class="qiu qiu_weizhi_3 ">
+                <div class="qiu_1"></div>
+            </div>
+            <!-- 图片以及文字 -->
+            <div id="left_img" class="left_img">
+                <img src="images/jrhg01.jpg" style="position: absolute;top: 10px;left: 15px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:10px;font-family: '宋体';position: absolute;top: 16px;left: 85px">美国海关及边境保护局(USCBP)将于2016年底前，在全美国际旅客最多的前20座国际机场，逐步启用“手机护照通关”措施... ...  </p>
+            </div>
+            <div id="center_img" class="center_img">
+                <img src="images/jrhg02.jpg" style="position: absolute;top: 10px;left: 15px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:10px;font-family: '宋体';position: absolute;top: 16px;left: 85px">俄罗斯目前与欧盟正在就建立海关监管货物卫星统一监测系统进行磋商，该系统可通过设在欧盟和俄罗斯的卫星对过境关税同盟国家... ...  </p>
+            </div>
+            <div id="right_img" class="right_img">
+                <img src="images/jrhg03.jpg" style="position: absolute;top: 10px;left: 15px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:8px;font-family: '宋体';position: absolute;top: 16px;left: 85px">7月1日起，京津冀、长江经济带、“泛珠”四省、丝绸之路经济带、东北地区等五个海关区域通关一体化实现区区联动，企业可根据实际需要选择任意... ...  </p>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+  <div style="width: 100%;height: 300px;position: absolute">
+    		<div  style="position: absolute;left: 40px;width: 228px;height: 96px;background-image:url(images/haiguan_01.png);">
+                <img src="images/jrhg10.png" style="position: absolute;top: 10px;left: 16px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:10px;font-family: '宋体';position: absolute;top: 16px;left: 85px">The Minister of China Customs, Mr. Yu Guangzhou, met with WCO Secretary General Kunio Mikuriya on 29 June....</p>
+            </div>
+            <div style="position: absolute;left: 360px;width: 228px;height: 96px;background-image:url(images/haiguan_01.png);">
+                <img src="images/jrhg11.png" style="position: absolute;top: 10px;left: 16px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:10px;font-family: '宋体';position: absolute;top: 16px;left: 85px">At the invitation of WTO Director-General Roberto Azevêdo, WCO Secretary General Kunio Mikuriya attended....  </p>
+            </div>
+            <div style="position: absolute;left: 680px;width: 228px;height: 96px;background-image:url(images/haiguan_01.png);">
+                <img src="images/jrhg12.png" style="position: absolute;top: 10px;left: 16px;"/>
+                <p style="width:140px; height:60px; color:#ACE9FD; font-size:8px;font-family: '宋体';position: absolute;top: 16px;left: 85px">The National Academy of Customs, Excise and Narcotics (NACEN) of India hosted Programme Global Shield's (PGS)....</p>
+            </div>
+   </div>
+<script>
+    function donghua(){
+
+        //动画  触发事件
+        setInterval(function(){
+            $('#donghua').animate({
+                left:'750px',
+                top:'100px'
+            },10000)
+            x = $('#donghua').offset();
+            if(x.left>100 && x.left<250){
+                $('.qiu_weizhi_2').addClass("color_1");
+                $('#left_img').removeClass('left_img')
+                $('#left_img').addClass("color_2");
+            }else{
+                $('.qiu_weizhi_2').removeClass("color_1");
+                $('#left_img').removeClass("color_2");
+                $('#left_img').addClass("left_img");
+            };
+            if(x.left>350 && x.left<500){
+                $('.qiu_weizhi_3').addClass("color_1");
+                $('#center_img').removeClass('center_img')
+                $('#center_img').addClass("color_3");
+            }else{
+                $('.qiu_weizhi_3').removeClass("color_1");
+                $('#center_img').removeClass("color_3");
+                $('#center_img').addClass("center_img");
+            };
+            if(x.left>620 && x.left<750){
+                $('.qiu_weizhi_1').addClass("color_1");
+                $('#right_img').removeClass('right_img')
+                $('#right_img').addClass("color_4");
+            }else{
+                $('.qiu_weizhi_1').removeClass("color_1");
+                $('#right_img').removeClass("color_4");
+                $('#right_img').addClass("right_img");
+            }
+            // 图片切换
+
+            $('#donghua').animate({
+                left:'20px',
+                top:'20px'
+            },10000)
+        },1000)
+    }
+    donghua();
+	$(function(){
+		$('#left_img').mouseover(function(){
+			$('#left_img p').html('美国海关及边境保护局(USCBP)将于2016年底前，在全美国际旅客最多的前20座国际机场，逐步启用“手机护照通关”措施。原本被列为“禁用手机”的通关区，也将开放使用手机。')
+		});
+		$('#left_img').mouseleave(function(){
+			$('#left_img p').html("美国海关及边境保护局(USCBP)将于2016年底前，在全美国际旅客最多的前20座国际机场，逐步启用“手机护照通关”措施... ...")
+		});
+		
+		$('#center_img').mouseover(function(){
+			$('#center_img p').html('俄罗斯目前与欧盟正在就建立海关监管货物卫星统一监测系统进行磋商，该系统可通过设在欧盟和俄罗斯的卫星对过境关税同盟国家，并载有海关监管货物的运输工具进行实时监控（范围包括从欧洲到乌拉尔和太平洋的陆路通道），核实货物在目的港的税费交纳情况，共同应对海关违法犯罪行为。')
+		});
+		$('#center_img').mouseleave(function(){
+			$('#center_img p').html("俄罗斯目前与欧盟正在就建立海关监管货物卫星统一监测系统进行磋商，该系统可通过设在欧盟和俄罗斯的卫星对过境关税同盟国家... ...")
+		});
+		
+		$('#right_img').mouseover(function(){
+			$('#right_img p').html('7月1日起，京津冀、长江经济带、“泛珠”四省、丝绸之路经济带、东北地区等五个海关区域通关一体化实现区区联动，企业可根据实际需要选择任意海关办理申报、放行等手续，这意味着全国海关实现了真正意义的通关一体化。')
+		});
+		$('#right_img').mouseleave(function(){
+			$('#right_img p').html("7月1日起，京津冀、长江经济带、“泛珠”四省、丝绸之路经济带、东北地区等五个海关区域通关一体化实现区区联动，企业可根据实际需要选择任意... ... ")
+		});
+	});
+	changeBodyColor();
+</script>
+</body>
+</html>

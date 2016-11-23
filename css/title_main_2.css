@@ -1,0 +1,52 @@
+/*-----主页标题及边框样式-----*/
+body.theme_2{
+	background-image:url('../images/bg_red.png');
+}
+
+.theme_2 .titleLeft{
+    background: url("../images/border/title_left_blue.png") no-repeat;
+}
+.theme_2 .titleRight{
+    background: url("../images/border/title_right_blue.png") no-repeat;
+    width: 18px;
+    height: 30px;
+}
+.theme_2 .titleContent{
+    background: url("../images/border/title_center_blue.png") repeat-x;
+    color: #ffd000;
+    text-shadow: 0 0 10px #fff,
+    0 0 20px  #fff,
+    0 0 30px  #6AC7E8;
+}
+.theme_2 .parallelogram{
+    background: url("../images/border/parallelogram_red.png")  center 12px no-repeat;
+  
+}
+.theme_2 .theme_2 .titleLine{
+    background: url("../images/border/title_line_red.png") center 14px repeat-x;
+  
+}
+.theme_2 .theme_2 .fourDot{
+    background: url("../images/border/four_dot_red.png") 6px 13px no-repeat;
+  
+}
+.theme_2 .right_bottom{
+
+    background: url("../images/border/right_bottom_blue.png") no-repeat;
+}
+.theme_2 .left_bottom{
+
+    background: url("../images/border/left_bottom_blue.png") no-repeat;
+}
+.theme_2 .right_top{
+
+    background: url("../images/border/right_top_blue.png") no-repeat;
+
+}
+.theme_2 .top_center{
+    background: url("../images/border/top_center_blue.png");
+}
+.theme_2 .metaPage{
+
+    background-color: rgba(193, 51, 54, 0.7);
+}

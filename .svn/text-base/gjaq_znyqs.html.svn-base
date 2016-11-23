@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>滞纳与欠税情况</title>
+    <link href="css/global.css" rel="stylesheet">
+    <style>
+	/*body{
+		background: #000000;
+	}*/
+    .default .itProgress {
+        margin: 0;
+        background: #80CBE2;
+    }
+
+    .default .itProgress .progress-bar {
+        line-height: 30px;
+        background: #00475D;
+        text-align: right;
+    }
+    .theme_1 .itProgress {
+        margin: 0;
+        background: #f69900;
+    }
+	.theme_1 .itProgress .progress-bar{
+		line-height: 30px;
+        background: #f86e02;
+        text-align: right;
+	}
+	.theme_2 .itProgress {
+        margin: 0;
+        background: #c81f1f;
+    }
+	.theme_2 .itProgress .progress-bar{
+		line-height: 30px;
+        background: #8a0000;
+        text-align: right;
+	}
+    .progress_title {
+        float: left;
+        margin-left: 10px;
+        margin-right: 5px;
+        color: #86CEE4;
+        font-weight: bolder;
+        font-size: 14px;
+    }
+
+    .progress_value {
+        width: 360px;
+        text-align: center;
+        color: #EBE221;
+        font-weight: bolder;
+    }
+    .num{
+    	font-size:24px;
+    }
+</style>
+</head>
+
+<body class="default">
+<div style="width: 1365px;height: 200px;">
+    <div id="one" style="height: 130px;width: 100%;"></div>
+    <div class="widget_progress_row">
+        <div class="progress_title" style="margin-left: 30px;">实际补征税款<br/>金额及占比
+        </div>
+        <div id="two" style="width: 360px;float: left;margin-right:30px;">
+            <div class="progress itProgress">
+                <div class="progress-bar light" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                    80%
+                </div>
+            </div>
+            <div class="progress_value">
+                <span class="num">1000</span>亿元
+            </div>
+            <!--清除浮动效果-->
+            <div class="clear"></div>
+        </div>
+
+        <div id="three" style="width: 360px;float: right;margin-right:190px;">
+            <div class="progress itProgress">
+                <div class="progress-bar light" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="width: 80%;">
+                    80%
+                </div>
+            </div>
+            <div class="progress_value">
+                <span class="num">1000</span>亿元
+            </div>
+        </div>
+        <div class="progress_title" style="float: right;">实际补征税款<br/>金额及占比
+        </div>
+        <!--清除浮动效果-->
+        <div class="clear"></div>
+    </div>
+</div>
+<script src="js/theme_custom.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+	//进度条颜色转换
+changeBodyColor();
+    // 基于准备好的dom，初始化echarts图表
+    var myChart1 = echarts.init(document.getElementById('one'), theme_custom);
+    var option1 = {
+        color: ['#C0DDDD'],
+        tooltip: {
+            show: true
+        },
+        title: {
+            text: '单数',
+            x: 'left',
+            y: 5,
+            textStyle: {
+                fontSize: 14,
+                fontWeight: 'bolder',
+                fontFamily: "微软雅黑",
+                color: '#C0DDDD'
+            }
+        },
+        grid: {
+            x: 40,
+            x2: 10,
+            y: 30,
+            y2: 30
+        },
+        legend: {
+            show: true,
+            textStyle: {
+                color: 'auto'
+            },
+            data: ['滞纳税单数', '欠税税单数'],
+            x: 'right'
+        },
+        xAxis: [{
+            type: 'category',
+            axisTick: 0,
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                formatter: '{value}',
+                textStyle: {
+                    fontFamily: '微软雅黑',
+                    color: '#8FD6EE'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#8BD6EE'
+                }
+            },
+            data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}',
+                textStyle: {
+                    fontFamily: '微软雅黑',
+                    color: '#8FD6EE'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#8BD6EE'
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: '#1A4862'    //'rgba(26, 72, 98, 0.8)'
+                }
+            }
+        }],
+        series: [
+            {
+                name: '滞纳税单数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: changeEchartsColor().color[0]
+                    }
+                },
+                data: [25, 85, 79, 102, 128, 325, 115, 140, 122, 108, 387, 95, 140, 132, 88]
+            },
+            {
+                name: '欠税税单数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: changeEchartsColor().color[2]
+                    }
+                },
+                data: [25, 85, 79, 102, 128, 325, 115, 140, 122, 108, 387, 95, 140, 132, 88]
+            }
+        ]
+    };
+    myChart1.setOption(option1);
+    myChart1.setTheme(changeEchartsColor());
+    /*var option2 = {
+     color: ['#3399CC'],
+     grid: {
+     x: 0,
+     x2: 40,
+     y: 0,
+     y2: 10
+     },
+     xAxis: [{
+     type: 'value',
+     show: false
+     }],
+     yAxis: [{
+     type: 'category',
+     show: false,
+     data: ['70%']
+     }],
+     series: [{
+     type: 'bar',
+     barWidth: 30,
+     itemStyle: {
+     normal: {
+     label: {
+     show: true,
+     position: 'right',
+     formatter: '{b}',
+     textStyle: {
+     color: '#C0C0C0',
+     fontSize: 14
+     }
+     }
+     }
+     },
+     data: [100]
+     }]
+     };*/
+</script>
+
+</body>

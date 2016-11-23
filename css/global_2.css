@@ -1,0 +1,138 @@
+﻿
+.theme_2 .chartBorder {
+    border-image: url(../images/border_blue.png) 13 13 stretch stretch;
+    border-width: 10px;
+    border-radius: 10px;
+    background-color:rgba(193,44,43,0.5);
+    position: relative;
+}
+
+.theme_2 .light {
+    color: #debb1f;
+    text-shadow: initial;
+}
+
+.theme_2 .chartBorder2 {
+    width: 100%;
+    height: 100%;
+    border-image: url(../images/border2_blue.png) 0 10 10 20 stretch stretch;
+    border-width: 25px 10px 10px 15px;
+    /*position: relative;*/
+}
+.theme_2 .chartBorder3 {
+    width: 100%;
+    height: 100%;
+    border-image: url(../images/border3_blue.png) 0 10 10 15 stretch stretch;
+    border-width: 25px 10px 10px 15px;
+}
+.theme_2 .chartBorder3::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: calc(100% - 60px);
+    left: 0;
+    top: 0;
+    margin-top: 60px;
+    background: url(../images/border3_left_blue.png) no-repeat;
+    background-size: 100% 100%;
+}
+.theme_2 .chartBorder2::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: calc(100% - 60px);
+    left: 0;
+    top: 0;
+    margin-top: 60px;
+    background: url(../images/border2_left_blue.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.theme_2 .title2 {
+    width: 100%;
+    height: 52px;
+    font-family: "Microsoft Yahei";
+    z-index: 99999;
+    display: -webkit-box;
+    position: absolute;
+}
+
+.theme_2 .title2Ball {
+    background: url(../images/title2_ball_blue.png) no-repeat top right;
+    width: 76px;
+    height: 60px;
+}
+
+.theme_2 .title2Left {
+    background: url(../images/title2_left_blue.png) repeat-x;
+    background-size: 100% 100%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    color: #debb1f;
+    text-shadow: initial;
+    padding: 0 5px;
+}
+
+.theme_2 .title2Slash {
+    background: url(../images/title2_slash_blue.png) no-repeat;
+    width: 20px;
+    height: 100%;
+}
+
+.theme_2 .title2Center {
+    background: url(../images/title2_center_blue.png) repeat-x;
+    height: 100%;;
+    -webkit-box-flex: 2;
+}
+.theme_2 .title3Ball {
+    width: 49px;
+    height: 100%;
+    background: url(../images/title3_ball_blue.png) no-repeat top left;
+}
+.theme_2 .chartBorder2 {
+    width: 100%;
+    height: 100%;
+    border-image: url(../images/border2_blue.png) 0 10 10 20 stretch stretch;
+    border-width: 25px 10px 10px 15px;
+    /*position: relative;*/
+}
+
+.theme_2 .chartBorder2::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: calc(100% - 60px);
+    left: 0;
+    top: 0;
+    margin-top: 60px;
+    background: url(../images/border2_left_blue.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.theme_2 .title3Left {
+    background: url(../images/title3_left_blue.png) repeat-x;
+    background-size: 100% 100%;
+    color: #debb1f;
+    text-shadow: 0 0 10px #5c0000,
+    0 0 20px #5c0000,
+    0 0 30px #6AC7E8;
+}
+
+.theme_2 .title3Slash {
+    background: url(../images/title3_slash_blue.png) no-repeat;
+    width: 44px;
+    height: 100%;
+}
+
+.theme_2 .title3Center {
+    background: url(../images/title3_center_blue.png) repeat-x;
+    -webkit-box-flex: 2;
+    height: 100%;
+}
+
+.theme_2 .title3Right {
+    background: url(../images/title3_right_blue.png) no-repeat;
+    width: 43px;
+    height: 100%;
+}

@@ -1,0 +1,103 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>业务量及资源匹配</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet" />
+    <link href="css/global_2.css" rel="stylesheet" />
+
+    <style>
+   	/*body{
+            background: url(images/background.jpg) no-repeat;
+        }*/
+        #ywljzypp{
+        	width: 100%; 
+        	height: 100%;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+         .ydyl_kuang{
+        	box-shadow: 0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 3px #6AC7E8;
+            width:73%;
+            height:30px;
+            border:1px solid #fff;
+            margin-left:10px;
+            margin-top:5px;
+        }
+        
+    </style>
+</head>
+<body class="">
+	<div id="ywljzypp">
+				<div>
+					 <div class="title2">
+				        <div class="title2Left"></div>
+				        <div class="title2Slash"></div>
+				        <div class="title2Center"></div>
+				        <div class="title2Ball"></div>
+				    </div>
+				    <div class="chartBorder2" >
+				       <div class="ydyl_kuang">
+				       	<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">非一带一路占比 </span>
+				       		<div style="width: 70%;height:28px;background:rgba(49,164,194,0.7);"></div>
+				       		<span style="position: absolute;top:34px;left: 285px;font-size: 20px;color:yellow">70%</span>
+				       </div>
+				       <div class="ydyl_kuang">
+				       		<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">2015一带一路占比 </span>
+				       		<div style="width: 30%;height:28px;background:rgba(49,164,194,0.7);"></div>
+				       		<span style="position: absolute;top:65px;left: 285px;font-size: 20px;color:yellow">30%</span>
+				       </div>
+				       <div class="ydyl_kuang">
+				     	  	<span style="float: right;font-size: 14px;line-height: 28px;padding-right: 5px;">2014一带一路占比 </span>
+				       		<div style="width: 25%;height:28px;"></div>
+				       		<span style="position: absolute;top:100px;left: 285px;font-size: 20px;color:yellow">25%</span>
+				       </div>
+				       <div style="color:rgb(141,214,238);font-size: 14px;margin:10px 0 0 15px;">
+					       	<span>进出口总额：</span>
+					       	<span style="color: yellow;font-size: 20px;">26</span>
+					       	<span style="color:yellow">万亿元</span>
+				       </div>
+				       	<div style="color:rgb(141,214,238);font-size: 14px;margin:5px 0 0 15px;">
+					       	<span>一带一路进出口总额：</span>
+					       	<span style="color: yellow;font-size: 20px;">20</span>
+					       	<span style="color:yellow">万亿元</span>
+				       </div>
+				    </div>
+		</div>
+    </div>
+	<script src="js/echarts-all.js"></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/theme_custom.js"></script>
+	<script type="text/javascript">
+	// 主题更换--框
+		function changeBodyColor(){
+			if(theme_opt == 'red'){
+				$("body").addClass("theme_2").removeClass("theme_1");
+				$(".ydyl_kuang").css("background","#d37c7c");
+				$(".ydyl_kuang div").css("background","#e6acaa")
+			}else if(theme_opt == 'blue'){
+				$("body").addClass("theme_1").removeClass("theme_2");
+				$(".ydyl_kuang").css("background","rgba(236,213,16,0.7)");
+				$(".ydyl_kuang div").css("background","rgba(183,164,19,0.7)")
+			}else{
+				$("body").removeClass("theme_2").removeClass("theme_1");
+				$(".ydyl_kuang").css("background","rgba(27,114,146,0.7)");
+				$(".ydyl_kuang div").css("background","rgba(49,164,194,0.7)")
+			}	
+		};
+		changeBodyColor();
+	        
+		</script>
+</body>
+</html>

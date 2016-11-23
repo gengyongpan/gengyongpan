@@ -1,0 +1,266 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String chartID = request.getParameter('chartID');
+	String dataURL = request.getParameter('dataURL');
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>税收入库比例</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet">
+    <link href="css/global_2.css" rel="stylesheet">
+    <link href="css/title_main_1.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+       /*body {
+            background: url(images/background.jpg) no-repeat;
+        }*/
+
+        #ssrkbl {
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        #emptyCircle {
+            top: 60px;
+            left: 50px;
+            position: absolute;
+        }
+
+        #pieChart1 {
+            top: 38.5px;
+            left: 28px;
+            position: absolute;
+            width: 75px;
+            height: 75px;
+        }
+
+        #pieChart2 {
+            top: 97px;
+            left: 103.5px;
+            position: absolute;
+            width: 132px;
+            height: 132px;
+        }
+
+        .tag1 {
+            top: 53px;
+            left: 64px;
+            position: absolute;
+        }
+
+        .tag2 {
+            top: 141px;
+            left: 43px;
+            position: absolute;
+        }
+
+        #value1 {
+            top: -10px;
+            left: 75px;
+            font-size: 1.2rem;
+            position: absolute;
+        }
+
+        #value2 {
+            top: -10px;
+            left: 8px;
+            font-size: 1.2rem;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="ssrkbl" style="width:100%;height:280px;position:relative;">
+    <div class="title3 title3_flip">
+        <div class="title3Ball"></div>
+        <div class="title3Left">税收入库比例</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3 chartBorder3_flip" style="width: 100%; height: 100%;">
+        <div id="pieChart1"></div>
+        <div id="pieChart2" style="width:130px; height:130px"></div>
+        <div class="tag1">
+            <div id="value1">24%</div>
+            <img src="images/tag1.png">
+        </div>
+        <div class="tag2">
+            <div id="value2">24%</div>
+            <img src="images/tag2.png">
+        </div>
+    </div>
+</div>
+<div id="zpjgsj" style="width:100%;height:140px;position:relative; margin-top: 20px;">
+    <div class="title3 title3_flip">
+        <div class="title3Ball"></div>
+        <div class="title3Left">再评间估时间</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3 chartBorder3_flip" style="width: 100%; height: 100%;">
+    </div>
+</div>
+<div id="bgcxqys" style="width:100%;height:140px;position:relative; margin-top: 20px;">
+    <div class="title3 title3_flip">
+        <div class="title3Ball"></div>
+        <div class="title3Left">变更诚信企业数</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3 chartBorder3_flip" style="width: 100%; height: 100%;">
+    </div>
+</div>
+<script src="js/echarts-all.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+	// 主题更换--框
+	changeBodyColor();
+	
+    function DrawPie1() {
+        var myChart = echarts.init(document.getElementById('pieChart1'));
+        var radius = [0, 31];
+        var center = ['50%', '50%'];
+        var color1 = {
+            normal: {
+                color: 'rgba(49,141,188,0.69)'
+            }
+        };
+        var color2 = {
+            normal: {
+                color: 'rgba(255,255,255,0)'
+            }
+        };
+        var option = {
+            series: [
+                {
+                    type: 'pie',
+                    center: center,
+                    radius: radius,
+                    clockWise: false,
+                    itemStyle: {
+                        normal: {
+                            label: {show: false},
+                            labelLine: {show: false}
+                        }
+                    },
+                    // data: [
+                        // {name: '查验率', value: 95, itemStyle: color1},
+                        // {name: '', value: 5, itemStyle: color2}
+                    // ]
+                }
+            ]
+        };
+   			 var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	cxtx_score_2.setOption(option_data);
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();  
+    }
+    ;
+    function DrawPie2() {
+        var myChart = echarts.init(document.getElementById('pieChart2'));
+        var radius = [22, 56];
+        var center = ['50%', '50%'];
+        var color1 = {
+            normal: {
+                color: 'rgba(49,141,188,0.69)'
+            }
+        };
+        var color2 = {
+            normal: {
+                color: 'rgba(255,255,255,0)'
+            }
+        };
+        var option1 = {
+            series: [
+                {
+                    type: 'pie',
+                    center: center,
+                    radius: radius,
+                    clockWise: false,
+                    itemStyle: {
+                        normal: {
+                            label: {show: false},
+                            labelLine: {show: false}
+                        }
+                    },
+                    // data: [
+                        // {name: '查验率', value: 95, itemStyle: color1},
+                        // {name: '', value: 5, itemStyle: color2}
+                    // ]
+                }
+            ]
+        };
+      var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	cxtx_score_2.setOption(option_data);
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})();  
+    }
+    DrawPie1();
+    DrawPie2();
+</script>
+</body>
+</html>

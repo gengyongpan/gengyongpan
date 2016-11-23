@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>earth</title>
+    <link rel="stylesheet" href="css/example.css">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <style>
+		#cxtx_dqfuji{
+			width:650px;
+			height:260px;
+		}
+        #cxtx_dq {
+            height: 230px;
+            width: 190px;
+            padding-top: 20px;
+            margin-left:60px;
+            margin-top:20px;
+            left: 50px;
+            border: none;
+            background: url(images/cxtx_dq.png);
+            background-size: 100% 100%;
+        }
+
+        #chart {
+            height: 200px;
+            width: 220px;
+            margin-right:20px;
+            overflow: auto;
+            border: none;
+            position:absolute;
+            left: 34px;
+			top:42px;
+        }
+		.theme_2 #cxtx_dq {
+            height: 230px;
+            width: 190px;
+            padding-top: 20px;
+            margin-left:60px;
+            margin-top:20px;
+            left: 50px;
+            border: none;
+            background: url(images/cxtx_dq_red.png);
+            background-size: 100% 100%;
+        }
+
+    </style>
+    <style>
+/*        body{
+            background: url(images/background.jpg) no-repeat;
+        }*/
+        #fire{
+            /*background: rgba(0, 104, 167, 0.3);*/
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        #line{
+            top:0;
+            left: 78px;
+            position: absolute;
+        }
+        #value{
+            top:-11px;
+            left: 230px;
+            position: absolute;
+        }
+        #name{
+            top:-11px;
+            left: 265px;
+            position: absolute;
+        }
+        .value_text{
+            color: rgb(111,251,37);
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .value_invisible{
+            color: rgba(111,251,37,0);
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .value_emphasis{
+            color: #8CD6EE;
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .name_text{
+            color: #b8e5f6;
+            line-height: 26px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        .name_invisible{
+            color: rgba(65,92,122,0);
+            line-height: 26px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        .name_emphasis{
+            color: #8CD6EE;
+            line-height: 26px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        
+        #diqu{
+        	position: absolute;
+        	width:500px;
+        	top:2px;
+        	left: 45px;
+        	font-size: 13px;
+        	color:#fff;
+        }
+        #diqu li{
+        	margin-top:8px;
+        }
+        #main {
+            background: transparent;
+        }
+        #shui_echart{
+        	height:80px;
+        	width:350px;
+        	margin-top:30px;
+        	margin-left:-30px;
+        }
+        #zhinashui{
+        	height:100%;
+        	width:50%;
+        	float:left;
+        }
+        #qianshui{
+        	height:100%;
+        	width:50%;
+        	float:right;
+        }
+        .theme_2  .value_text{
+            color: #5c0000;
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .theme_2 .name_text{
+            color: #5c0000;
+            line-height: 26px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        .theme_2  .value_invisible{
+            color: red;
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .theme_2 .name_invisible{
+            color: red;
+            line-height: 26px;
+            font-size: 0.8rem;
+            -webkit-transform: scale(0.80);
+        }
+        .theme_2 .value_emphasis{
+            color: #5c0000;
+            font-size: 1.2rem;
+            line-height: 26px;
+        }
+        .theme_2 #diqu{
+        	position: absolute;
+        	width:500px;
+        	top:2px;
+        	left: 45px;
+        	font-size: 13px;
+        	color:#ffe4a9;
+        }
+    </style>
+<body>
+
+<div id="cxtx_dqfuji">
+    <main id="main">
+        <div id="cxtx_dq">
+            <div id="chart">
+            </div>
+        </div>
+    </main>
+    <div id="editor">
+        <textarea></textarea>
+
+        <div id="editor-toolbar">
+            <button id="editor-update">Update</button>
+            <button id="editor-refresh">Refresh All</button>
+            <button id="editor-close">Close</button>
+        </div>
+    </div>
+
+
+<div id="fire" style="width:330px;height:200px;float: right">
+    <div style="position: relative; top:20px; left:10px;">
+        <div id="pic">
+            <img >
+        </div>
+        <div id="line">
+            <img >
+        </div>
+        <div id="value">
+            <div class="value_text">24%</div>
+            <div class="value_text">24%</div>
+            <div class="value_text">24%</div>
+            <div class="value_text">24%</div>
+            <div class="value_text">24%</div>
+            <div class="value_invisible">24%</div>
+            <div class="value_emphasis">滞纳税</div>
+        </div>
+        <div id="name">
+            <div class="name_text">2010年</div>
+            <div class="name_text">2011年</div>
+            <div class="name_text">2012年</div>
+            <div class="name_text">2013年</div>
+            <div class="name_text">2014年</div>
+            <div class="name_invisible">2010年</div>
+            <div class="name_text" style="font-size: 15px">欠税</div>
+        </div>
+        <ul id="diqu">
+        	<li style="font-size: 15px;margin-top: 5px;position: absolute;left: -80px;top: -28px;">滞纳税及欠税及企业数(通关一体化区域)</li>
+        	<li>京津冀</li>
+        	<li>长江经济带</li>
+        	<li>"泛珠"区域</li>
+        	<li>东北地区</li>
+        	<li>丝绸之路经济带</li>
+        </ul>
+    </div>
+  <div id="shui_echart">
+ 	<div id="qianshui"></div>
+ 	<div id="zhinashui"></div>
+ </div>
+ </div>
+</div>
+<script src="js/theme_custom.js"></script>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/global.js"></script>
+<script type="text/x-javascript" id="code-source">
+//滞纳税、欠税eacharts图表
+$(function () {
+    var echart_0103 = echarts.init(document.getElementById("zhinashui"), theme_custom);
+    var option = {
+        title: {
+            show: true,
+            text: '滞纳税',
+            x: 'left',
+            y: 'top',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: changeEchartsColor().color[6],
+                fontSize: 12,
+                fontWeight: 'bolder'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                splitLine: 'false',
+                axisLine: {
+                  show: false
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[6]
+                    }
+                },
+                data: ['2015','2014','2013','2012','2011']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '30%',
+            x2: '10%',
+            y2: '30%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                barWidth: 2,
+                barCategoryGap: '5%',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        //color: '#3B657B',   //'#8FD6EE',
+                       // borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{c}' + '\n',
+                                textStyle: {
+                                    color: changeEchartsColor().color[6],
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: changeEchartsSymbol(),
+                    symbolSize:20,
+                    data: [
+                        /*{type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}*/
+                        {name: '2015', value: 2.0, xAxis: 0, yAxis: 2.0},
+                        {name: '2014', value: 4.9, xAxis: 1, yAxis: 4.9},
+                        {name: '2013', value: 7.0, xAxis: 2, yAxis: 7.9},
+                        {name: '2012', value: 23.2, xAxis: 3, yAxis: 23.2},
+                        {name: '2011', value: 25.6, xAxis: 4, yAxis: 25.6}
+                    ]
+                     //[2.0, 4.9, 7.0, 23.2, 25.6]
+                }
+            }
+        ]
+        
+    };
+    echart_0103.setOption(option);
+    echart_0103.setTheme(changeEchartsColor());
+});
+/////欠税
+$(function () {
+    var echart_0103 = echarts.init(document.getElementById("qianshui"), theme_custom);
+    var option = {
+        title: {
+            show: true,
+            text: '欠税',
+            x: 'left',
+            y: 'top',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                color: changeEchartsColor().color[6],
+                fontSize: 12,
+                fontWeight: 'bolder'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                splitLine: 'false',
+                axisLine: {
+                  show: false
+                },
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: changeEchartsColor().color[6]
+                    }
+                },
+                data: ['2015','2014','2013','2012','2011']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '30%',
+            x2: '10%',
+            y2: '30%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                barWidth: 2,
+                barCategoryGap: '5%',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        //color: '#3B657B',   //'#8FD6EE',
+                       // borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{c}' + '\n',
+                                textStyle: {
+                                    color: changeEchartsColor().color[6],
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: changeEchartsSymbol(),
+                    symbolSize:20,
+                    data: [
+                        /*{type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}*/
+                        {name: '2015', value: 2.0, xAxis: 0, yAxis: 2.0},
+                        {name: '2014', value: 4.9, xAxis: 1, yAxis: 4.9},
+                        {name: '2013', value: 7.0, xAxis: 2, yAxis: 7.9},
+                        {name: '2012', value: 23.2, xAxis: 3, yAxis: 23.2},
+                        {name: '2011', value: 25.6, xAxis: 4, yAxis: 25.6}
+                    ]
+                     //[2.0, 4.9, 7.0, 23.2, 25.6]
+                }
+            }
+        ]
+        
+    };
+    echart_0103.setOption(option);
+    echart_0103.setTheme(changeEchartsColor());
+});
+//cxtx---地球
+function imagesEarth(){
+	if(theme_opt == "red"){
+		$("#pic img").attr("src","images/fire_red.png")
+		$("#line img").attr("src","images/fire_arrow_blue.png")
+		$("body").addClass("theme_2");
+	 	imagesEarth = 'images/earth4_red.png';
+}else if(theme_opt == 'blue'){
+		$("body").removeClass("theme_2");
+		$("#pic img").attr("src","images/fire_blue.png");
+		$("#line img").attr("src","images/fire_arrow_blue.png");
+		imagesEarth = 'images/earth4.jpg';
+	}else{
+		$("body").removeClass("theme_2");
+	    imagesEarth = 'images/earth4.jpg';
+	    $("#pic img").attr("src","images/fire.png");
+		$("#line img").attr("src","images/fire_arrow.png");
+}};
+imagesEarth();
+
+myChart.showLoading();
+
+$.ajax({
+    url: './data/flights.json',
+    success: function (data) {
+        var markPointStyle = {
+            normal: {
+                color: 'red'
+            }
+        }
+        // Airport: [name, city, country, longitude, latitude]
+        var airports = data.airports.map(function (item) {
+            return {
+                itemStyle: markPointStyle,
+                geoCoord: [item[3], item[4]]
+            }
+        });
+
+        // Route: [airlineIndex, sourceAirportIndex, destinationAirportIndex]
+        var routesGroupByAirline = {};
+        data.routes.forEach(function (route) {
+            var airline = data.airlines[route[0]];
+            var airlineName = airline[0];
+            if (!routesGroupByAirline[airlineName]) {
+                routesGroupByAirline[airlineName] = [];
+            }
+            routesGroupByAirline[airlineName].push(route);
+        })
+
+        var opts = {
+            title: {
+                text: '',
+                subtext: '',
+                sublink: 'http://openflights.org/data.html',
+                x:'center',
+                y:'top',
+                textStyle: {
+                    color: 'white'
+                }
+            },
+            legend: {
+                show: false,
+                data: data.airlines.map(function (item) {
+                    // Airline name
+                    return item[0];
+                }),
+                selected: {},
+                x: 'left',
+                orient: 'vertical',
+                textStyle: {
+                    color: 'white'
+                }
+            },
+            tooltip: {
+                formatter: '{b}'
+            },
+            series: [{
+                type: 'map3d',
+                mapType: 'world',
+                baseLayer: {
+                    backgroundColor: '',
+                    backgroundImage:imagesEarth //'images/earth4.jpg'////
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: 0.5,
+                        borderColor: '#fff',
+                        areaStyle: {
+                            color: 'rgba(0, 0, 0, 0)'
+                        }
+                    }
+                },
+                markPoint: {
+                    effect: {
+                        shadowBlur: 0.2
+                    },
+                    large: true,
+                    symbolSize: 0,
+                    //data: airports
+                }
+            }]
+        };
+
+        opts.legend.data.forEach(function (name) {
+            if (name.indexOf('American Airlines') >= 0) {
+                opts.legend.selected[name] = true;
+            } else {
+                opts.legend.selected[name] = false;
+            }
+        });
+
+        data.airlines.forEach(function (item) {
+            var airlineName = item[0];
+            var routes = routesGroupByAirline[airlineName];
+            if (routes) {
+                opts.series.push({
+                    type: 'map3d',
+                    name: airlineName,
+                    markLine: {
+                        effect: {
+                            show: true
+                        },
+                        data: routes.map(function (item) {
+                            return [{
+                                // Source airport
+                                geoCoord: airports[item[1]].geoCoord
+                            }, {
+                                // Destination Airport
+                                geoCoord: airports[item[2]].geoCoord
+                            }]
+                        })
+                    }
+                });
+            }
+        });
+
+        myChart.setOption(opts);
+
+        myChart.hideLoading();
+    }
+});
+
+</script>
+
+<script src="js/lib/esl.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/bootExample.js"></script>
+
+</body>
+</head>
+</html>\

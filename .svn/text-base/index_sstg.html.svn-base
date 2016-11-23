@@ -1,0 +1,820 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>heheda</title>
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<style>
+	body{
+		margin:0;
+		padding:0;
+		/*background: rgba(0, 104, 167, 0.3);*/
+		/*background:#000000;*/
+	}
+
+	.default #bottom_lan_list_1,#bottom_lan_list_2{
+		float:left;
+		height:100%;
+		width:50%;
+		
+	}
+	.clear{
+		clear: both;
+	}
+	.default #bottom_lan_wenzi01{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:320px;
+	}
+	.default #bottom_lan_wenzi01 ul{
+		margin:0;
+	}
+	.default #bottom_lan_wenzi01 ul li{
+		list-style:none;
+		background:rgb(3,77,116);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:rgb(192,236,247);
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+	/*蓝色主题*/
+	.theme_1 #bottom_lan_list_1,#bottom_lan_list_2{
+		float:left;
+		height:100%;
+		width:50%;
+		
+	}
+	.clear{
+		clear: both;
+	}
+	.theme_1 #bottom_lan_wenzi01{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:320px;
+	}
+	.theme_1 #bottom_lan_wenzi01 ul{
+		margin:0;
+	}
+	.theme_1 #bottom_lan_wenzi01 ul li{
+		list-style:none;
+		background:rgb(3,77,116);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:#f7ad48;
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+	/*红色主题*/
+	.theme_2 #bottom_lan_list_1,#bottom_lan_list_2{
+		float:left;
+		height:100%;
+		width:50%;
+		
+	}
+	.clear{
+		clear: both;
+	}
+	.theme_2 #bottom_lan_wenzi01{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:320px;
+	}
+	.theme_2 #bottom_lan_wenzi01 ul{
+		margin:0;
+	}
+	.theme_2 #bottom_lan_wenzi01 ul li{
+		list-style:none;
+		background:rgb(217,88,84);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:#ffe4a9;
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+/*第二张图*/
+	.default #bottom_lan_wenzi02{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:820px;
+	}
+	.default  #bottom_lan_wenzi02 ul{
+		margin:0;
+	}
+	.default #bottom_lan_wenzi02 ul li{
+		list-style:none;
+		background:rgb(3,77,116);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:rgb(192,236,247);
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+	/*蓝色主题*/
+	.theme_1 #bottom_lan_wenzi02{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:820px;
+	}
+	.theme_1  #bottom_lan_wenzi02 ul{
+		margin:0;
+	}
+	.theme_1 #bottom_lan_wenzi02 ul li{
+		list-style:none;
+		background:rgb(3,77,116);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:#f7ad48;
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+	/*红色主题*/
+	.theme_2 #bottom_lan_wenzi02{
+		width:160px;
+		height:22px;
+		position:absolute;
+		top:10px;
+		left:820px;
+	}
+	.theme_2  #bottom_lan_wenzi02 ul{
+		margin:0;
+	}
+	.theme_2 #bottom_lan_wenzi02 ul li{
+		list-style:none;
+		background:rgb(217,88,84);
+		margin:1px;
+		width:13px;
+		height:20px;
+		color:#ffe4a9;
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:18px;
+		float: left;
+		line-height:23px;
+		display:block;
+		text-align:center;
+	}
+</style>
+</head>
+
+<body class="default">
+
+
+	<div id="bottom_lan" style="height:175px; width:1000px;">
+		<div id="bottom_lan_list_1"></div>
+		<div id="bottom_lan_wenzi01">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="bottom_lan_list_2"></div>
+		<div id="bottom_lan_wenzi02">
+			<ul> 
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+        function setBottomActiveNum(dom, num) {
+            var singleValue = num.split('');
+			var li = dom.querySelectorAll("li");
+            for (var i = 0; i < 8; i++){
+                li[i].innerHTML = singleValue[i];
+            }
+        }
+        function getCurTime(){
+        	var curDate = new Date();
+        	var hour = curDate.getHours();
+        	return hour;
+        }
+
+	    $(function(){         
+            // 基于准备好的dom，初始化echarts图表
+            var myChart1 = echarts.init(document.getElementById('bottom_lan_list_1'));
+            var myChart2 = echarts.init(document.getElementById('bottom_lan_list_2')); 
+            var json1 = {importValue:[
+            				{tgTime : "0:00", value: "25772300"},
+            				{tgTime : "0:10", value: "25772300"},
+            				{tgTime : "0:20", value: "25772300"},
+            				{tgTime : "0:30", value: "25772300"},
+            				{tgTime : "0:40", value: "25772300"},
+            				{tgTime : "0:50", value: "25772300"},
+            				{tgTime : "1:00", value: "25772300"},
+            				{tgTime : "1:10", value: "25772300"},
+            				{tgTime : "1:20", value: "25772300"},
+            				{tgTime : "1:30", value: "25772300"},
+            				{tgTime : "1:40", value: "25772300"},
+            				{tgTime : "1:50", value: "25772300"},
+            				{tgTime : "2:00", value: "80000000"},
+            				{tgTime : "2:10", value: "80000000"},
+            				{tgTime : "2:20", value: "80000000"},
+            				{tgTime : "2:30", value: "80000000"},
+            				{tgTime : "2:40", value: "80000000"},
+            				{tgTime : "2:50", value: "80000000"},
+            				{tgTime : "3:00", value: "10000000"},
+            				{tgTime : "3:10", value: "10000000"},
+            				{tgTime : "3:20", value: "10000000"},
+            				{tgTime : "3:30", value: "10000000"},
+            				{tgTime : "3:40", value: "10000000"},
+            				{tgTime : "3:50", value: "10000000"},
+            				{tgTime : "4:00", value: "50000000"},
+            				{tgTime : "4:10", value: "50000000"},
+            				{tgTime : "4:20", value: "50000000"},
+            				{tgTime : "4:30", value: "50000000"},
+            				{tgTime : "4:40", value: "50000000"},
+            				{tgTime : "4:50", value: "50000000"},
+            				{tgTime : "5:00", value: "70000000"},
+            				{tgTime : "5:10", value: "70000000"},
+            				{tgTime : "5:20", value: "70000000"},
+            				{tgTime : "5:30", value: "70000000"},
+            				{tgTime : "5:40", value: "70000000"},
+            				{tgTime : "5:50", value: "70000000"},
+            				{tgTime : "6:00", value: "80000000"},
+            				{tgTime : "6:10", value: "80000000"},
+            				{tgTime : "6:20", value: "80000000"},
+            				{tgTime : "6:30", value: "80000000"},
+            				{tgTime : "6:40", value: "80000000"},
+            				{tgTime : "6:50", value: "80000000"},
+            				{tgTime : "7:00", value: "29640001"},
+            				{tgTime : "7:10", value: "29640002"},
+            				{tgTime : "7:20", value: "29640003"},
+            				{tgTime : "7:30", value: "29640004"},
+            				{tgTime : "7:40", value: "29640000"},
+            				{tgTime : "7:50", value: "29640000"},
+            				{tgTime : "8:00", value: "45605320"},
+            				{tgTime : "8:10", value: "45605320"},
+            				{tgTime : "8:20", value: "45605320"},
+            				{tgTime : "8:30", value: "45605320"},
+            				{tgTime : "8:40", value: "45605320"},
+            				{tgTime : "8:50", value: "45605320"},
+            				{tgTime : "9:00", value: "37700230"},
+            				{tgTime : "9:10", value: "37700230"},
+            				{tgTime : "9:20", value: "37700230"},
+            				{tgTime : "9:30", value: "37700230"},
+            				{tgTime : "9:40", value: "37700230"},
+            				{tgTime : "9:50", value: "37700230"},
+            				{tgTime : "10:00", value: "38705450"},
+            				{tgTime : "10:10", value: "38705450"},
+            				{tgTime : "10:20", value: "38705450"},
+            				{tgTime : "10:30", value: "38705450"},
+            				{tgTime : "10:40", value: "38705450"},
+            				{tgTime : "10:50", value: "38705450"},
+            				{tgTime : "11:00", value: "89123140"},
+            				{tgTime : "11:10", value: "89123140"},
+            				{tgTime : "11:20", value: "89123140"},
+            				{tgTime : "11:30", value: "89123140"},
+            				{tgTime : "11:40", value: "89123140"},
+            				{tgTime : "11:50", value: "89123140"},
+            				{tgTime : "12:00", value: "12300550"},
+            				{tgTime : "12:10", value: "12300550"},
+            				{tgTime : "12:20", value: "12300550"},
+            				{tgTime : "12:30", value: "12300550"},
+            				{tgTime : "12:40", value: "12300550"},
+            				{tgTime : "12:50", value: "12300550"},
+            				{tgTime : "13:00", value: "23405500"},
+            				{tgTime : "13:10", value: "23405500"},
+            				{tgTime : "13:20", value: "23405500"},
+            				{tgTime : "13:30", value: "23405500"},
+            				{tgTime : "13:40", value: "23405500"},
+            				{tgTime : "13:50", value: "23405500"},
+            				{tgTime : "14:00", value: "34505210"},
+            				{tgTime : "14:10", value: "34505210"},
+            				{tgTime : "14:20", value: "34505210"},
+            				{tgTime : "14:30", value: "34505210"},
+            				{tgTime : "14:40", value: "34505210"},
+            				{tgTime : "14:50", value: "34505210"},
+            				{tgTime : "15:00", value: "76500000"},
+            				{tgTime : "15:10", value: "76500000"},
+            				{tgTime : "15:20", value: "76500000"},
+            				{tgTime : "15:30", value: "76500000"},
+            				{tgTime : "15:40", value: "76500000"},
+            				{tgTime : "15:50", value: "76500000"},
+            				{tgTime : "16:00", value: "34800000"},
+            				{tgTime : "16:10", value: "34800000"},
+            				{tgTime : "16:20", value: "34800000"},
+            				{tgTime : "16:30", value: "34800000"},
+            				{tgTime : "16:40", value: "34800000"},
+            				{tgTime : "16:50", value: "34800000"},
+            				{tgTime : "17:00", value: "56700000"},
+            				{tgTime : "17:10", value: "56700000"},
+            				{tgTime : "17:20", value: "56700000"},
+            				{tgTime : "17:30", value: "56700000"},
+            				{tgTime : "17:40", value: "56700000"},
+            				{tgTime : "17:50", value: "56700000"},
+            				{tgTime : "18:00", value: "90000000"},
+            				{tgTime : "18:10", value: "90000000"},
+            				{tgTime : "18:20", value: "90000000"},
+            				{tgTime : "18:30", value: "90000000"},
+            				{tgTime : "18:40", value: "90000000"},
+            				{tgTime : "18:50", value: "90000000"},
+            				{tgTime : "19:00", value: "23500000"},
+            				{tgTime : "19:10", value: "23500000"},
+            				{tgTime : "19:20", value: "23500000"},
+            				{tgTime : "19:30", value: "23500000"},
+            				{tgTime : "19:40", value: "23500000"},
+            				{tgTime : "19:50", value: "23500000"},
+            				{tgTime : "20:00", value: "97300000"},
+            				{tgTime : "20:10", value: "97300000"},
+            				{tgTime : "20:20", value: "97300000"},
+            				{tgTime : "20:30", value: "97300000"},
+            				{tgTime : "20:40", value: "97300000"},
+            				{tgTime : "20:50", value: "97300000"},
+            				{tgTime : "21:00", value: "34300000"},
+            				{tgTime : "21:10", value: "34300000"},
+            				{tgTime : "21:20", value: "34300000"},
+            				{tgTime : "21:30", value: "34300000"},
+            				{tgTime : "21:40", value: "34300000"},
+            				{tgTime : "21:50", value: "34300000"},
+            				{tgTime : "22:00", value: "75300000"},
+            				{tgTime : "22:10", value: "75300000"},
+            				{tgTime : "22:20", value: "75300000"},
+            				{tgTime : "22:30", value: "75300000"},
+            				{tgTime : "22:40", value: "75300000"},
+            				{tgTime : "22:50", value: "75300000"},
+            				{tgTime : "23:00", value: "65400000"},
+            				{tgTime : "23:10", value: "65400000"},
+            				{tgTime : "23:20", value: "65400000"},
+            				{tgTime : "23:30", value: "65400000"},
+            				{tgTime : "23:40", value: "65400000"},
+            				{tgTime : "23:50", value: "65400000"},
+            			],
+            			exportValue:[
+            				{tgTime : "0:00", value: "25772300"},
+            				{tgTime : "0:10", value: "25772300"},
+            				{tgTime : "0:20", value: "25772300"},
+            				{tgTime : "0:30", value: "25772300"},
+            				{tgTime : "0:40", value: "25772300"},
+            				{tgTime : "0:50", value: "25772300"},
+            				{tgTime : "1:00", value: "25772300"},
+            				{tgTime : "1:10", value: "25772300"},
+            				{tgTime : "1:20", value: "25772300"},
+            				{tgTime : "1:30", value: "25772300"},
+            				{tgTime : "1:40", value: "25772300"},
+            				{tgTime : "1:50", value: "25772300"},
+            				{tgTime : "2:00", value: "80000000"},
+            				{tgTime : "2:10", value: "80000000"},
+            				{tgTime : "2:20", value: "80000000"},
+            				{tgTime : "2:30", value: "80000000"},
+            				{tgTime : "2:40", value: "80000000"},
+            				{tgTime : "2:50", value: "80000000"},
+            				{tgTime : "3:00", value: "10000000"},
+            				{tgTime : "3:10", value: "10000000"},
+            				{tgTime : "3:20", value: "10000000"},
+            				{tgTime : "3:30", value: "10000000"},
+            				{tgTime : "3:40", value: "10000000"},
+            				{tgTime : "3:50", value: "10000000"},
+            				{tgTime : "4:00", value: "50000000"},
+            				{tgTime : "4:10", value: "50000000"},
+            				{tgTime : "4:20", value: "50000000"},
+            				{tgTime : "4:30", value: "50000000"},
+            				{tgTime : "4:40", value: "50000000"},
+            				{tgTime : "4:50", value: "50000000"},
+            				{tgTime : "5:00", value: "70000000"},
+            				{tgTime : "5:10", value: "70000000"},
+            				{tgTime : "5:20", value: "70000000"},
+            				{tgTime : "5:30", value: "70000000"},
+            				{tgTime : "5:40", value: "70000000"},
+            				{tgTime : "5:50", value: "70000000"},
+            				{tgTime : "6:00", value: "80000000"},
+            				{tgTime : "6:10", value: "80000000"},
+            				{tgTime : "6:20", value: "80000000"},
+            				{tgTime : "6:30", value: "80000000"},
+            				{tgTime : "6:40", value: "80000000"},
+            				{tgTime : "6:50", value: "80000000"},
+            				{tgTime : "7:00", value: "29640000"},
+            				{tgTime : "7:10", value: "29640000"},
+            				{tgTime : "7:20", value: "29640000"},
+            				{tgTime : "7:30", value: "29640000"},
+            				{tgTime : "7:40", value: "29640000"},
+            				{tgTime : "7:50", value: "29640000"},
+            				{tgTime : "8:00", value: "45605320"},
+            				{tgTime : "8:10", value: "45605320"},
+            				{tgTime : "8:20", value: "45605320"},
+            				{tgTime : "8:30", value: "45605320"},
+            				{tgTime : "8:40", value: "45605320"},
+            				{tgTime : "8:50", value: "45605320"},
+            				{tgTime : "9:00", value: "37700230"},
+            				{tgTime : "9:10", value: "37700230"},
+            				{tgTime : "9:20", value: "37700230"},
+            				{tgTime : "9:30", value: "37700230"},
+            				{tgTime : "9:40", value: "37700230"},
+            				{tgTime : "9:50", value: "37700230"},
+            				{tgTime : "10:00", value: "38705450"},
+            				{tgTime : "10:10", value: "38705450"},
+            				{tgTime : "10:20", value: "38705450"},
+            				{tgTime : "10:30", value: "38705450"},
+            				{tgTime : "10:40", value: "38705450"},
+            				{tgTime : "10:50", value: "38705450"},
+            				{tgTime : "11:00", value: "89123140"},
+            				{tgTime : "11:10", value: "89123140"},
+            				{tgTime : "11:20", value: "89123140"},
+            				{tgTime : "11:30", value: "89123140"},
+            				{tgTime : "11:40", value: "89123140"},
+            				{tgTime : "11:50", value: "89123140"},
+            				{tgTime : "12:00", value: "12300550"},
+            				{tgTime : "12:10", value: "12300550"},
+            				{tgTime : "12:20", value: "12300550"},
+            				{tgTime : "12:30", value: "12300550"},
+            				{tgTime : "12:40", value: "12300550"},
+            				{tgTime : "12:50", value: "12300550"},
+            				{tgTime : "13:00", value: "23405500"},
+            				{tgTime : "13:10", value: "23405500"},
+            				{tgTime : "13:20", value: "23405500"},
+            				{tgTime : "13:30", value: "23405500"},
+            				{tgTime : "13:40", value: "23405500"},
+            				{tgTime : "13:50", value: "23405500"},
+            				{tgTime : "14:00", value: "34505210"},
+            				{tgTime : "14:10", value: "34505210"},
+            				{tgTime : "14:20", value: "34505210"},
+            				{tgTime : "14:30", value: "34505210"},
+            				{tgTime : "14:40", value: "34505210"},
+            				{tgTime : "14:50", value: "34505210"},
+            				{tgTime : "15:00", value: "76500000"},
+            				{tgTime : "15:10", value: "76500000"},
+            				{tgTime : "15:20", value: "76500000"},
+            				{tgTime : "15:30", value: "76500000"},
+            				{tgTime : "15:40", value: "76500000"},
+            				{tgTime : "15:50", value: "76500000"},
+            				{tgTime : "16:00", value: "34800000"},
+            				{tgTime : "16:10", value: "34800000"},
+            				{tgTime : "16:20", value: "34800000"},
+            				{tgTime : "16:30", value: "34800000"},
+            				{tgTime : "16:40", value: "34800000"},
+            				{tgTime : "16:50", value: "34800000"},
+            				{tgTime : "17:00", value: "56700000"},
+            				{tgTime : "17:10", value: "56700000"},
+            				{tgTime : "17:20", value: "56700000"},
+            				{tgTime : "17:30", value: "56700000"},
+            				{tgTime : "17:40", value: "56700000"},
+            				{tgTime : "17:50", value: "56700000"},
+            				{tgTime : "18:00", value: "90000000"},
+            				{tgTime : "18:10", value: "90000000"},
+            				{tgTime : "18:20", value: "90000000"},
+            				{tgTime : "18:30", value: "90000000"},
+            				{tgTime : "18:40", value: "90000000"},
+            				{tgTime : "18:50", value: "90000000"},
+            				{tgTime : "19:00", value: "23500000"},
+            				{tgTime : "19:10", value: "23500000"},
+            				{tgTime : "19:20", value: "23500000"},
+            				{tgTime : "19:30", value: "23500000"},
+            				{tgTime : "19:40", value: "23500000"},
+            				{tgTime : "19:50", value: "23500000"},
+            				{tgTime : "20:00", value: "97300000"},
+            				{tgTime : "20:10", value: "97300000"},
+            				{tgTime : "20:20", value: "97300000"},
+            				{tgTime : "20:30", value: "97300000"},
+            				{tgTime : "20:40", value: "97300000"},
+            				{tgTime : "20:50", value: "97300000"},
+            				{tgTime : "21:00", value: "34300000"},
+            				{tgTime : "21:10", value: "34300000"},
+            				{tgTime : "21:20", value: "34300000"},
+            				{tgTime : "21:30", value: "34300000"},
+            				{tgTime : "21:40", value: "34300000"},
+            				{tgTime : "21:50", value: "34300000"},
+            				{tgTime : "22:00", value: "75300000"},
+            				{tgTime : "22:10", value: "75300000"},
+            				{tgTime : "22:20", value: "75300000"},
+            				{tgTime : "22:30", value: "75300000"},
+            				{tgTime : "22:40", value: "75300000"},
+            				{tgTime : "22:50", value: "75300000"},
+            				{tgTime : "23:00", value: "65400000"},
+            				{tgTime : "23:10", value: "65400000"},
+            				{tgTime : "23:20", value: "65400000"},
+            				{tgTime : "23:30", value: "65400000"},
+            				{tgTime : "23:40", value: "65400000"},
+            				{tgTime : "23:50", value: "65400000"},
+            			]};
+    		var imp = json1.importValue;
+    		var exp = json1.exportValue;
+		     	option = {
+			    title : {
+			        text: '进出口总额',
+			        x:20,
+			        y:10,
+			        textStyle:{
+                            fontFamily: '微软雅黑',
+                            //color: 'rgb(68,154,204)',
+                            fontSize:16
+                        }
+			    },
+			    grid:{
+			    	x:10,
+			    	y:40,
+			    	x2:15,
+			    	y2:40,
+			    	//borderColor:'#1A4C67'
+			    	
+			    },
+			    calculable : false,
+			    boundaryGap:false,
+			    xAxis : [
+			        {
+			            type : 'category',
+			            splitLine:{
+			            	lineStyle:{
+			            		 color:[changeEchartsColor().color[2]]//'#1A4C67'
+			            	}
+			            },
+			           	axisLabel : {
+	                        formatter: '{value}',
+	                        interval:0,
+	                        textStyle:{
+	                            color: changeEchartsColor().color[2],
+	                            fontSize:8
+	                        }
+	                    },    
+	                    data : (function (){
+			                var res = [];
+			                var len1 = 41;
+                            var time1;
+			                while (len1 >= 0) { 
+			                	if(len1 % 6 == 0)
+			                		time1 = imp[len1].tgTime;
+			                	else
+			                		time1 = "";
+			                    res.unshift(time1);
+			                    len1--;
+			                }
+			                return res;
+		           		})()
+                    }      
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value',
+			            splitLine:{
+			            	lineStyle:{
+			            		color:[changeEchartsColor().color[2]]//'#1A4C67'
+			            	}
+			            },
+			             axisLabel : {
+		                        formatter: '{value}',
+		                        textStyle:{
+		                            fontFamily: '微软雅黑',
+		                            color: 'rgba(0,0,0,0)'
+		                            
+		                        }
+                		}
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'报关单数',
+			            type:'line',
+			            symbol:'none',
+			           	itemStyle: {
+	                        normal: {                   // 系列级个性化，横向渐变填充
+	                            //color : '#8FD6EE',
+	                            //borderColor: '#59B2DE'
+	                        }
+			            },
+			            data:(function (){
+			                var res = [];
+			                var len1 = 41;
+			               	while(len1 >= 0){
+			                  	var value1 = imp[len1].value;
+			                    res.unshift(value1);
+			                    len1--;
+			                }
+			                return res;
+			            })()
+			        }
+			    ]
+			};	
+			var len1 = 42;
+			var dom1 = document.getElementById('bottom_lan_wenzi01');
+			var value1 = imp[len1].value;
+			setBottomActiveNum(dom1, value1);
+			
+			var timeTicket1 = setInterval(function (){
+				if(len1 >imp.length-1)
+					len1 = 0;
+                //跨天时从头开始显示
+				if(len1 == 0){
+					myChart1.setOption(option);
+					len1 = 42;
+					value1 = imp[len1].value;
+					setBottomActiveNum(dom1, value1);
+				}
+				if(len1%6 == 0)
+	        		var time1 = imp[len1].tgTime;
+	        	else
+	        		var time1 = "";
+		    	var value1 = imp[len1].value;
+		    	len1++;
+			    // 动态数据接口 addData
+			    myChart1.addData([
+			        [
+			            0,        // 系列索引
+			            value1, // 新增数据
+			            false,     // 新增数据是否从队列头部插入
+			            false,	// 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+			            time1
+			        ]
+			    ]);
+				setBottomActiveNum(dom1, value1);
+			}, 2100);
+///////////////////////////////////////////////////////////////////////////////////////
+		option1 = {
+				    title : {
+				        text: '报关单数量',
+				        x:10,
+				        y:10,
+				        textStyle:{
+	                            fontFamily: '微软雅黑',
+	                            //color: 'rgb(68,154,204)',
+	                            fontSize:16
+	                        }
+				    },
+				     grid:{
+				    	x:0,
+				    	y:40,
+				    	x2:25,
+				    	y2:40,
+				    	//borderColor:'#1A4C67'
+				    	
+				    },
+				    calculable : false,
+				    boundaryGap:true,
+				    xAxis : [
+				        {
+				            type : 'category',
+				            splitLine:{
+				            	lineStyle:{
+				            		color:[changeEchartsColor().color[2]]//'#1A4C67'
+				            	}
+				            },
+				           	axisLabel : {
+		                        //formatter: '{value}',
+		                        interval:0,
+		                        textStyle:{
+		                            color: changeEchartsColor().color[2],
+		                            fontSize:8
+		                    	}
+		                    },	
+		                    data : (function (){
+				                var res = [];
+				                var len2 = 41;
+                                var time2;
+				                while (len2 >= 0) { 
+				                	if(len2 % 6 == 0)
+				                		time2 = imp[len2].tgTime;
+				                	else
+				                		time2 = "";
+				                    res.unshift(time2);
+				                    len2--;
+				                }
+				                return res;
+		           			})()
+	                    }
+				    ],
+				    yAxis : [
+				        {
+				            type : 'value',
+				            splitLine:{
+				            	lineStyle:{
+				            		color:[changeEchartsColor().color[2]]//'#1A4C67'
+				            	}
+				            },
+				            axisLabel : {
+			                        formatter: '{value}',
+			                        textStyle:{
+			                            fontFamily: '微软雅黑',
+			                            color: 'rgba(0,0,0,0)'
+			                            
+			                        }
+	                    	}
+				        }
+				    ],
+				    series : [
+				        {
+				            name:'报关单数',
+				            type:'line',
+				            symbol:'none',
+				           	itemStyle: {
+				                        normal: {                   // 系列级个性化，横向渐变填充
+				                           // color : '#8FD6EE',
+				                           // borderColor: 'red'
+				                        }
+				                    },
+				            data:(function (){
+				                var res = [];
+				                var len2 = 41;
+				               	while(len2 >= 0){
+				                  	var value2 = imp[len2].value;
+				                    res.unshift(value2);
+				                    len2--;
+				                }
+				                return res;
+				            })()
+				          
+				        }
+				    ]
+				};
+				var len2 = 42;
+				var dom2 = document.getElementById('bottom_lan_wenzi02');
+				var value2 = exp[len2].value;
+				setBottomActiveNum(dom2, value2);
+				
+				var timeTicket2 = setInterval(function (){
+			    	if(len2 > exp.length-1)
+						len2 = 0;
+                    //跨天时从头开始显示
+					if(len2 == 0){
+						myChart2.setOption(option1);
+						len2 = 42;
+						value2 = imp[len2].value;
+						setBottomActiveNum(dom2, value2);
+					}
+                    var time2;
+					if(len2%6 == 0)
+		        		time2 = imp[len2].tgTime;
+		        	else
+		        		time2 = "";
+			    	var value2 = imp[len2].value;
+			    	len2++;
+				    // 动态数据接口 addData
+				    myChart2.addData([
+				        [
+				            0,        // 系列索引
+				            value2, // 新增数据
+				            false,     // 新增数据是否从队列头部插入
+				            false,	// 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+				            time2
+				        ]
+				    ]);
+					setBottomActiveNum(dom2, value2);
+				}, 2100);
+        // 为echarts对象加载数据 
+        myChart1.setOption(option); 
+        myChart1.setTheme(changeEchartsColor());
+        
+        myChart2.setOption(option1);
+        myChart2.setTheme(changeEchartsColor());
+
+        });
+        // 更换主题
+    //更换主题  
+	changeBodyColor();
+	</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>诚信体系</title>
+    <!--<link rel="stylesheet" href="css/bootstrap.css" media="screen">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/global.css" media="screen">
+    <link rel="stylesheet" href="css/global_1.css" media="screen">
+    <link rel="stylesheet" href="css/global_2.css" media="screen">
+    <link href="css/title_main_2.css" rel="stylesheet" />
+    <link href="css/title_main_1.css" rel="stylesheet" />
+    <link href="css/title_main.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            background: black url(images/background.jpg) no-repeat;
+            margin: 0px 0px;
+            padding: 0px 0px;
+        }
+
+        .main {
+            height: 100%;
+            min-width: 3000px;
+            min-height: 1000px;
+            padding-top: 80px;
+        }
+
+        .no-padding {
+            padding: 0
+        }
+
+        .no-margin {
+            margin: 0;
+        }
+
+        @-webkit-keyframes rotate_outer {
+            30% {
+                -webkit-transform: rotateY(0deg);
+            }
+            40% {
+                -webkit-transform: rotateY(90deg);
+            }
+            50% {
+                -webkit-transform: rotateY(180deg);
+            }
+            80% {
+                -webkit-transform: rotateY(180deg);
+            }
+            90% {
+                -webkit-transform: rotateY(270deg);
+            }
+            100% {
+                -webkit-transform: rotateY(360deg);
+            }
+        }
+
+        @-webkit-keyframes rotate_inner {
+            30% {
+                -webkit-transform: translateZ(0) rotateY(0deg);
+            }
+            40% {
+                -webkit-transform: translateZ(200px) rotateY(90deg);
+            }
+            50% {
+                -webkit-transform: translateZ(0) rotateY(180deg);
+            }
+            80% {
+                -webkit-transform: translateZ(0) rotateY(180deg);
+            }
+            90% {
+                -webkit-transform: translateZ(200px) rotateY(270deg);
+            }
+            100% {
+                -webkit-transform: translateZ(0) rotateY(360deg);
+            }
+        }
+        .turnplate {
+            background: url(images/turnplate_bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .turnplate_center {
+            perspective: 10000px;
+            margin-top: 30px;
+        }
+
+        .turnplate_outter {
+            background: url(images/turnplate_center.png) no-repeat bottom center;
+            background-size: 100% 100%;
+            -webkit-animation: rotate_outer 15s ease-in-out 2s infinite normal;
+            position: absolute;
+            width: 100%;
+        }
+
+        .turnplate_inner {
+            background: url(images/turnplate_inner.png) no-repeat bottom center;
+            background-size: 100% 100%;
+            padding-top: 4.3%;
+            padding-bottom: 8.1%;
+            padding-left: 1.0%;
+            padding-right: 1.0%;
+            -webkit-animation: rotate_inner 15s ease-in-out 2s infinite normal;
+        }
+        .turnplate_left {
+            background: url(images/turnplate_left.png) no-repeat top left;
+            background-size: 130% 100%;
+            padding-top: 5%;
+            padding-bottom: 6%;
+            padding-right: 3%;
+        }
+
+        .turnplate_right {
+            background: url(images/turnplate_right.png) no-repeat top right;
+            background-size: 130% 100%;
+            padding-top: 5%;
+            padding-bottom: 6%;
+            padding-left: 3%;
+        }
+
+        .beam {
+            background: url(images/beam.png) no-repeat top center;
+            background-size: 100% 100%;
+            padding: 4.3% 1%;
+        }
+        /*红色主题*/
+        .theme_2 .turnplate {
+            background: url(images/turnplate_bg_red.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .theme_2 .turnplate_center {
+            perspective: 10000px;
+            margin-top: 30px;
+        }
+
+        .theme_2 .turnplate_outter {
+            background: url(images/turnplate_center_red.png) no-repeat bottom center;
+            background-size: 100% 100%;
+            -webkit-animation: rotate_outer 15s ease-in-out 2s infinite normal;
+            position: absolute;
+            width: 100%;
+        }
+
+        .theme_2 .turnplate_inner {
+            background: url(images/turnplate_inner_red.png) no-repeat bottom center;
+            background-size: 100% 100%;
+            padding-top: 4.3%;
+            padding-bottom: 8.1%;
+            padding-left: 1.0%;
+            padding-right: 1.0%;
+            -webkit-animation: rotate_inner 15s ease-in-out 2s infinite normal;
+        }
+
+        .theme_2 .turnplate_left {
+            background: url(images/turnplate_left_red.png) no-repeat top left;
+            background-size: 130% 100%;
+            padding-top: 5%;
+            padding-bottom: 6%;
+            padding-right: 3%;
+        }
+
+       .theme_2 .turnplate_right {
+            background: url(images/turnplate_right_red.png) no-repeat top right;
+            background-size: 130% 100%;
+            padding-top: 5%;
+            padding-bottom: 6%;
+            padding-left: 3%;
+        }
+
+       .theme_2 .beam {
+            background: url(images/beam_red.png) no-repeat top center;
+            background-size: 100% 100%;
+            padding: 4.3% 1%;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="col-sm-8 chartBorder turnplate" style="width:71.7%;height:890px">
+        <div class="row " style="height:100%">
+            <div class="col-sm-2 turnplate_left" style="height:100%">
+                <iframe src="cxtx_left.html" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0"
+                        scrolling="no" width="100%" height="100%"></iframe>
+            </div>
+            <div class="col-sm-8 turnplate_center no-padding" style="height:100%;">
+                <div class="turnplate_outter" style="height:100%">
+                </div>
+                <div class="turnplate_inner" style="height: 100%;">
+                    <div class="row" style="height: 250px;margin-top: -40px;">
+                        <div class="col-sm-6" style="height:100%">
+                            <iframe src="cxtx_dq.html" allowTransparency="true" marginheight="0" marginwidth="0"
+                                    frameborder="0"
+                                    scrolling="no" width="100%" height="100%"></iframe>
+                        </div>
+                        <div class="col-sm-6" style="height:100%">
+                            <iframe src="cxtx_zfx.html" allowTransparency="true" marginheight="0" marginwidth="0"
+                                    frameborder="0"
+                                    scrolling="no" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 400px">
+                        <div class="col-sm-6" style="height:100%;margin-top: 60px;">
+                            <iframe src="cxtx_score.html" allowTransparency="true" marginheight="0" marginwidth="0"
+                                    frameborder="0"
+                                    scrolling="no" width="100%" height="100%"></iframe>
+                        </div>
+                        <div class="col-sm-6" style="height:100%">
+                            <iframe src="cxtx_pieChart.html" allowTransparency="true" marginheight="0" marginwidth="0"
+                                    frameborder="0"
+                                    scrolling="no" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 turnplate_right" style="height:100%">
+                <iframe src="cxtx_right.html" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0"
+                        scrolling="no" width="100%" height="100%"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 chartBorder beam" style="width:27.2%;height:890px">
+        <iframe src="cxtx_other.html" allowTransparency="true" marginheight="0" marginwidth="0" frameborder="0"
+                scrolling="no" width="100%" height="100%"></iframe>
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script>
+    adjustBodySize();
+         // 更换主题
+	changeBodyColor();
+	//console.log($(".rotate_inner").css("transform"));
+	//var times = new Date().getTime();
+	 // setInterval(function(){
+	 	// var times = new Date().getTime();
+		// if(times+750&&times+15000){
+			// $('.turnplate_inner').css("display","none")
+		// }else{
+			// $('.turnplate_inner').css("display","block")
+		// }
+	 // },15000)
+</script>
+</body>
+</html>

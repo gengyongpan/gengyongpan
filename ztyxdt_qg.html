@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>整体运行动态</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+         body {
+            background: transparent;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 3.0rem;
+            font-weight: bold;
+            margin: 0;
+            font-family: "微软雅黑"
+        }
+        .left{
+        	float:left;
+        }
+        .wenzi li{
+        	float: left;
+        	width:280px;
+        	height:80px;
+        	text-align: center;
+        	line-height:80px;
+        }
+    </style>
+</head>
+<body>
+<div id="ztyxdt" style="width: 1200px; height: 200px;">
+   <div class="zhjx_div" style="width: 100%;height:100%">
+	   	<div class="title3">
+	        <div class="title3Ball"></div>
+	        <div class="title3Left"></div>
+	        <div class="title3Slash"></div>
+	        <div class="title3Center"></div>
+	        <div class="title3Right"></div>
+	    </div>
+	    <div class="chartBorder3" style="width: 100%; height: 100%;">
+	        <ul class="wenzi">
+	        	<li style="line-height: 150px;width: 180px;">全国</li>
+	        	<li>报关单数:<br><span style="color:yellow">1760</span><span style="font-size: 1.2rem;color: yellow">单</span></li>
+	        	<li>进口贸易量:<br><span style="color:yellow">1760</span><span style="font-size: 1.2rem;color: yellow">单</span></li>
+	        	<li>出口贸易量:<br><span style="color:yellow">1760</span><span style="font-size: 1.2rem;color: yellow">单</span></li>
+	        </ul>
+	    </div>
+
+   </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+
+<script>
+	//主题更换
+	changeBodyColor();
+
+	adjustWidgetScale();
+ 
+	var contextPath = "<%=contextPath%>";
+
+	function queryData(year) {
+		!year && ( year = (new Date()).getFullYear());
+		var sqlParams = {
+			"STAT_CYCLE" : year
+		};
+		var strSqlParams = JSON.stringify(sqlParams);
+		var datas = {
+			key_code : "sy_dbpj",
+			sql_params : strSqlParams
+		};
+		//var msg = {"flag":"1","data":[{"NAME":"进口报关单数","X":"-55","Y":"-80"},{"NAME":"进口报关单平均通关时间","X":"-78","Y":"-70"}]}
+		$.ajax({
+			type : "POST",
+			url : contextPath + '/' + generateSQLDataURL,
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg.flag == '1') {
+					for (var i = 0;i < $("tbody tr").length; i++) {
+						$("tbody .zbpj_tr01 td")[1].html(name[0].data_value[i+1]);
+						$("tbody .zbpj_tr02 td")[i+1].html(name[1].data_value[i+1]);
+						$("tbody .zbpj_tr03 td")[1].html(name[2]);
+						$("tbody .zbpj_tr04 td")[i+1].html(name[3].data_value[i+1]);
+					}
+				} else {
+					console.log('请求数据为空或请求失败！');
+				}
+			},
+			 error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	         }
+		});
+	}
+	queryData();
+</script>
+
+</body>
+</html>

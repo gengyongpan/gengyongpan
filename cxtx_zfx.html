@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+/*        body {
+            background: #000;
+        }*/
+        .widget_coverageMap_title {
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .widget_coverageMap_row {
+            padding-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .widget_coverageMap_row li {
+            margin: 0 5px;
+        }
+
+        .widget_coverageMap_row_cell {
+            background: url(images/coverage_0.png) no-repeat;
+            display: inline-block;
+            width: 20px;
+            height: 38px;
+        }
+
+        .widget_coverageMap_row_cell_fill {
+            background: url(images/coverage_1.png) no-repeat;
+        }
+        /*红色主题*/
+       .theme_2 .widget_coverageMap_row_cell {
+            background: url(images/coverage_0_red.png) no-repeat;
+            display: inline-block;
+            width: 15px;
+            height: 38px;
+        }
+
+        .theme_2 .widget_coverageMap_row_cell_fill {
+            background: url(images/coverage_1_red.png) no-repeat;
+        }
+        .theme_2 .widget_coverageMap_title {
+            color: #5c0000;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+    </style>
+<body>
+<div style="height: 200px; padding-top: 10px;">
+        <div id="cxtx_zfx" style="height:100%; width: 40%; float: left;">
+        </div>
+        <div style="height: 100%; width: 60%; float: left;">
+            <div class="widget_coverageMap_title">注册企业覆盖率</div>
+            <div id="test2" class="widget_coverageMap" style="width: 100%; height: 100%;">
+            </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script>
+     // 更换主题
+	changeBodyColor();
+	//////
+    function addStackCube(dom, data) {
+        var html = "";
+        var height = $(dom).height() * 0.7 - 10 * data.length;
+        var sum = 0;
+        data.forEach(function (d, i) {
+            sum += parseFloat(d.value);
+        });
+        var zIndex = 100;
+        if(theme_opt == 'red'){
+	        	var colorT = ['#e15001', '#e65516', '#d54b26'];
+		        var colorL = ['#cb2300', '#cd1515', '#b20c0e'];
+		        var colorR = ['#e16500', '#b5552b', '#90573a'];
+				 var top_value = " \
+                border-bottom: 1px solid red; \
+                width: 40px; \
+                float: right; \
+                margin-bottom: 5px; \
+                color:#5c0000;";
+                var leftFace_gan = " \
+                border-bottom: 1px solid red; \
+                width: 40px; \
+                position: absolute; \
+                bottom: 0; \
+                right: 0;";
+        }else{
+        		var colorT = ['#4BFCFF', '#A1ECFF', '#75A3CC'];
+		        var colorL = ['#30A981', '#258AB2', '#5A5F84'];
+		        var colorR = ['#39CBB2', '#63D9FF', '#68729B'];
+				var top_value = " \
+                border-bottom: 1px solid #B8E5E5; \
+                width: 40px; \
+                float: right; \
+                margin-bottom: 5px; \
+                color:rgb(152,199,217);";
+                var leftFace_gan = " \
+                border-bottom: 1px solid #B8E5E5; \
+                width: 40px; \
+                position: absolute; \
+                bottom: 0; \
+                right: 0;";
+        	}
+       
+        var stackCube = "\
+                position: relative; \
+                margin-top: 10px; \
+                padding-left: 100px;";
+        var topFace = " \
+                position: absolute; \
+                top: 0px; \
+                width: 60px; \
+                height: 60px; \
+                transform-origin: top center; \
+                transform: rotateX(45deg) rotate(45deg) rotate3d(0.5,-0.5,0,10deg) translateX(21px) translateZ(21px) scale(0.71); \
+                background-color: rgb(75, 253, 255);";
+        var leftFace = " \
+                width: 30px; \
+                height: 100%; \
+                transform-origin: top left; \
+                transform: skewY(30deg); \
+                background-color: rgb(48, 169, 129); \
+                float: left;";
+        var rightFace = " \
+                width: 30px; \
+                height: 100%; \
+                transform-origin: top right; \
+                transform: skewY(-30deg); \
+                background-color: rgb(60, 204, 180); \
+                float: left;";
+        
+        var top_wenzi = " \
+                width: 100px; \
+                position: absolute; \
+                left: -10px; \
+                bottom: 1px; \
+                font-size:14px; \
+                text-align:right; \
+                font-family: '微软雅黑';";
+        var top_name = " \
+                width: 60px; \
+                position: absolute; \
+                right: 40px; \
+                top: 10px; \
+                color:rgb(255, 255, 255); \
+                word-wrap:break-word;";
+        for (var i = 0; i < data.length; i++) {
+            var n = data[i].name;
+            var r = (100 * data[i].value / sum).toFixed(1);
+            var h = height * data[i].value / sum;
+            html += ' \
+            <div class="stackCube" style="' + stackCube + 'height:' + h + 'px; z-index:' + (zIndex--) + ';"> \
+                <div class="topFace" style="' + topFace + 'background-color: ' + colorT[i] + '"></div> \
+                <div class="leftFace" style="' + leftFace + 'background-color: ' + colorL[i] + '"> \
+                    <div class="leftFace_gan" style="' + leftFace_gan + '"></div> \
+                </div> \
+                <div class="rightFace" style="' + rightFace + 'background-color: ' + colorR[i] + '"></div> \
+                <div class="top_wenzi" style="' + top_wenzi + '"> \
+                    <div class="top_value" style="' + top_value + '">' + r + '%</div> \
+                    <div class="top_name" style="' + top_name + '">' + n + '</div> \
+                </div> \
+                <div class="clear"></div> \
+            </div>';
+        }
+        $(html).appendTo(dom);
+        $(dom).css({'padding-top': '20px'});
+    }
+    var tmpDom = document.getElementById("cxtx_zfx");
+    var ajaxData = [
+        {name: "Cube1", value: "15"},
+        {name: "Cube2", value: "25"},
+        {name: "Cube3", value: "35"}
+    ];
+    addStackCube(tmpDom, ajaxData);
+</script>
+<script>
+    function addWidgetCoverageMap(dom, data) {
+/*        var data = [
+            {name: 'A', value: 0.24},
+            {name: 'B', value: 0.36},
+            {name: 'C', value: 0.834}
+        ];
+        var dom = document.getElementById("test2");*/
+        var num = 10;
+        var sum = 0;
+        data.forEach(function (d, i) {
+            sum += parseFloat(d.value);
+        });;
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            html += "<ul class='widget_coverageMap_row'>";
+            var r = data[i].value / sum;
+            for (var j = 0; j < num; j++) {
+                if ((j + 1) / num <= r) {
+                    html += "<li class='widget_coverageMap_row_cell widget_coverageMap_row_cell_fill'></li>";
+                } else if (j / num < r) {
+                    var fillRatio = (r - j / num) * num;
+                    var lackHeight = 38 * (1 - fillRatio);
+                    html += "<li class='widget_coverageMap_row_cell widget_coverageMap_row_cell_fill'><div class='widget_coverageMap_row_cell' style='display: block; height:" +lackHeight + "px'></div></li>"
+                } else {
+                    html += "<li class='widget_coverageMap_row_cell'></li>"
+                }
+            }
+            html += "</ul>";
+        }
+        dom.innerHTML = html;
+    }
+    var tmpDom = document.getElementById("test2");
+    addWidgetCoverageMap(tmpDom, ajaxData);
+</script>
+</body>
+</head>
+</html>

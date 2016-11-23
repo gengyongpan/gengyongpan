@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+	  <style>
+	    /*body{
+	    		background-color:#003454;
+	    	}*/
+		#cxtx_qychl{
+			width:350px;
+			height:280px;
+			background:rgb(4,58,83)
+		}
+		.qychl_title{
+			font-size:18px;
+			font-family:'微软雅黑';
+			color:#8DD6EE;
+			margin-left:50px;
+		}
+		.quanhuan_01{
+			width:90px;
+			height:90px;
+			border-radius: 50px;
+			border:5px solid #4C9EB5;
+			background:rgb(121,220,242);
+			position:absolute;
+			top:150px;
+		}
+		.quanhuan_02{
+			background:rgb(121,220,242);
+			border:1px solid #fff;
+			width:20px;
+			position:absolute;
+			left:35px;
+			top:35px;
+			height:20px;
+			border-radius: 15px;
+		}
+		.quanhuan_03{
+			background-color:#fff;
+			width:10px;
+			position:absolute;
+			left:5px;
+			top:5px;
+			height:10px;
+			border-radius: 10px;
+		}
+		.quanhuan_05{
+			width:3px;
+			height:130px;
+			background-color:#fff;
+			position: absolute;
+			left:3px;
+			top:-125px;
+		}
+		.quanhuan_wenzi{
+			height:24px;
+			width:50px;
+			position:absolute;
+			left:3px;
+			background-color:rgb(55,190,255);
+			line-height:24px;
+			font-size:14px;
+			font-family: '微软雅黑';
+			padding-left:4px;
+		}
+		.quan_01{
+			width:100px;
+			height:100px;
+			border-radius: 65px;
+			border:8px solid #04739F;
+			background:rgb(121,220,242);
+			position:absolute;
+			top:140px;
+			left:150px;
+		}
+		.quan_02{
+			background:rgb(121,220,242);
+			border:1px solid #fff;
+			width:20px;
+			position:absolute;
+			left:40px;
+			top:40px;
+			height:20px;
+			border-radius: 15px;
+		}
+		.quan_03{
+			background-color:#fff;
+			width:10px;
+			position:absolute;
+			left:5px;
+			top:5px;
+			height:10px;
+			border-radius: 10px;
+		}
+	    </style>
+    <body>
+      	<div id="cxtx_qychl">
+      		<div class="qychl_title">各企业诚信查验率、查获率</div>
+      		<div class="quanhuan_01">
+      			<div class="quanhuan_02">
+      				<div class="quanhuan_03">
+      					<div class="quanhuan_04">
+      						<div class="quanhuan_05">
+      							<div class="quanhuan_wenzi">#####</div>
+      						</div>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      		<div class="quan_01">
+      			<div class="quan_02">
+      				<div class="quan_03">
+      					<div class="quan_04">
+      						<div class="quanhuan_05">
+      							<div class="quanhuan_wenzi">#####</div>
+      						</div>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+    </body>
+</head>
+</html>

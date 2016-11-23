@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+     <link rel="stylesheet" href="css/example.css">
+	<link href="css/timeliner.css" rel="stylesheet">
+    <link href="css/timeliner_styling.css" rel="stylesheet">
+	<script src="js/echarts-all.js"></script>
+    <style>
+    	body{
+    		background-color:transparent;
+    		/*background-color:#0000FF;*/
+    	}
+    	#main{
+    		height:1000px;
+    		/*background-image:url(images/bg_sm.jpg);*/
+    	}
+    	#chart{
+    		height:800px;
+    		width:800px;
+    		position: absolute;
+    		margin-top: 20px;
+    		left: 200px;
+    		overflow:auto;
+    		border: none;
+    	}
+    	#wode{
+    		position:absolute;
+    		width:300px;
+    		height:310px;
+    		top: 300px;
+    		left:730px;
+    		background-color: rgb(0,30,50);
+    		opacity:0.8;
+    		z-index: 555;
+    		font-family: '微软雅黑';
+    		border:none;
+    		font-size:20px;
+    	}
+    	#wode ul{
+    		margin:0;
+    		padding:0;
+    	}
+    	#wode ul li{
+    		height:50px;
+    		padding:10px 5px 5px 20px;
+    		list-style: none;
+    		
+    		color:#fff;
+    		
+    	}
+    	.active{
+    		font-size: 26px;
+    		text-shadow:0.5px 0.5px 0.5px #fff;
+    		font-weight: bold;
+    		color:#fff;
+    		background-color:rgb(0,50,90);
+    	}
+    #wode ul li div{
+    	float:right;
+    	font-size:10px;
+    	margin:0 80px 0 0;
+    	padding:5px 0 0 0;
+    	font-family: '微软雅黑';
+    }
+    #timelines{
+    	position:absolute;
+    	height:60px;
+    	width:550px;
+    	left:320px;
+    	overflow:hidden;
+    	top:580px;
+    	margin-top:180px;
+    }
+    .kedu{
+    	position:absolute;
+    	color:#fff;
+    	z-index: 999;
+    	top:30px;
+    	font-size: 12px;
+    }
+    .kedu li{
+    		float: left;
+    		margin-right:18px;
+    		list-style:none;
+    		padding-left:10px;
+    }
+	
+	#rightlan{
+		position: absolute;
+		top:100px;
+		left:100px;
+		width:200px;
+		height:500px;
+		font-family: '微软雅黑';
+		/*color:#FFFFFF;*/
+	}
+	#buttom_lan{
+		position:absolute;
+		top:660px;
+		left:200px;
+		height:300px;
+		width:850px;
+		
+	}
+    </style>
+</head>
+    <body>
+    	<div id="zuo_bianlan"></div>
+  	  	<div id="zhu_yemian" style="position:absolute; left: -70px" >
+        <main id="main" >
+            <div id="chart"></div>
+		     <div id="wode">
+		            	<ul>
+		            		<li class="">美  国
+		            			<div>进 口 总 额  ：12万亿<br />
+		            			出 口 总 额  ：10.7万亿</div>
+		            		</li>
+		            		<li class="">德  国
+		            			<div>进 口 总 额  ：12万亿<br />
+		            			出 口 总 额  ：10.7万亿</div>
+		            		</li>
+		            		<li class="active">中  国
+		            			<div>进 口 总 额  ：12万亿<br />
+		            			出 口 总 额  ：10.7万亿</div>	
+		            		</li>
+		            		<li class="">英  国
+		            			<div>进 口 总 额  ：12万亿<br />
+		            			出 口 总 额  ：10.7万亿</div>	
+		            		</li>
+		            		<li class="">法  国
+		            			<div>进 口 总 额  ：12万亿<br />
+		            			出 口 总 额  ：10.7万亿</div>	
+		            		</li>
+		            	</ul>
+		            </div>
+		     <div id="timelines" >
+		     	<div class="kedu">
+					<li style="margin-right: 3px;">1992</li>
+					<li style="margin-left:5px;">93</li>
+					<li style="margin-left:7px;">94</li>
+					<li style="margin-left:8px;">95</li>
+					<li style="margin-left:10px;">96</li>
+					<li style="margin-left: 9px;">97</li>
+					<li style="margin-left:10px;">98</li>
+					<li style="margin-left:10px;">99</li>
+					<li>2000</li>
+					<li>01</li>
+					<li>02</li>
+				</div>
+		  		<ul id="example1" class="timeliner">
+					<li></li>
+					<li></li>
+					<li >
+					</li>
+					<li >
+					</li>
+					<li >
+					</li>
+					<li>
+					</li>
+					<li >
+					</li>
+					<li >
+					</li>
+					<li >
+					</li>
+					<li >
+					</li>
+					<li >
+					</li>
+				</ul>
+				
+		     </div>	
+		   	  <div id="rightlan">
+   			 </div>	
+   	  	   	<div id="buttom_lan">
+   	  	   		<!-- <div id="buttom_lan_list" style="height:100px;width:300px; color:#fff;">
+   	  	   			<iframe src="shouye_xiabianlan.html" width="1000" height="180"></iframe>
+   	  	   		</div> -->
+   	  	   	</div>
+        </main>
+   
+        <div id="editor">
+            <textarea></textarea>
+            <div id="editor-toolbar">
+                <button id="editor-update">Update</button>s
+                <button id="editor-refresh">Refresh All</button>
+                <button id="editor-close">Close</button>
+            </div>
+        </div>
+      </div>
+      <div id="youyemian" style="width: 900px;height:300px;margin-left: 2000px;border: "></div>
+<script type="text/x-javascript" id="code-source">
+$(function(){
+	$('#example1').timeliner({
+		containerwidth : 530, //幻灯片宽度
+		containerheight : 47, //幻灯片高度
+		timelinewidth: 500, //时间线宽度
+		timelineheight: 5, //时间线高度
+		repeat: false, //循环播放
+		//timedisplayposition: '', //时间显示位置
+		transition: 'fade' //切换方式
+	});
+});
+$.ajax({
+    url: './data/flights.json',
+    success: function (data) {
+        var markPointStyle = {	
+            normal: {
+             color:'rgba(0, 0, 0, 0)'
+            }
+        }
+        // Airport: [name, city, country, longitude, latitude]
+        var airports = data.airports.map(function (item) {
+            return {
+                itemStyle: markPointStyle,
+                geoCoord: [item[3], item[4]]
+            }
+        });
+
+        // Route: [airlineIndex, sourceAirportIndex, destinationAirportIndex]
+        var routesGroupByAirline = {};
+        data.routes.forEach(function (route) {
+            var airline = data.airlines[route[0]];
+            var airlineName = airline[0];
+            if (!routesGroupByAirline[airlineName]) {
+                routesGroupByAirline[airlineName] = [];
+            }
+            routesGroupByAirline[airlineName].push(route);
+        })
+
+        var opts = {
+            title: {
+                text: '',
+                subtext: '',
+                sublink: 'http://openflights.org/data.html',
+                x:'center',
+                y:'top',
+                textStyle: {
+                    color: 'white'
+                }
+            },
+            legend: {
+                show: false,
+                data: data.airlines.map(function (item) {
+                    // Airline name
+                    return item[0];
+                }),
+                selected: {},
+                x: 'left',
+                orient: 'vertical',
+                textStyle: {
+                    color: 'red'
+                }
+            },	
+            tooltip: {
+                formatter: '{b}'
+            },
+            series: [{
+                type: 'map3d',
+                mapType: 'world',
+              //  nameMap:{'china':'中国'},
+                baseLayer: {
+                    backgroundColor: 'rgba(0,30,50,0.7)',
+                    //backgroundImage: 'images/earth4.png'
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: 0.5,
+                        borderColor: '#fff',
+                        areaStyle: {
+                            color: 'rgba(0,0,0,0)'
+                        }
+                    }
+                },
+                markPoint: {
+                    effect: {
+                        shadowBlur: 0.2
+                    },
+                    large: true,
+                    symbolSize: 3,
+                    data: airports
+                }
+            }]
+        };
+
+        opts.legend.data.forEach(function (name) {
+            if (name.indexOf('Air China') >= 0) {
+                opts.legend.selected[name] = true;
+            } else {
+                opts.legend.selected[name] = false;
+            }
+            
+        });
+        data.airlines.forEach(function (item) {
+            var airlineName = item[0];
+            var routes = routesGroupByAirline[airlineName];
+            if (routes) {
+                opts.series.push({
+                    type: 'map3d',
+                    name: airlineName,
+                    markLine: {
+                        effect: {
+                            show: true,
+                            scaleSize:2
+                        },
+               			 itemStyle:{
+		                    normal:{
+		                    	color:'rgb(75,166,213)',
+		                        opacity:0.1,
+		                       	borderWidth:10,
+		                        lineStyle:{
+		                        	 type:'dotted'
+		                        }
+		                    }
+		                },
+                        data: routes.map(function (item) {
+                            return [{
+                                // Source airport
+                                geoCoord: airports[item[1]].geoCoord
+                            }, {
+                                // Destination Airport
+                                geoCoord: airports[item[2]].geoCoord
+                            }]
+                        })
+                    }
+                });
+            }
+        });
+        
+        myChart.setOption(opts);
+        myChart.hideLoading();
+    }
+});
+c
+//时间轴   
+    </script>
+<script>
+	 var myChart = echarts.init(document.getElementById('rightlan'));
+	 option12 = {
+		    xAxis : [
+		        {
+		          	show:false,
+		            type : 'category',
+		            data : ['','','','','']
+		            
+		        }
+		    ],
+		    grid: {
+	            borderWidth: 0,
+       		 },
+		    yAxis : [
+		        {
+		          	show:false,
+		            type : 'value'
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'蒸发量',
+		            type:'bar',
+		            data:[13.2, 232.2,0,0,0],
+		            itemStyle:{
+		            		normal:{
+		            			color:'rgba(28,150,190,1)',
+		            			barBorderRadius:1
+		            		}
+		            	},
+		            markPoint : {
+		            	itemStyle:{
+		            		normal:{
+		            			color:'rgba(0,0,0,0)',
+		            			label:{
+		            				show:true,
+		            				formatter:'{b}'+'\nspan',
+			            			textStyle:{
+			            				color:'rgb(26,106,143)',
+			            				fontSize:6
+			            			}
+		            		}
+		            		},
+		            	},
+		                data : [
+		                    {name: '$17M', x: 125, y: 150},
+		                  	{name: '$12.7M',  x: 125, y: 250},  
+		                  	{name: '$28.4M',  x: 155, y: 550},
+		                  	{name: '$28.4M',  x: 125, y: 550},
+		                  	{name: '$28.4M',  x: 125, y: 550},
+		                ]
+		            }
+		        },
+		       
+		    ]
+		};
+        myChart.setOption(option12);           
+</script>
+        <script src="js/lib/esl.js"></script>
+        <script src="js/lib/jquery.min.js"></script>
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootExample.js"></script>
+        <script src="js/jquery.timeliner.min.js"></script>
+    </body>
+</head>
+</html>

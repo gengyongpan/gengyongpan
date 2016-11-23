@@ -1,0 +1,807 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String chartID = request.getParameter('chartID');
+	String dataURL = request.getParameter('dataURL');
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>指标评价</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            /*background: url(images/background.jpg) no-repeat;*/
+        }
+
+        #zbpj {
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .col-xs-3 {
+            width: 20%;
+            padding: 40px 4px 10px 8px;
+        }
+
+        .col-xs-4 {
+            width: 37.5%;
+            padding: 0;
+        }
+
+        .col-xs-5 {
+            width: 42.5%;
+            padding: 0;
+        }
+
+        .col-xs-12 {
+            width: 100%;
+            padding: 0;
+        }
+
+        #radar {
+            border-image: url(images/radar_border.png) 13 13 13 13 stretch stretch;
+            -moz-border-image: url(images/radar_border.png) 13 13 13 13 stretch stretch;
+            -webkit-border-image: url(images/radar_border.png) 13 13 13 13 stretch stretch;
+            -o-border-image: url(images/radar_border.png) 13 13 13 13 stretch stretch;
+            border-width: 10px;
+            width: 340px;
+            height: 340px;
+            background-image: url(images/radar.png);
+            background-position: center;
+            margin: 20px 4px 6px 6px;
+            z-index: 1;
+        }
+
+        @keyframes radarLight {
+            0% {
+                transform: rotate(0deg);
+                transform-origin: left top;
+            }
+            25% {
+                transform: rotate(90deg);
+                transform-origin: left top;
+            }
+            50% {
+                transform: rotate(180deg);
+                transform-origin: left top;
+            }
+            75% {
+                transform: rotate(270deg);
+                transform-origin: left top;
+            }
+            100% {
+                transform: rotate(360deg);
+                transform-origin: left top;
+            }
+        }
+
+        @-moz-keyframes radarLight /* Firefox */
+        {
+            0% {
+                -moz--transform: rotate(-90deg);
+                -moz--transform-origin: left top;
+            }
+            25% {
+                -moz--transform: rotate(0deg);
+                -moz--transform-origin: left top;
+            }
+            50% {
+                -moz--transform: rotate(90deg);
+                -moz--transform-origin: left top;
+            }
+            75% {
+                -moz--transform: rotate(180deg);
+                -moz--transform-origin: left top;
+            }
+            100% {
+                -moz--transform: rotate(270deg);
+                -moz--transform-origin: left top;
+            }
+        }
+
+        @-webkit-keyframes radarLight /* Safari and Chrome */
+        {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -webkit-transform-origin: left top;
+            }
+            25% {
+                -webkit-transform: rotate(90deg);
+                -webkit-transform-origin: left top;
+            }
+            50% {
+                -webkit-transform: rotate(180deg);
+                -webkit-transform-origin: left top;
+            }
+            75% {
+                -webkit-transform: rotate(270deg);
+                -webkit-transform-origin: left top;
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -webkit-transform-origin: left top;
+            }
+        }
+
+        .text {
+            padding: 5px;
+            font-weight: bold;
+            font-family: "微软雅黑";
+            font-size: 12px;
+            color: #ace9fd;
+        }
+
+        #radar_light {
+            background: url(images/light.png) no-repeat;
+            width: 168px;
+            height: 146px;
+            background-position: center;
+            -webkit-animation: radarLight 4s linear infinite normal;
+            -moz-animation: radarLight 4s linear infinite normal;
+            animation: radarLight 4s linear infinite normal;
+            position: absolute;
+            z-index: 10;
+            left: 177px;
+            top: 189px;
+        }
+        /*红色主题*/
+         .theme_2 #radar {
+            border-image: url(images/radar_border_red.png) 13 13 13 13 stretch stretch;
+            -moz-border-image: url(images/radar_border_red.png) 13 13 13 13 stretch stretch;
+            -webkit-border-image: url(images/radar_border_red.png) 13 13 13 13 stretch stretch;
+            -o-border-image: url(images/radar_border_red.png) 13 13 13 13 stretch stretch;
+            border-width: 10px;
+            width: 340px;
+            height: 340px;
+            background-image: url(images/radar_red.png);
+            background-position: center;
+            margin: 20px 4px 6px 6px;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+<div id="zbpj" style="width: 944px; height: 399px;">
+    <div class="col-xs-4" style="height: 382px;">
+        <div class="col-xs-12"
+             style="position: absolute; width: 430px; height: 400px; background-image:url(images/touming.png); z-index: 10">
+            <div class="col-xs-12" id="radar_light"></div>
+            <div class="col-xs-12" id="radar"></div>
+        </div>
+    </div>
+    <div class="col-xs-5">
+        <div class="col-xs-12" id="zbpj1" style="height: 113px"></div>
+        <div class="col-xs-12" id="zbpj2" style="height: 73px"></div>
+        <div class="col-xs-12" id="zbpj3" style="height: 113px"></div>
+        <div class="col-xs-12" id="zbpj4" style="height: 73px"></div>
+    </div>
+    <div class="col-xs-3">
+        <div class="text" style="height: 160px">根据指标智能雷达的评估结果,xxx、xxx、xxx为表现优异的前三名指标,分别完成计 划xxx%,准确按照标准执行。</div>
+        <div class="text" style="height: 160px">根据指标智能雷达的评估结果,其中,
+             xxx、xxx、xxx为有待提高的指标,分别完成计划xxx%,距离标准具有差距。未来海关需要重点关注xxx方面，并通过xxx方面进行改善。
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<script type="text/javascript">
+//主题更换
+	changeBodyColor();
+    function DrawRadar() {
+        var myChart = echarts.init(document.getElementById('radar'));
+
+        function random() {
+            var r = Math.round(Math.random() * 100);
+            return (r * (r % 2 == 0 ? 1 : -1));
+        }
+
+        function randomDataArray() {
+            var d = [];
+            var len = 15;
+            while (len--) {
+                d.push([
+                    random(),
+                    random(),
+                    Math.abs(random()),
+                ]);
+            }
+            return d;
+        }
+
+        option = {
+            // tooltip : {
+            //     trigger: 'axis',
+            //     showDelay : 0,
+            //     axisPointer:{
+            //         show: false,
+            //         type : 'cross',
+            //         lineStyle: {
+            //             type : 'dashed',
+            //             width : 1
+            //         }
+            //     }
+            // },
+            grid: {
+                x: 5,
+                x2: 5,
+                y: 5,
+                y2: 5,
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'value',
+                    // splitNumber: 4,
+                    splitLine: false,
+                    scale: true
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    // splitNumber: 4,
+                    splitLine: false,
+                    scale: true
+                }
+            ],
+            series: [
+                {
+                    name: 'scatter1',
+                    type: 'scatter',
+                    symbol: 'arrow',
+                    symbolRotate: -25,
+                    symbolSize: 4,
+                    itemStyle: {
+                        normal: {
+                            color: 'lightblue',
+                            borderWidth: 4
+                        },
+                        emphasis: {
+                            color: 'lightgreen'
+                        }
+                    },
+                    //data: randomDataArray()
+                }
+            ]
+        };
+         var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	myChart.setOption(option_data);
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+    }
+    function DrawLine1() {
+        var myChart = echarts.init(document.getElementById('zbpj1'));
+        var lineStyle = {
+            normal: {
+                color: '#8FD6EE'
+            }
+        };
+        var option = {
+            // title: {
+            //     text: '事前',
+            //     x: 'center',
+            //     y: 5,
+            //     textStyle: {
+            //         color: 'blue',
+            //         fontSize: 16
+            //     }
+            // },
+            //最右边一竖线
+            grid: {
+                borderColor: '#FFFFFF',
+                x: 25,
+                x2: 25,
+                y: 15,
+                y2: 30,
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine: {
+                        lineStyle: {
+                            color: ['#1A4C67']
+                        }
+                    },
+                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    axisLabel: {
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    splitLine: {
+                        lineStyle: {
+                            color: ['#1A4C67']
+                        }
+                    },
+                    scale: 'true',
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+                    }
+                },
+                {
+                    type: 'value',
+                    splitLine: {
+                        lineStyle: {
+                           // color: ['#1A4C67']
+                        }
+                    },
+                    scale: 'true',
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+                    }
+                }
+            ],
+            series: [{
+                type: 'line',
+               // itemStyle: lineStyle,
+                yAxisIndex: 0,
+                symbol: 'none',
+                //data: [6, 11, 23, 13, 12, 13, 10, 12, 12, 12, 1, 2, 2]
+
+            }, {
+                type: 'line',
+                //itemStyle: lineStyle,
+                yAxisIndex: 0,
+                symbol: 'none',
+               // data: [12, 13, 12, 15, 23, 12, 5, 12, 12, 12, 1, 2, 2]
+            }, {
+                type: 'line',
+                //itemStyle: lineStyle,
+                yAxisIndex: 1,
+                symbol: 'none',
+               // data: [17, 13, 15, 15, 13, 22, 3, 12, 7, 13, 15, 2, 2]
+            }]
+        };
+        // 为echarts对象加载数据
+         var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	myChart.setOption(option_data);
+	            	myChart.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+    }
+    function DrawLine2() {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('zbpj3'));
+        var lineStyle = {
+            normal: {
+                color: '#8FD6EE'
+            }
+        };
+        var option = {
+            // title: {
+            //     text: '事前',
+            //     x: 'center',
+            //     y: 5,
+            //     textStyle: {
+            //         color: 'blue',
+            //         fontSize: 16
+            //     }
+            // },
+            //最右边一竖线
+            grid: {
+                borderColor: '#FFFFFF',
+                x: 25,
+                x2: 25,
+                y: 15,
+                y2: 30,
+                borderWidth: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    splitLine: {
+                        lineStyle: {
+                            color: ['#1A4C67']
+                        }
+                    },
+                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    axisLabel: {
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    splitLine: {
+                        lineStyle: {
+                            color: ['#1A4C67']
+                        }
+                    },
+                    scale: 'true',
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+                    }
+                },
+                {
+                    type: 'value',
+                    splitLine: {
+                        lineStyle: {
+                            color: ['#1A4C67']
+                        }
+                    },
+                    scale: 'true',
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: '#a5def2'
+                        }
+                    }
+                }
+            ],
+            series: [{
+                type: 'line',
+               // itemStyle: lineStyle,
+                yAxisIndex: 0,
+                symbol: 'none',
+            //    data: [6, 11, 23, 13, 12, 13, 10, 12, 12, 12, 1, 2, 2]
+
+            }, {
+                type: 'line',
+                //itemStyle: lineStyle,
+                yAxisIndex: 0,
+                symbol: 'none',
+              //  data: [12, 13, 12, 15, 23, 12, 5, 12, 12, 12, 1, 2, 2]
+            }, {
+                type: 'line',
+                //itemStyle: lineStyle,
+                yAxisIndex: 1,
+                symbol: 'none',
+             //  data: [17, 13, 15, 15, 13, 22, 3, 12, 7, 13, 15, 2, 2]
+            }]
+        };
+        // 为echarts对象加载数据
+          var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	myChart.setOption(option_data);
+	            	myChart.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+        
+    }
+    function DrawRadius1() {
+    	var zhuti;
+        var myChart = echarts.init(document.getElementById("zbpj2"));
+        var labelTop = {
+            normal: {
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '{b}',
+                    textStyle: {
+                        baseline: 'bottom',
+                        color: '#8FD6EE'
+                    }
+                },
+                labelLine: {
+                    show: false
+                }
+            }
+        };
+
+        var labelFromatter = {
+            normal: {
+                label: {
+                    formatter: function (params) {
+                        return 100 - params.value + '%'
+                    },
+                    textStyle: {
+                        baseline: 'top',
+                        fontSize: 16,
+                        fontWeight: 'bolder',
+                        color: '#00ff00'
+                    }
+                }
+            }
+        };
+
+        var labelBottom = {
+            normal: {
+                color: 'rgba(0,0,0,0)',
+                label: {
+                    show: true,
+                    position: 'center'
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var radius = [26.5, 36.5];
+        var center_1 = ['17%', '50%'], center_2 = ['50%', '50%'], center_3 = ['83%', '50%'];
+        var option = {
+            series: [
+                {
+                    type: 'pie',
+                    center: center_1,
+                    radius: radius,
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 11, itemStyle: labelBottom},
+                        // {name: '指标1', value: 89, itemStyle: labelTop}
+                    // ]
+                },
+                {
+                    type: 'pie',
+                    center: center_2,
+                    radius: radius,
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 28, itemStyle: labelBottom},
+                        // {name: '指标2', value: 72, itemStyle: labelTop}
+                    // ]
+                },
+                {
+                    type: 'pie',
+                    center: center_3,
+                    radius: radius,
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 5, itemStyle: labelBottom},
+                        // {name: '指标3', value: 95, itemStyle: labelTop}
+                    // ]
+                }
+            ]
+        };
+         var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	myChart.setOption(option_data);
+	            	myChart.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+        
+    }
+    function DrawRadius2() {
+    	
+        var myChart = echarts.init(document.getElementById("zbpj4"));
+        var labelTop = {
+            normal: {
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '{b}',
+                    textStyle: {
+                        baseline: 'bottom',
+                        color: '#8FD6EE'
+                    }
+                },
+                labelLine: {
+                    show: false
+                }
+            }
+        };
+
+        var labelFromatter = {
+            normal: {
+                label: {
+                    formatter: function (params) {
+                        return 100 - params.value + '%'
+                    },
+                    textStyle: {
+                        baseline: 'top',
+                        fontSize: 16,
+                        fontWeight: 'bolder',
+                        color: '#00ff00'
+                    }
+                }
+            }
+        };
+
+        var labelBottom = {
+            normal: {
+                color: 'rgba(0,255,0,0)',
+                label: {
+                    show: true,
+                    position: 'center'
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,255,0,0)'
+            }
+        };
+        var radius = [26.5, 36.5];
+        var center_1 = ['17%', '50%'], center_2 = ['50%', '50%'], center_3 = ['83%', '50%'];
+        var option = {
+            series: [
+                {
+                    type: 'pie',
+                    center: center_1,
+                    radius: radius,
+                    x: '0%', // for funnel
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 22, itemStyle: labelBottom},
+                        // {name: '指标4', value: 78, itemStyle: labelTop}
+                    // ]
+                },
+                {
+                    type: 'pie',
+                    center: center_2,
+                    radius: radius,
+                    x: '33%', // for funnel
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 65, itemStyle: labelBottom},
+                        // {name: '指标5', value: 35, itemStyle: labelTop}
+                    // ]
+                },
+                {
+                    type: 'pie',
+                    center: center_3,
+                    radius: radius,
+                    x: '66%', // for funnel
+                    itemStyle: labelFromatter,
+                    // data: [
+                        // {name: 'other', value: 5, itemStyle: labelBottom},
+                        // {name: '指标6', value: 95, itemStyle: labelTop}
+                    // ]
+                }
+            ]
+        };
+         var contextPath = "<%=contextPath%>";
+			var dataURL = "<%=dataURL%>";
+        	(function(){
+			var datas = {
+				chartMoudleId: "",
+				sqlParams: {}
+			};
+			$.ajax({
+	            type: "POST",
+	            async: false,
+	            url: getChartDataURL(dataURL, contextPath) + '?chartMoudleId=',
+	            dataType: "json",
+	            data: datas,
+	            success: function (msg) {
+	            	var option_data = eval('(' + msg.data[0].option + ')');
+	            	var strOptionCode = sessionStorage.getItem("echarts_option_<%=chartID%>");
+	            	(new Function(strOptionCode))();
+	            	option_data = copyJSONAtoB_noArrayNull(_option, option_data);
+	            	myChart.setOption(option_data);
+	            	myChart.setTheme(changeEchartsColor());
+	            },
+	            error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	            }
+			});
+		})(); 
+    }
+    DrawRadar();
+    DrawLine1();
+    DrawLine2();
+    DrawRadius1();
+    DrawRadius2();
+</script>
+<script>
+    adjustWidgetScale();
+</script>
+
+</body>
+</html>

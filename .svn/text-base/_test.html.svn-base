@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>关境安全</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            background: url(images/background.jpg);
+        }
+
+        .chart_title {
+            z-index: 0;
+            position: absolute;
+            top: 9px;
+            margin-left: 33px;
+        }
+
+        .chart_title_text {
+            float: left;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            font-size: 1.4rem;
+            width: 113px;
+            height: 140px;
+            /*background: url('images/pie_bg.png') no-repeat center top;*/
+            margin-left: 64px;
+            padding: 115px 0 0 0;
+            text-align: center;
+        }
+
+        .chart_title_text_first {
+            margin-left: 0px;
+        }
+    </style>
+    <!-- 风格化边框样式 -->
+    <style>
+        .chartBorder2 {
+            border-image: url(./images/border2.png) 0 15 10 10 stretch stretch;
+            border-width: 25px 15px 10px 10px;
+            background-color: rgba(0, 104, 167, 0.3);
+            position: relative;
+        }
+
+        .title2 {
+            width: 100%;
+            height: 52px;
+            font-family: "Microsoft Yahei";
+            z-index: 99999;
+            display: -webkit-box;
+            position: absolute;
+        }
+
+        .title2Ball {
+            background: url(images/title2_ball.png) no-repeat top right;
+            width: 76px;
+            height: 100%;
+        }
+
+        .title2Left {
+            background: url(./images/title2_left.png) repeat-x;
+            background-size: 100% 100%;
+            height: 100%;
+            font-size: 18px;
+            font-weight: normal;
+            color: #fff;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #6AC7E8;
+            padding: 0 5px;
+        }
+
+        .title2Slash {
+            background: url(./images/title2_slash.png) no-repeat;
+            width: 20px;
+            height: 100%;
+        }
+
+        .title2Center {
+            background: url(./images/title2_center.png) repeat-x;
+            height: 100%;
+            -webkit-box-flex: 2;
+        }
+
+        .chartBorder2_flip {
+            border-image: url(./images/border2_flip.png) 0 10 10 15 stretch stretch;
+            border-width: 25px 10px 10px 15px;
+        }
+
+        .title2_flip {
+            -webkit-box-direction: reverse;
+        }
+
+        .title2_flip .title2Ball, .title2_flip .title2Slash {
+            transform: scaleX(-1);
+        }
+
+        .chartBorder3 {
+            border-image: url(./images/border3.png) 0 10 10 15 stretch stretch;
+            border-width: 25px 10px 10px 15px;
+            background-color: rgba(0, 104, 167, 0.3);
+            position: relative;
+        }
+
+        .title3 {
+            width: 100%;
+            height: 69px;
+            font-family: "Microsoft Yahei";
+            z-index: 99999;
+            display: -webkit-box;
+            position: absolute;
+        }
+
+        .title3Ball {
+            width: 49px;
+            height: 100%;
+            background: url(images/title3_ball.png) no-repeat top left;
+        }
+
+        .title3Left {
+            background: url(./images/title3_left.png) repeat-x;
+            background-size: 100% 100%;
+            height: 100%;
+            font-size: 18px;
+            font-weight: normal;
+            color: #fff;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 30px #6AC7E8;
+            padding: 0 5px;
+        }
+
+        .title3Slash {
+            background: url(./images/title3_slash.png) no-repeat;
+            width: 44px;
+            height: 100%;
+        }
+
+        .title3Center {
+            background: url(./images/title3_center.png) repeat-x;
+            -webkit-box-flex: 2;
+            height: 100%;
+        }
+
+        .title3Right {
+            background: url(./images/title3_right.png) no-repeat;
+            width: 43px;
+            height: 100%;
+        }
+
+        .chartBorder3_flip {
+            border-image: url(./images/border3_flip.png) 0 15 10 10 stretch stretch;
+            border-width: 25px 15px 10px 10px;
+        }
+
+        .title3_flip {
+            -webkit-box-direction: reverse;
+        }
+
+        .title3_flip .title3Ball, .title3_flip .title3Slash, .title3_flip .title3Right {
+            transform: scaleX(-1);
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div style="width: 740px;  height: 165px; position: relative;">
+    <div class="title2">
+        <div class="title2Left">关境安全</div>
+        <div class="title2Slash"></div>
+        <div class="title2Center"></div>
+        <div class="title2Ball"></div>
+    </div>
+    <div class="chartBorder2" style="width: 100%; height: 100%;">
+        <div id="gjaq" style="width: 708px; height: 100%;">
+        </div>
+        <div class="chart_title">
+            <div class="chart_title_text chart_title_text_first">报关单查获率</div>
+            <div class="chart_title_text">风险布控率</div>
+            <div class="chart_title_text">稽查有效率</div>
+            <div class="chart_title_text">稽查企业覆盖率</div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div style="width: 740px;  height: 165px; position: relative;">
+    <div class="title2 title2_flip">
+        <div class="title2Left">商品税收结构</div>
+        <div class="title2Slash"></div>
+        <div class="title2Center"></div>
+        <div class="title2Ball"></div>
+    </div>
+    <div class="chartBorder2 chartBorder2_flip" style="width: 100%; height: 100%;">
+        <div id="test" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+</div>
+<br>
+
+<div style="width: 740px;  height: 165px; position: relative;">
+    <div class="title3">
+        <div class="title3Ball"></div>
+        <div class="title3Left">注册企业覆盖率</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3" style="width: 100%; height: 100%;">
+        <div id="test2" class="widget_coverageMap" style="width: 100%; height: 100%;">
+        </div>
+        <style>
+            .widget_coverageMap_row li {
+                margin: 0 5px;
+            }
+
+            .widget_coverageMap_row_cell {
+                background: url(images/coverage_0.png) no-repeat;
+                display: inline-block;
+                width: 15px;
+                height: 38px;
+            }
+
+            .widget_coverageMap_row_cell_fill {
+                background: url(images/coverage_1.png) no-repeat;
+            }
+        </style>
+        <script>
+            var addWidgetCoverageMap = function () {
+                var data = [
+                    {name: 'A', value: 0.24},
+                    {name: 'B', value: 0.36},
+                    {name: 'C', value: 0.834}
+                ];
+                var dom = document.getElementById("test2");
+                var num = 10;
+                var html = "";
+                for (var i = 0; i < data.length; i++) {
+                    html += "<ul class='widget_coverageMap_row'>";
+                    for (var j = 0; j < num; j++) {
+                        if ((j + 1) / num <= data[i].value) {
+                            html += "<li class='widget_coverageMap_row_cell widget_coverageMap_row_cell_fill'></li>";
+                        } else if (j / num < data[i].value) {
+                            var fillRatio = (data[i].value - j / num) * num;
+                            var lackHeight = 38 * (1 - fillRatio);
+                            html += "<li class='widget_coverageMap_row_cell widget_coverageMap_row_cell_fill'><div class='widget_coverageMap_row_cell' style='display: block; height:" +lackHeight + "px'></div></li>"
+                        } else {
+                            html += "<li class='widget_coverageMap_row_cell'></li>"
+                        }
+                    }
+                    html += "</ul>";
+                }
+                dom.innerHTML = html;
+                console.log(html);
+            }
+            addWidgetCoverageMap();
+        </script>
+    </div>
+</div>
+<br>
+
+<div style="width: 740px;  height: 165px; position: relative;">
+    <div class="title3 title3_flip">
+        <div class="title3Ball"></div>
+        <div class="title3Left">test3333</div>
+        <div class="title3Slash"></div>
+        <div class="title3Center"></div>
+        <div class="title3Right"></div>
+    </div>
+    <div class="chartBorder3 chartBorder3_flip" style="width: 100%; height: 100%;">
+        <div id="test3" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+</div>
+<br>
+
+<div style="width: 596px;  height: 251px; position: relative; border: solid #ffffff 1px;">
+    <div id="cxtx" style="width: 100%; height: 100%;">
+    </div>
+</div>
+<div style="width: 500px;  height: 400px; position: relative; border: solid #ffffff 1px;">
+    <div id="cxtx_zcqy" style="width: 100%; height: 100%;">
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+<script src="js/global.js"></script>
+<!-- 添加环图圆形透明背景 示例 -->
+<script type="text/javascript">
+    var safe_echart = echarts.init(document.getElementById('gjaq'));
+
+    var labelTop = {
+        normal: {
+            label: {
+                show: false,
+                position: 'inner',
+                formatter: '{b}',
+                textStyle: {
+                    align: 'center',
+                    baseline: 'bottom'
+                }
+            },
+            labelLine: {
+                show: false
+            }
+        }
+    };
+    var labelFromatter = {
+        normal: {
+            color: '#A8E3F5',
+            label: {
+                formatter: function (params) {
+                    return 1000 - params.value
+                },
+                textStyle: {
+                    baseline: 'middle',
+                    color: '#9DE7FF',
+                    fontSize: '18'
+                }
+            }
+        }
+    };
+    var labelBottom = {
+        normal: {
+            color: 'rgba(245, 247, 250, 0)',
+            label: {
+                show: true,
+                position: 'center'
+            },
+            labelLine: {
+                show: false
+            }
+        }
+        // emphasis: {
+        //     color: 'rgba(0,0,0,0)'
+        // }
+    };
+    var radius = [32, 45];
+    option = {
+        series: [
+            {
+                type: 'pie',
+                center: ['12.5%', '45%'],
+                radius: radius,
+                x: '0%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 466, itemStyle: labelBottom},
+                    {name: '报关单查获率', value: 1534, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['37.5%', '45%'],
+                radius: radius,
+                x: '25%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 513, itemStyle: labelBottom},
+                    {name: '风险布控率', value: 487, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['62.5%', '45%'],
+                radius: radius,
+                x: '50%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 281, itemStyle: labelBottom},
+                    {name: '稽查有效率', value: 719, itemStyle: labelTop}
+                ]
+            },
+            {
+                type: 'pie',
+                center: ['87.5%', '45%'],
+                radius: radius,
+                x: '75%', // for funnel
+                itemStyle: labelFromatter,
+                data: [
+                    {name: 'other', value: 466, itemStyle: labelBottom},
+                    {name: '稽查企业覆盖率', value: 534, itemStyle: labelTop}
+                ]
+            }
+        ]
+    };
+    // 为echarts对象加载数据
+    safe_echart.setOption(option);
+    //为饼图添加背景
+    appendPieBg(safe_echart);
+</script>
+<!-- 三角形类柱图 示例-->
+<script>
+    var testChart = echarts.init(document.getElementById('test'));
+    var testOption = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            x: '5%',
+            x2: '5%',
+            y: '65%',
+            y2: 0,
+            borderWidth: 0
+        },
+        calculable: false,
+        axisTick: 0,
+        xAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                label: {
+                    show: false
+                },
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }
+        ],
+        yAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                type: 'value',
+                min: 0
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'line',
+                symbol: 'images/triangle.png',
+                symbolSize: 50,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b}\n{c}',
+                            textStyle: {
+                                color: '#8CD6EE',
+                                fontFamily: '微软雅黑',
+                                fontWeight: 'bolder'
+                            }
+                        },
+                        lineStyle: {
+                            width: 0
+                        }
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 62.2, 32.6, 20.0, 6.4, 3.3],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: false
+                            }
+                        }
+                    },
+                    data: [
+                        {type: 'max', name: '最大值', symbol: 'images/triangle_max.png'}
+                    ]
+                }
+            }
+        ]
+    };
+    testChart.setOption(testOption);
+    //testChart.setTheme('infographic');
+    function setChartSymbolSize(ecObj) {
+        var h = ecObj.component.grid.getHeight();
+        var w = ecObj.component.grid.getWidth();
+        var opt = ecObj.getOption();
+        var data = opt.series[0].data;
+        var max = 0;
+        data.forEach(function (d, i) {
+            max = (d > max) ? d : max;
+        });
+        var sw = 0.7 * w / data.length;
+        opt.series[0].symbolSize = function (v) {
+            var sh = h * v / max;
+            return [sw, sh];
+        };
+        opt.series[0].markPoint.data.forEach(function (d, i) {
+            d.type == 'max' && (d.symbolSize = [sw, h]);
+        });
+        ecObj.setOption(opt);
+    }
+    setChartSymbolSize(testChart);
+</script>
+<!-- 绿旗与红色标记图 -->
+<script>
+    var cxtxChart = echarts.init(document.getElementById('cxtx'));
+    var cxtxOption = {
+        title: {
+            text: '各级企业诚信滞纳税涉及企业数、欠税涉及企业数',
+            textStyle: {
+                fontSize: 16,
+                fontWeight: 'bolder',
+                fontFamily: '微软雅黑',
+                color: '#8CD6EE'
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: true,
+                show: false,
+                data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            x: 10,
+            y: 60,
+            x2: 10,
+            y2: 10,
+            borderWidth: 0
+        },
+        series: [
+            {
+                name: '最高气温',
+                type: 'line',
+                data: [11, 11, 15, 13, 12, 13, 10],
+                symbol: 'images/tick.png',
+                symbolSize: [20, 36],
+                smooth: true,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b}\n\n\n',
+                            position: 'inside',
+                            textStyle: {
+                                fontSize: 9,
+                                fontWeight: 'bolder',
+                                fontFamily: '微软雅黑',
+                                color: '#F00'
+                            }
+                        }
+                    }
+                }
+                /*markPoint : {
+                 data : [
+                 {type : 'max', name: '最大值'},
+                 {type : 'min', name: '最小值'}
+                 ]
+                 }*/
+            },
+            {
+                name: '最低气温',
+                type: 'line',
+                data: [1, -2, 2, 5, 3, 2, 0],
+                symbol: 'images/flag_markpoint.png',
+                symbolSize: [37, 44],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '        {b}\n\n\n\n\n',
+                            position: 'inside',
+                            textStyle: {
+                                fontSize: 9,
+                                fontWeight: 'bolder',
+                                fontFamily: '微软雅黑',
+                                color: '#FFF'
+                            }
+                        }
+                    }
+                }
+                /*markPoint : {
+                 data : [
+                 {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                 ]
+                 }*/
+            }
+        ]
+    };
+    cxtxChart.setOption(cxtxOption);
+</script>
+<!-- 3D柱状图HighCharts -->
+<script>
+    $('#cxtx_zcqy').highcharts({
+
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 60,
+                beta: 30,
+                viewDistance: 25,
+                depth: 40
+            },
+            backgroundColor: 'rgba(0,0,0,0)',
+            marginTop: 80,
+            marginRight: 40
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: '',
+            margin: 0
+        },
+        xAxis: {
+            gridLineWidth: 0,
+            categories: ['Apples'],
+            labels: {
+                enabled: false
+            }
+        },
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            gridLineWidth: 0,
+            title: {
+                text: ''
+            },
+            labels: {
+                enabled: false
+            }
+        },
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                depth: 40,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [{
+            name: 'John',
+            data: [5],
+            stack: 'male'
+        }, {
+            name: 'Joe',
+            data: [3],
+            stack: 'male'
+        }, {
+            name: 'mary',
+            data: [3],
+            stack: 'male'
+        }]
+    });
+</script>
+</body>
+</html>

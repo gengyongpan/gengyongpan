@@ -1,0 +1,101 @@
+/*-----主页标题及边框样式-----*/
+
+.blueBorder{
+    height: 100%;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.title{
+    width: 100%;
+    height: 25px;
+    font-family: "Microsoft Yahei";
+    z-index: 99999;
+    display: -webkit-box;
+}
+.titleLeft{
+    background: url("../images/border/title_left.png") no-repeat;
+    width: 19px;
+    height: 69px;
+}
+.titleRight{
+    background: url("../images/border/title_right.png") no-repeat;
+    width: 18px;
+    height: 30px;
+}
+.titleContent{
+    background: url("../images/border/title_center.png") repeat-x;
+    height: 30px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 0 0 10px #fff,
+    0 0 20px  #fff,
+    0 0 30px  #6AC7E8;
+}
+.parallelogram{
+    background: url("../images/border/parallelogram.png")  center 12px no-repeat;
+    width: 40px;
+    height: 25px;
+}
+.titleLine{
+    background: url("../images/border/title_line.png") center 14px repeat-x;
+    height: 25px;
+    -webkit-box-flex: 1;
+}
+.fourDot{
+    background: url("../images/border/four_dot.png") 6px 13px no-repeat;
+    width: 116px;
+    height: 25px;
+}
+.right_bottom{
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    right: 0;
+    bottom: 0;
+    z-index:999;
+    background: url("../images/border/right_bottom.png") no-repeat;
+}
+.left_bottom{
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    left: 0;
+    bottom: 0;
+    z-index:999;
+    background: url("../images/border/left_bottom.png") no-repeat;
+}
+.right_top{
+    position: absolute;
+    width: 59px;
+    height: 57px;
+    right: 0;
+    top: 19px;
+    z-index:999;
+    background: url("../images/border/right_top.png") no-repeat;
+    z-index: -1;
+}
+.top_center{
+    height: 6px;
+    margin-left: 19px;
+    margin-right: 20px;
+    background: url("../images/border/top_center.png");
+    background-size: 100% 100%;
+}
+.metaPage{
+    margin-top: -1px;
+    margin-left: 7px;
+    margin-right: 7px;
+    position: relative;
+    -webkit-box-flex: 1;
+    border-radius: 15px;
+    background-color: rgba(0, 104, 167, 0.3);
+}
+.metaPage iframe{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0
+}

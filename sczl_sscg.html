@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>丝绸之路</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/global_1.css" rel="stylesheet" />
+    <link href="css/global_2.css" rel="stylesheet" />
+    <link href="css/title.css" rel="stylesheet">
+ 
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /*body {
+            background: #000;
+        }*/
+        .chart_title {
+            z-index: 0;
+            position: absolute;
+            top: 9px;
+            margin-left: 33px;
+        }
+
+        .chart_title_text {
+            float: left;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            font-size: 1.4rem;
+            width: 113px;
+            height: 140px;
+            /*background: url('images/pie_bg.png') no-repeat center top;*/
+            margin-left: 64px;
+            padding: 115px 0 0 0;
+            text-align: center;
+        }
+
+        .chart_title_text_first {
+            margin-left: 0px;
+        }
+
+        .text_title {
+            color: #8CD6EE;
+            margin-left: 40px;
+            font-size: 12px;
+            padding-top: 5px;
+            font-family: '微软雅黑'
+        }
+
+        .text_title span {
+            color: rgb(232, 227, 46);
+            font-size: 20px;
+        }
+        .theme_2 .text_title {
+            color: #5c0000;
+            margin-left: 40px;
+            font-size: 12px;
+            padding-top: 5px;
+            font-family: '微软雅黑';
+            font-weight: bold;
+        }
+        .theme_2{
+        	/*background:rgba(199,44,44,1);*/
+        	color:#5c0000;
+       }
+        
+    </style>
+</head>
+<body >
+<div id="sscg" style="margin-left: 50px;width:840px;height:930px;">
+    <div style="width:100%;height:100%">
+        <div style="width: 740px;  height: 165px; position: relative;">
+            <div id="text_zhengti" style="width: 100%;height:100%;margin-top: 20px;"></div>
+        </div>
+        <br>
+
+        <div style="width: 740px;  height: 220px; position: relative;">
+            <div class="title3">
+                <div class="title3Ball"></div>
+                <div class="title3Left">商品税收结构</div>
+                <div class="title3Slash"></div>
+                <div class="title3Center"></div>
+                <div class="title3Right"></div>
+            </div>
+            <div class="chartBorder2" style="width: 100%; height: 100%;">
+                <div class="text_title">主要商品<span>12类</span>，其中工业制成品贸易变化率升高<span>26%</span>,符合一带一路战略的主要发展方向</div>
+                <div id="test" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div style="width: 740px;  height: 200px; position: relative;">
+            <div class="title3">
+                <div class="title3Ball"></div>
+                <div class="title3Left">贸易国税收结构</div>
+                <div class="title3Slash"></div>
+                <div class="title3Center"></div>
+                <div class="title3Right"></div>
+            </div>
+            <div class="chartBorder2">
+                <div class="text_title">重点关注贸易合作国<span>10个</span>，与马拉西亚贸易变化升高<span>10%</span>,符合一带一路战略的主要发展方向</div>
+                <div id="test_maoyi" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div style="width: 740px;  height: 200px; position: relative;">
+            <div class="title3">
+                <div class="title3Ball"></div>
+                <div class="title3Left">企业税收结构</div>
+                <div class="title3Slash"></div>
+                <div class="title3Center"></div>
+                <div class="title3Right"></div>
+            </div>
+            <div class="chartBorder2">
+                <div class="text_title">一带一路相关进出口企业共分<span>8类</span>，相关合资类企业贸易变化率升高<span>10%</span>,符合一带一路战略的主要发展方向
+                </div>
+                <div id="test_qiye" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+<!-- 三角形类柱图 示例-->
+<script>
+// 主题更换--框
+	changeBodyColor();
+
+    var testChart = echarts.init(document.getElementById('test'));
+    var testChart1 = echarts.init(document.getElementById('test_maoyi'));
+    var testChart2 = echarts.init(document.getElementById('test_qiye'));
+    ////////////////////////////////////////////////////////////////////////
+    var myChart3 = echarts.init(document.getElementById('text_zhengti'));
+    var option3 = {
+        color: ['#C0DDDD'],
+        title: {
+            text: '整体税收趋势',
+            x: '20',
+            y: '20',
+            textStyle: {
+                fontSize: 16,
+                fontWeight: 'bolder',
+                color: '#8CD6EE',
+                fontFamily: "Microsoft Yahei"
+            }
+        },
+        legend: {
+            x: '600',
+            data: ['2014年', '2015年'],
+            textStyle: {
+                fontSize: '7.76px',
+                color: '#8CD6EE'
+            }
+        },
+        grid: {
+            borderColor: 'rgba(255,255,255,1)',
+            x: 35,
+            x2: 35,
+            y: 60,
+            y2: 30,
+            borderWidth: 0
+        },
+        xAxis: [{
+            type: 'category',
+            axisTick: {
+                show: true,
+                inside: true,
+                lineStyle: {
+                    color: '#55b1e2'
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                formatter: '{value}',
+                textStyle: {
+                    fontFamily: '微软雅黑',
+                    color: '#8FD6EE',
+                    fontSize: '7.76px'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#55b1e2',
+                    width: 1
+                }
+            },
+            data: ["马来西亚", "越南", "哈萨克斯坦", "伊朗", "印度", "俄罗斯", "土耳其", "波兰", "德国", "肯尼亚"]
+        }],
+        yAxis: [{
+
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}',
+                textStyle: {
+                    fontFamily: '微软雅黑',
+                    color: '#8FD6EE',
+                    fontSize: '7.76px'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#55b1e2',
+                    width: 1
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: '#1A4862'    //'rgba(26, 72, 98, 0.8)'
+                }
+            }
+        }],
+        series: [
+            {
+                name: '2014年',
+                type: 'bar',
+                barWidth: 25,
+                barGap: '2%',
+                barCategoryGap: '16%',
+                itemStyle: {
+                    normal: {
+                        color: changeEchartsColor().color[1],//'#31abd4',
+                        label: {
+                            show: true,
+                            position: 'top'
+                        }
+                    }
+                },
+                data: [300, 500, 700, 350, 650, 470, 250, 389, 700, 630]
+            },
+            {
+                name: '2015年',
+                type: 'bar',
+                barWidth: 25,
+                barGap: '2%',
+                barCategoryGap: '16%',
+                itemStyle: {
+                    normal: {
+                        color: changeEchartsColor().color[2],//'#8FD6EE',
+                        label: {
+                            show: true,
+                            position: 'top'
+                        }
+                    }
+                },
+                data: [470, 250, 389, 680, 520, 300, 500, 700, 450, 350]
+            }
+        ]
+
+    };
+    myChart3.setOption(option3);
+    //////////////////////////////////////////////////////////////////////
+    var testOption = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            x: '5%',
+            x2: '5%',
+            y: '55%',
+            y2: 33,
+            borderWidth: 0
+        },
+        calculable: false,
+        axisTick: 0,
+        xAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                label: {
+                    show: false
+                },
+                type: 'category',
+                data: ['工业制成', '运输设备', '杂项制品', '轻纺产品', '化学品', '初级产品', '活动物', '矿物燃料', '非食用', '烟、饮料', '油脂及蜡', '其他']
+            }
+        ],
+        yAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                type: 'value',
+                min: 0
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'line',
+                symbol: changeEchartsSymbol_1(),
+                symbolSize: 50,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b}\n{c}',
+                            textStyle: {
+                                color: changeEchartsColor().color[2],//'#8CD6EE',
+                                fontFamily: '微软雅黑',
+                                fontWeight: 'bolder'
+                            }
+                        },
+                        lineStyle: {
+                            width: 0
+                        }
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 62.2, 32.6, 20.0, 6.4, 3.3],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: false
+                            }
+                        }
+                    },
+                    data: [
+                        {type: 'max', name: '最大值', symbol: changeEchartsSymbol_2()}
+                    ]
+                }
+            }
+        ]
+    };
+    /////贸易国税  testChart1
+    var testOption1 = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            x: '5%',
+            x2: '5%',
+            y: '55%',
+            y2: 33,
+            borderWidth: 0
+        },
+        calculable: false,
+        axisTick: 0,
+        xAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                label: {
+                    show: false
+                },
+                type: 'category',
+                data: ['马来西亚', '伊朗', '土耳其', '哈萨克斯坦', '越南', '印度', '安哥拉', '德国', '波兰', '俄罗斯']
+            }
+        ],
+        yAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                type: 'value',
+                min: 0
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'line',
+                symbol: changeEchartsSymbol_1(),
+                symbolSize: 50,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b}\n{c}',
+                            textStyle: {
+                                color: changeEchartsColor().color[2],//'#8CD6EE',
+                                fontFamily: '微软雅黑',
+                                fontWeight: 'bolder'
+                            }
+                        },
+                        lineStyle: {
+                            width: 0
+                        }
+                    }
+                },
+                data: [70, 49, 40, 23.2, 25.6, 6.7, 35.6, 62.2, 32.6, 30.0],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: false
+                            }
+                        }
+                    },
+                    data: [
+                        {type: 'max', name: '最小值', symbol: changeEchartsSymbol_2()}
+                    ]
+                }
+            }
+        ]
+    };
+    /////企业税收结构
+    /////贸易国税  testChart1
+    var testOption2 = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            x: '5%',
+            x2: '5%',
+            y: '55%',
+            y2: 33,
+            borderWidth: 0
+        },
+        calculable: false,
+        axisTick: 0,
+        xAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                label: {
+                    show: false
+                },
+                type: 'category',
+                data: ['国有', '合作', '合资', '独资', '集体', '私营', '体工商户', '其他']
+            }
+        ],
+        yAxis: [
+            {
+                show: false,
+                splitLine: {
+                    show: false
+                },
+                type: 'value',
+                min: 0
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'line',
+                symbol: changeEchartsSymbol_1(),
+                symbolSize: 50,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b}\n{c}',
+                            textStyle: {
+                                color: changeEchartsColor().color[2],//'#8CD6EE',
+                                fontFamily: '微软雅黑',
+                                fontWeight: 'bolder'
+                            }
+                        },
+                        lineStyle: {
+                            width: 0
+                        }
+                    }
+                },
+                data: [70, 49, 40, 23.2, 25.6, 6.7, 35.6, 62.2],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: false
+                            }
+                        }
+                    },
+                    data: [
+                        {type: 'max', name: '最小值', symbol: changeEchartsSymbol_2()}
+                    ]
+                }
+            }
+        ]
+    };
+    testChart.setOption(testOption);
+    testChart.setTheme(changeEchartsColor());
+    
+    testChart1.setOption(testOption1);
+    testChart1.setTheme(changeEchartsColor());
+    
+    testChart2.setOption(testOption2);
+    testChart2.setTheme(changeEchartsColor());
+    //testChart.setTheme('infographic');
+    function setChartSymbolSize(ecObj) {
+        var h = ecObj.component.grid.getHeight();
+        var w = ecObj.component.grid.getWidth();
+        var opt = ecObj.getOption();
+        var data = opt.series[0].data;
+        var max = 0, min;
+        data.forEach(function (d, i) {
+            (i == 0) && (min = d);
+            max = (d > max) ? d : max;
+            min = Math.min(d, min);
+        });
+        var sw = 0.7 * w / data.length;
+        var r = (max - min)/max;
+        console.log(r);
+        opt.series[0].symbolSize = function (v) {
+            var sh = r * h * v / max;
+            return [sw, sh];
+        };
+        opt.series[0].markPoint.data.forEach(function (d, i) {
+            d.type == 'max' && (d.symbolSize = [sw, r * h]);
+        });
+        ecObj.setOption(opt);
+    }
+    setChartSymbolSize(testChart);
+    setChartSymbolSize(testChart1);
+    setChartSymbolSize(testChart2);
+</script>
+</body>
+</html>

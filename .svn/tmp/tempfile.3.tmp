@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link href="css/title.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<style>
+	#metapage_01{
+		width:1000px;
+		height:250px;
+		background:rgb(2,31,49);
+	}
+	#widget_0101,#widget_0102,#widget_0103{
+		float:left;
+		width:100%;
+		height: 100%;
+	}
+	.dwfw_title{
+            position: absolute;
+            z-index: 0;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-weight: bold;
+            font-size: 1.4rem;
+            width: 250px;
+            height: 250px;
+            top: 30px;
+            left:335px;
+            background: url('images/pie_bg.png') no-repeat center top;
+            background-size:220px 220px;
+            padding: 115px 0 0 0;text-align: center;
+}
+</style>
+<<<<<<< .mine
+<div style="width: 958px;height: 300px;margin: 0 0 0 50px">
+=======
+<div style="width: 978px;height: 270px;margin: 0 0 0 30px">
+>>>>>>> .r246
+    <div class="title">
+        <div class="titleLeft"></div>
+        <div class="titleContent">对外服务</div>
+        <div class="titleRight"></div>
+        <div class="parallelogram"></div>
+        <div class="titleLine"></div>
+        <div class="fourDot"></div>
+    </div>
+
+<<<<<<< .mine
+    <div id="metapage_01" class="metapage chartBorder" style="margin-top: -5px;width: 938px;height: 300px">
+=======
+    <div id="metapage_01" class="metapage chartBorder" style="margin-top: -5px;width: 958px;height: 250px">
+>>>>>>> .r246
+       
+        <div id="widget_0102" class="widget" >
+        </div>
+        
+        <div class="dwfw_title"></div>
+        <!--清除浮动效果-->
+        <div class="clear"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script>    //metapage_01
+    
+/////////////////////////////////////////////////////////////////////////////////////
+     $(function() {
+        var echart_0102 = echarts.init(document.getElementById("widget_0102"));
+       option = {
+	      title : {
+			        text: '进出口总值贸易类型结构',
+			        x:10,
+			        y:0,
+			        textStyle:{
+                            fontFamily: '微软雅黑',
+                            color: '#8FD6EE',
+                            fontSize:16
+                        }
+			    },
+			    
+		    series : [
+		        {
+		            name:'数据分析',
+		            type:'pie',
+		            radius : [70, 90],
+		            data:[
+		                {value:250, name:'行业业务 12%',itemStyle:{normal:{color:'rgb(20,98,138)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'公考咨询  2%',itemStyle:{normal:{color:'rgb(44,125,170)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:250, name:'企业管理  13%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:250, name:'税政管理  25%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:25, name:'审单业务  3%',itemStyle:{normal:{color:'rgb(63,150,190)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:605, name:'加工贸易  33%',itemStyle:{normal:{color:'rgb(76,166,216)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:130, name:'电子口岸 6%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:330, name:'监管通关 16%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}},
+		                {value:630, name:'加工贸易 33%',itemStyle:{normal:{color:'rgb(93,180,231)',label:{textStyle:{baseline:'middle',color:'#A8E3F5'}},labelLine:{show:true,length : 115,lineStyle:{color:'#A8E3F5'}}}}}
+		            ]
+		        }
+		    ]
+		};
+        echart_0102.setOption(option);
+    });
+/////////////////////////////////////////////////////////////////////////////
+   
+</script>
+</body>

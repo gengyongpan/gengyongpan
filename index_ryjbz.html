@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Chart</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+</head>
+<body>
+<style>
+
+    body {
+        font-family: '微软雅黑', sans-serif;
+    }
+
+    .widget {
+        float: left;
+    }
+
+    .widget_round {
+        position: relative;
+        height: 100%;
+        margin-top: 10px;
+    }
+
+    .widget_round .region {
+        float: left;
+        width: 28%;
+        height: 95%;
+        font-size: 16px;
+        font-weight: bold;
+        color: #84D3ED;
+        padding-top: 5px;
+    }
+
+    .widget_round .region li {
+        cursor: pointer;
+    }
+
+    .widget_round .region li[data-level='1'] {
+        font-size: 1.2em;
+    }
+
+    .widget_round .region .selected {
+        color: #FFFFFF;
+    }
+
+    .widget_round .roundset {
+        float: left;
+        position: relative;
+        width: 46%;
+        height: 100%;
+        font-size: 14px;
+        color: #84D3ED;
+    }
+
+    .widget_round .roundset .round {
+        position: absolute;
+        width: 100%;
+        height: 95%;
+        text-align: right;
+        background: none no-repeat scroll right;
+        background-size:  contain;
+    }
+
+    .widget_round .roundset .round_1 {
+        background-image: url(images/round_1.png);
+        z-index: 99;
+    }
+
+    .widget_round .roundset .round_2 {
+        background-image: url(images/round_2.png);
+        z-index: 89;
+    }
+
+    .widget_round .roundset .round_3 {
+        background-image: url(images/round_3.png);
+        z-index: 79;
+    }
+
+    .widget_round .roundset .round_4 {
+        background-image: url(images/round_4.png);
+        z-index: 69;
+    }
+
+    .widget_round .roundset .round_1 .text {
+        margin-top: 50%;
+        margin-right: 20%;
+    }
+
+    .widget_round .roundset .round_2 .text {
+        margin-top: 35%;
+        margin-right: 40%;
+    }
+
+    .widget_round .roundset .round_3 .text {
+        margin-top: 20%;
+        margin-right: 60%;
+    }
+
+    .widget_round .roundset .round .text .num {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .widget_round .staff {
+        float: left;
+        width: 26%;
+        height: 95%;
+        font-size: 13px;
+        color: #84D3ED;
+        position: relative;
+    }
+
+    .widget_round .staff ul {
+        position: absolute;
+        bottom: 0;
+    }
+    .widget_chart-textset .textset {
+        margin: 5px 0 -10px 0;
+        color: #84D3ED;
+        font-weight: bolder;
+    }
+
+    .widget_chart-textset .text1 {
+        width: 70%;
+        height: 30px;
+        text-align: center;
+        float: left;
+        font-size: 16px;
+    }
+
+    .widget_chart-textset .text1 .num {
+        font-size: 1.5em;
+    }
+
+    .widget_chart-textset .text2 {
+        width: 30%;
+        height: 30px;
+        float: left;
+        font-size: 12px;
+    }
+
+    .widget_chart-textset .text2 .num {
+        color: #00FF01;
+    }
+
+    .widget_chart-textset .text3 {
+        height: 20px;
+        padding-left: 10%;
+    }
+</style>
+
+<div style="width: 958px;height: 200px;margin: 0 0 0 30px">
+    <div class="title">
+        <div class="titleLeft"></div>
+        <div class="titleContent">人员及保障</div>
+        <div class="titleRight"></div>
+        <div class="parallelogram"></div>
+        <div class="titleLine"></div>
+        <div class="fourDot"></div>
+    </div>
+
+<div id="metapage_01" class="metapage chartBorder" style="height: 179px;margin-top: -5px;">
+    <div id="widget_0101" class="widget" style="width: 27%; height: 100%">
+        <div class="widget_chart-textset">
+            <div class="textset">
+                <div class="text1 light">
+                    <span class="num">321.692</span>
+                    亿元
+                </div>
+                <div class="text2">去年同比<br>
+                    <span class="num">+4.33%</span>
+                </div>
+                <!--清除浮动效果-->
+                <div class="clear"></div>
+                <div class="text3">人均报关单数：
+                    <span class="num">30</span>
+                </div>
+            </div>
+            <div class="chart" style="width:100%;height:120px;">
+            </div>
+        </div>
+    </div>
+    <div id="widget_0102" class="widget" style="width: 46%; height: 100%;">
+        <div class="widget_round">
+            <div class="region">
+                <ul>
+                    <li data-level="2" data-region-id="0">京津冀</li>
+                    <li data-level="3" data-region-id="1">长江经济带</li>
+                    <li data-level="1" data-region-id="2"> 总署</li>
+                    <li data-level="2" data-region-id="3">“泛珠”区域</li>
+                    <li data-level="2" data-region-id="4">东北区域</li>
+                    <li data-level="3" data-region-id="5">丝绸之路经济带</li>
+                </ul>
+            </div>
+            <div class="roundset">
+                <div class="round round_1">
+                    <div class="text light" data-level="2"><span class="num">40</span>&nbsp;直属关
+                    </div>
+                </div>
+                <div class="round round_2">
+                    <div class="text light" data-level="3"><span class="num">100</span>&nbsp;隶属关
+                    </div>
+                </div>
+                <div class="round round_3">
+                    <div class="text light" data-level="4"><span class="num">500</span>&nbsp;口岸
+                    </div>
+                </div>
+                <div class="round round_4">
+                </div>
+            </div>
+            <div class="staff">
+                <ul>
+                    <li data-level="1" data-region-id="2">
+                        总署
+                        <span class="num">200</span>
+                        人&nbsp;
+                        <span class="ratio">10</span>%
+                    </li>
+                    <li data-level="2">
+                        直属
+                        <span class="num">500</span>
+                        人&nbsp;
+                        <span class="ratio">20</span>%
+                    </li>
+                    <li data-level="3">
+                        隶属
+                        <span class="num">500</span>
+                        人&nbsp;
+                        <span class="ratio">70</span>%
+                    </li>
+                    <li data-level="4">
+                        职工总人数
+                        <span class="num">500</span>
+                        人
+                    </li>
+                </ul>
+            </div>
+            <!--清除浮动效果-->
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="widget_0103" class="widget" style="width: 27%; height: 100%;">
+    </div>
+    <!--清除浮动效果-->
+    <div class="clear"></div>
+</div>
+
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/echarts-2.2.3/build/dist/echarts-all.js"></script>
+<script type="text/javascript" src="js/theme_custom.js"></script>
+<script>    //metapage_01
+$(function () {
+    var echart_0101 = echarts.init(document.getElementById("widget_0101").querySelector(".widget_chart-textset").querySelector(".chart"), theme_custom);
+    var option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                splitLine: 'false',
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: '#8FD6EE'
+                    }
+                },
+                data: ['5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '10%',
+            x2: '10%',
+            y2: '20%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        borderRadius: 5,
+                        color: '#8FD6EE',
+                        borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 7.8],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{a}:{c}' + '\n',
+                                textStyle: {
+                                    //color: '#8FD6EE',
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: 'image://./images/transparent.png',
+                    data: [
+                        {type: 'max', name: '最大值'}
+                    ]
+                }
+                /*markLine: {
+                 itemStyle: {
+                 normal: {
+                 color: '#8FD6EE'
+                 }
+                 },
+                 data: [
+                 {type: 'average', name: '平均值'}
+                 ]
+                 }*/
+            }
+        ]
+    };
+    echart_0101.setOption(option);
+});
+
+$(function () {
+    var jsonData = {
+        data: [
+            {
+                id: "1",
+                level: "2",
+                name: "京津冀",
+                num: [0, 30, 150]
+            },
+            {
+                id: "2",
+                level: "3",
+                name: "长江经济带",
+                num: [0, 0, 30]
+            },
+            {
+                id: "3",
+                level: "1",
+                name: "总署",
+                num: [40, 100, 500]
+            },
+            {
+                id: "4",
+                level: "2",
+                name: "“泛珠”区域",
+                num: [0, 25, 120]
+            },
+            {
+                id: "5",
+                level: "2",
+                name: "东北区域",
+                num: [0, 20, 130]
+            },
+            {
+                id: "6",
+                level: "3",
+                name: "丝绸之路经济带",
+                num: [0, 0, 20]
+            }
+        ]
+    };
+
+    $(".widget_round .region li").bind("select", function () {
+        var lv = $(this).attr("data-level");
+        var id = $(this).attr("data-region-id");
+        var el = $(".widget_round .roundset .round");
+        var data = jsonData.data[id];
+        var num = data.num;
+        for (var i = 0; i < el.length; i++) {
+            var txt = el.eq(i).find(".text");
+            var tlv = txt.attr("data-level");
+            el[i].style.display = ((tlv > lv || tlv == undefined) ? "block" : "none");
+            txt && txt.find(".num").text(num[i]);
+        }
+    });
+    $(".widget_round .region li").click(function () {
+        $(this).siblings(".selected").removeClass("selected");
+        $(this).addClass("selected");
+        $(this).trigger("select");
+    });
+
+    (function () {
+        var i = 0;
+        var len = $(".widget_round .region li").length;
+        setInterval(function () {
+            $(".widget_round .region li").eq(i % len).click();
+            i++;
+        }, 2000);
+    })();
+});
+
+$(function () {
+    var echart_0103 = echarts.init(document.getElementById("widget_0103"), theme_custom);
+    var option = {
+        title: {
+            x: '20',
+            text: '人均税收入库：60',
+            textStyle: {
+                fontFamily: '微软雅黑',
+                fontSize: 14,
+                color: '#8FD6EE',
+                fontWeight: "bolder"
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                splitLine: 'false',
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        fontFamily: '微软雅黑',
+                        color: '#8FD6EE'
+                    }
+                },
+                data: ['5', '6', '7', '8', '9', '10', '11', '12', '1', '2', '3', '4', '5']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        grid: {
+            borderWidth: 0,
+            x: '10%',
+            y: '10%',
+            x2: '10%',
+            y2: '20%'
+        },
+        series: [
+            {
+                name: '报关数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {                   // 系列级个性化，横向渐变填充
+                        borderRadius: 5,
+                        color: '#8FD6EE',
+                        borderColor: '#59B2DE'
+                    }
+                },
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 7.8],
+                markPoint: {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: 'true',
+                                position: 'inside',
+                                formatter: '{a}:{c}' + '\n',
+                                textStyle: {
+                                    //color: '#8FD6EE',
+                                    fontFamily: '微软雅黑'
+                                }
+                            }
+                        }
+                    },
+                    symbol: 'image://./images/transparent.png',
+                    data: [
+                        {type: 'max', name: '最大值'}
+                    ]
+                }
+            }
+        ]
+    };
+    echart_0103.setOption(option);
+});
+</script>
+</body>

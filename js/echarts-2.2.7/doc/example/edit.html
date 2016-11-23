@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECharts">
+    <meta name="author" content="kener.linfeng@gmail.com">
+    <title>ECharts · Example</title>
+
+    <link rel="shortcut icon" href="../asset/ico/favicon.png">
+
+    <link href="../asset/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../asset/css/bootstrap.css" rel="stylesheet">
+    <link href="../asset/css/carousel.css" rel="stylesheet">
+    <link href="../asset/css/echartsHome.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="./www/js/echarts.js"></script>
+    <script src="../asset/js/codemirror.js"></script>
+    <script src="../asset/js/javascript.js"></script>
+    <link href="../asset/css/codemirror.css" rel="stylesheet">
+    <link href="../asset/css/monokai.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="head" style="z-index: 999;">
+    <div class="row" style="margin: 10px;">
+        <div class="col-xs-4" style="overflow: auto">
+            <textarea class='piece-params form-control' id='data_url' rows="2" placeholder="数据查询URL"></textarea>
+        </div>
+        <div class="col-xs-4" style="overflow: auto">
+            <textarea class='piece-params form-control' id='sql_params' rows="2" placeholder="查询参数"></textarea>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-success" onclick="query()">查询数据</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row-fluid example">
+        <div id="sidebar-code" class="col-md-4">
+            <div class="well sidebar-nav">
+                <div class="nav-header">
+                    <a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id="icon-resize"></a>
+                    <a href="#" onclick="showOption(strOptionCode)" title="显示融合数据后的自定义代码">option</a>&nbsp;&nbsp;
+                    <a href="#" onclick="showOption(strOption_org)" title="显示返回数据JSON">返回数据</a>&nbsp;&nbsp;
+                    <a href="#" onclick="showOption()" title="显示原自定义代码">自定义代码</a>
+                </div>
+                    <textarea id="code" name="code">
+
+                    </textarea>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+        <div id="graphic" class="col-md-8">
+            <div id="main" class="main"></div>
+            <div>
+                <button type="button" class="btn btn-sm btn-success" onclick="format()">格式化</button>
+                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-save">保 存</button>
+                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">刷 新</button>
+                <span class="text-primary">切换主题</span>
+                <select id="theme-select"></select>
+                <a onclick="changeEChartsTheme()" style="cursor: pointer;">default</a>
+                <span id='wrong-message' style="color:red"></span>
+            </div>
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+</div>
+<!--/.fluid-container-->
+<div class="modal fade" id="modal-save"  tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-l abel="Close"><span
+                    aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">保存自定义Option代码</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="code-save" class="control-label">解析后将提交的的Option代码</label>
+                        <textarea id="code-save" class="form-control" name="code-save">
+
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="submitStrOptionCode()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!--<footer id="footer"></footer>-->
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../asset/js/jquery.min.js"></script>
+<!--<script type="text/javascript" src="../asset/js/echartsHome.js"></script>-->
+<script src="../asset/js/bootstrap.min.js"></script>
+<script src="../../../js/jquery.bootstrap-growl.min.js"></script>
+<script src="../asset/js/jsbeautify.js"></script>
+<script src="../asset/js/echartsExample.js"></script>
+<script src="../../../js/base64.js"></script>
+<script src="../../../js/global.js"></script>
+<script src="../../../js/theme_custom.js"></script>
+<script>
+     //获取JS对象中的属性个数
+    function getObjectPropertyCount(obj) {
+        if (Object.prototype.hasOwnProperty('__count__')) {
+            return this.__count__;
+        }
+        var count = 0;
+        for (var i in obj) if (obj.hasOwnProperty(i)) {
+            count++;
+        }
+        return count;
+    }
+
+    //添加Stirng对象的原型方法replaceAll:
+    String.prototype.replaceAll = function (s1, s2) {
+        return this.replace(new RegExp(s1, "gm"), s2);
+    };
+
+    //复制JSON A里的属性至JSON B中并覆盖
+    function copyJSONAtoB(a, b) {
+        var t;
+        for (var i in a) {
+            t = typeof b[i];
+            if (t == "object") {
+                copyJSONAtoB(a[i], b[i]);
+            } else {
+                b[i] = a[i];
+            }
+        }
+        return b;
+    }
+
+    //复制JSON A里的属性至JSON B中并覆盖，A中的属性为数组且数组中存在null项则跳过此项
+    function copyJSONAtoB_noArrayNull(a, b) {
+        var t, _t;
+        for (var i in a) {
+            t = typeof b[i];
+            _t = typeof a[i];
+            if(t != _t ){
+                b[i] = a[i];
+                continue;
+            }
+            if (t == "object") {
+                copyJSONAtoB_noArrayNull(a[i], b[i]);
+            } else {
+                if( a.length != null && b.length != null){      //判断a,b是否为数组
+                    a[i] != null && (b[i] = a[i]);
+                } else {
+                    b[i] = a[i];
+                }
+            }
+        }
+        return b;
+    }
+
+    //从JSON B中删除与JSON A中各个属性值相同的属性
+    function delJSONAfromB_equalVal(a, b) {
+        if (typeof a != typeof b) return b;
+        var t;
+        if (a.length != null && b.length != null) {     //判断a,b是否为数组
+            for (var i = 0; i < a.length; i++) {
+                t = typeof b[i];
+                if (t == "object") {
+                    b[i] = delJSONAfromB_equalVal(a[i], b[i]);
+                    !getObjectPropertyCount(b[i]) && (delete b[i]);
+                } else if (b[i] == a[i]) {
+                    b = b.slice(0);     //将数组复制一份，防止对函数体外的原数组进行修改
+                    b[i] = null;
+                }
+            }
+            for (var i = b.length - 1; i > -1; i--) {
+                if(b[i] == null) {
+                    b.splice(i, 1);
+                } else {
+                    break;
+                }
+            }
+        } else {
+            for (var i in a) {
+                t = typeof b[i];
+                if (t == "object") {
+                    b[i] = delJSONAfromB_equalVal(a[i], b[i]);
+                    !getObjectPropertyCount(b[i]) && (delete b[i]);
+                } else if (b[i] == a[i]) {
+                    b = copyJSONAtoB(b, {});        //将对象b复制一份，防止对函数体外的原对象进行修改
+                    delete b[i];
+                }
+            }
+        }
+        return b;
+    }
+
+    var strOption_org = "{\n    title : {\n        text: '未来一周气温变化',\n        subtext: '纯属虚构'\n    },\n    tooltip : {\n        trigger: 'axis'\n    },\n    legend: {\n        data:['最高气温','最低气温']\n    },\n    toolbox: {\n        show : true,\n        feature : {\n            mark : {show: true},\n            dataView : {show: true, readOnly: false},\n            magicType : {show: true, type: ['line', 'bar']},\n            restore : {show: true},\n            saveAsImage : {show: true}\n        }\n    },\n    calculable : true,\n    xAxis : [\n        {\n            type : 'category',\n            boundaryGap : false,\n            data : ['周一','周二','周三','周四','周五','周六','周日']\n        }\n    ],\n    yAxis : [\n        {\n            type : 'value',\n            axisLabel : {\n                formatter: '{value} °C'\n            }\n        }\n    ],\n    series : [\n        {\n            name:'最高气温',\n            type:'line',\n            data:[11, 11, 15, 13, 12, 13, 10],\n            markPoint : {\n                data : [\n                    {type : 'max', name: '最大值'},\n                    {type : 'min', name: '最小值'}\n                ]\n            },\n            markLine : {\n                data : [\n                    {type : 'average', name: '平均值'}\n                ]\n            }\n        },\n        {\n            name:'最低气温',\n            type:'line',\n            data:[1, -2, 2, 5, 3, 2, 0],\n            markPoint : {\n                data : [\n                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}\n                ]\n            },\n            markLine : {\n                data : [\n                    {type : 'average', name : '平均值'}\n                ]\n            }\n        }\n    ]\n}";
+    var option_org = eval("(" + strOption_org + ")");
+    var strOptionCode = "function strTest() {\n    var _option = 'test';\nvar strTest22 = 'hehe';\n    return strTest22;\n}\nvar strTes2 = 'gaga';\nconsole.info(1);\noption = { title : {\n        text: strTest(  ),\n        subtext: strTes2\n    },\n    toolbox: {\n    show : false\n    }\n    };";
+    //var strOptionCode = "option = { title : {\n        text: 'strTest(  )',\n        subtext: 'strTes2'\n    },\n    toolbox: {\n    show : false\n    }\n    };";
+    var strOptionCode_js = "";
+    var strOptionCode_opt = "";
+    var isInit = true;
+    var optParamList = [];
+     debugger;
+    var editor_save = CodeMirror.fromTextArea(
+        document.getElementById("code-save"),
+        {lineNumbers: true}
+    );
+    editor_save.setOption("theme", 'monokai');
+
+/*    (function(){
+        var chartMoudleCode = sessionStorage.getItem("chartMoudleCode") || '';
+        var dataURL = "platformChartAction.do?method=generateChartData&chartMoudleCode=" + chartMoudleCode;
+        var strSqlParams = sessionStorage.getItem("sql_params");
+        $("#data_url").val(dataURL);
+        $("#sql_params").val(strSqlParams);
+    })();*/
+
+    function query() {
+        var contextPath = "/ChinaDataWeb";
+        var dataURL = $("#data_url").val();
+        var strSqlParams = $("#sql_params").val();
+        strSqlParams = strSqlParams.replace(/[\r\n]/g, "");
+        while(strSqlParams.indexOf("$" + "{sysdate}") != -1){
+            strSqlParams = strSqlParams.replace("$\{sysdate\}", "sysdate");
+        }
+        var datas = {
+            sqlParams: "{" + strSqlParams +"}"
+        };
+        $.ajax({
+            type: "POST",
+            url: contextPath + "/" + dataURL,
+            dataType: "json",
+            data: datas,
+            success: function(msg) {
+                if (msg.flag == '1') {
+                    strOption_org =  msg.chartOption;
+                    option_org = eval('(' + strOption_org + ')');
+                    strOptionCode = '';
+                    strOptionCode = sessionStorage.getItem("echarts_option") || 'option = {};';
+                    (new Function(strOptionCode))();
+                    isInit = true;
+                    initOption();
+                    isInit = false;
+                    myChart.setOption(option, true);
+                    myChart.setTheme(theme_custom);
+                } else {
+                    console.log('请求数据为空或请求失败！');
+                }
+            },
+            error: function (xhr, txt, err) {
+                console.log(xhr.status + ":" + txt + ", " + err.message);
+            }
+        });
+    }
+
+    function initOption() {
+        mergeOption();
+        decodeOptParam();
+        editor.doc.setValue(js_beautify(strOptionCode));
+        (new Function(strOptionCode))();
+    }
+
+    function mergeOption() {
+        updateStrOptionCode();
+        (new Function(strOptionCode))();
+        var _option_org = $.extend(true, {}, option_org);
+        option = copyJSONAtoB_noArrayNull(option, _option_org);
+    }
+
+    function updateStrOptionCode() {
+        !isInit && (strOptionCode = editor.doc.getValue());
+        var tmpArr = strOptionCode.split("option = ");
+        if (tmpArr.length == 2) {
+            strOptionCode_js = tmpArr[0];
+            strOptionCode_opt = tmpArr[1].substring(0, tmpArr[1].length - 1);   //去最后的分号
+            encodeOptParam();
+        } else if (tmpArr.length == 1) {
+            //strOptionCode_js = "";
+            strOptionCode_opt = tmpArr[0].substring(0, tmpArr[0].length - 1);   //去最后的分号
+        } else {
+            domMessage.innerHTML = "请确保option的属性方法中未定义以\"option\"结尾来命名的变量！";
+            strOptionCode_js = "";
+            tmpArr.forEach(function (d, i) {
+                (i != tmpArr.length - 1) ? (strOptionCode_js += "option = " + d) : (strOptionCode_opt = d.substring(0, d.length - 1));   //去最后的分号;
+            });
+            strOptionCode_js = strOptionCode_js.substring(8);
+            encodeOptParam();
+        }
+    }
+
+    function encodeOptParam() {
+        optParamList = [];
+        var param;
+        do {
+            param = (new Function("var option; try { option = " + strOptionCode_opt + "; } catch(e) { return e.message.split(' ')[0]; } return false;"))();
+            if (param) {
+                optParamList.push(param);
+                strOptionCode_opt = strOptionCode_opt.replaceAll(param, "'_param_" + param + "'");
+                strOptionCode_opt = strOptionCode_opt.replaceAll("'_param_" + param + "'\\(.*\\)", "'_param_" + param + "()'");
+            }
+        } while (param);
+        strOptionCode = strOptionCode_js + "option = " + strOptionCode_opt;
+        console.log(optParamList);
+    }
+
+    function decodeOptParam() {
+        strOptionCode = "option = " + JSON.stringify(option).replaceAll("\"(\\w+)\"(\\s*:\\s*)", "$1$2") + ";";     //转换成String后再去除键值两端的双引号
+        for (var i = 0; i < optParamList.length; i++) {
+            strOptionCode = strOptionCode.replaceAll("\"_param_" + optParamList[i] + "\"", optParamList[i]);
+            strOptionCode = strOptionCode.replaceAll("\"_param_" + optParamList[i] + "\\(\\)\"", optParamList[i] + "()");
+        }
+        strOptionCode = strOptionCode_js + strOptionCode;
+    }
+
+    function saveStrOptionCode() {
+        updateStrOptionCode();
+        (new Function(strOptionCode))();
+        option = delJSONAfromB_equalVal(option_org, option);
+        decodeOptParam();
+        console.info(strOptionCode);
+    }
+
+    function submitStrOptionCode() {
+        strOptionCode = editor_save.doc.getValue();
+        sessionStorage.setItem("echarts_option", strOptionCode);
+        $.bootstrapGrowl("保存成功", {
+            type : 'success',
+            delay : 100,
+            align: 'center'
+        });
+        //window.close();
+
+    }
+
+    function format() {
+        var _strOptionCode = editor.doc.getValue();
+        editor.doc.setValue(js_beautify(_strOptionCode));
+    }
+
+    $('#modal-save').on('shown.bs.modal', function () {
+        saveStrOptionCode();
+        editor_save.doc.setValue(js_beautify(strOptionCode));
+        $('#editor_save').focus();
+    });
+
+    function showOption(opt){
+        if (!opt) {
+            opt = sessionStorage.getItem("echarts_option") || 'option = {};'
+        } else if (opt == strOption_org) {
+            opt = "option = " + opt.replaceAll("\"(\\w+)\"(\\s*:\\s*)", "$1$2") + ";";
+        }
+        editor.doc.setValue(js_beautify(opt));
+    }
+
+    function changeEChartsTheme(){
+        myChart.setTheme(theme_custom);
+    }
+</script>
+</body>
+</html>

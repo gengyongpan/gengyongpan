@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>整体运行动态</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/title.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+         body {
+            background: transparent;
+            color: #8CD6EE;
+            font-family: "Microsoft Yahei";
+            font-size: 2.0rem;
+            font-weight: bold;
+            margin: 0;
+            font-family: "微软雅黑"
+        }
+        .left{
+        	float:left;
+        }
+        .wenzi{
+        	float: left;
+        	width:280px;
+        	height:80px;
+        	text-align: center;
+        	line-height:80px;
+        }
+        table{
+        	font-size:1.2rem;
+        }
+        table th{
+        	text-align: center
+        }
+    </style>
+</head>
+<body>
+<div id="ztyxdt" style="width: 760px; height: 400px;">
+	<div class="wenzi">各区关人力资源配置</div>
+    <table class="table table-bordered">
+    <tbody>
+    	<tr><th>关区</th><th>人均报关单数</th></tr>
+        <tr><td>1</td><td>Mark</td></tr>
+        <tr><td>2</td><td>Jacob</td></tr>
+        <tr><td>3</td><td>Larry</td></tr>
+        <tr><td>3</td><td>Larry</td></tr>
+        <tr><td>3</td><td>Larry</td></tr>
+        <tr><td>3</td><td>Larry</td></tr>
+    </tbody>
+</table>
+</div>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/global.js"></script>
+<script src="js/theme_custom.js"></script>
+
+<script>
+	//主题更换
+	changeBodyColor();
+
+	adjustWidgetScale();
+ 
+	var contextPath = "<%=contextPath%>";
+
+	function queryData(year) {
+		!year && ( year = (new Date()).getFullYear());
+		var sqlParams = {
+			"STAT_CYCLE" : year
+		};
+		var strSqlParams = JSON.stringify(sqlParams);
+		var datas = {
+			key_code : "sy_dbpj",
+			sql_params : strSqlParams
+		};
+		//var msg = {"flag":"1","data":[{"NAME":"进口报关单数","X":"-55","Y":"-80"},{"NAME":"进口报关单平均通关时间","X":"-78","Y":"-70"}]}
+		$.ajax({
+			type : "POST",
+			url : contextPath + '/' + generateSQLDataURL,
+			dataType : "json",
+			data : datas,
+			success : function(msg) {
+				if (msg.flag == '1') {
+					for (var i = 0;i < $("tbody tr").length; i++) {
+						$("tbody .zbpj_tr01 td")[1].html(name[0].data_value[i+1]);
+						$("tbody .zbpj_tr02 td")[i+1].html(name[1].data_value[i+1]);
+						$("tbody .zbpj_tr03 td")[1].html(name[2]);
+						$("tbody .zbpj_tr04 td")[i+1].html(name[3].data_value[i+1]);
+					}
+				} else {
+					console.log('请求数据为空或请求失败！');
+				}
+			},
+			 error: function (xhr, txt, err) {
+	                console.log(xhr.status + ":" + txt + ", " + err.message);
+	         }
+		});
+	}
+	queryData();
+</script>
+
+</body>
+</html>
